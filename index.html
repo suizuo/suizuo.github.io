@@ -71,6 +71,57 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-跨域问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/23/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2021-12-23T02:25:34.000Z" itemprop="datePublished">2021-12-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/12/23/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">跨域问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>有以下几种情况，一一排查，</p>
+<p>1.nginx没有部署，当新增端口的时候，查看自己的nginx是否配了</p>
+<p><img src="/2021/12/23/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/1640226469804.png" alt="1640226469804"></p>
+<p>另：如果使用到文件上传，还需要加大小限制</p>
+<p><img src="/2021/12/23/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/1640226512645.png" alt="1640226512645"></p>
+<p>部署好之后重新启动nginx如果确定是nginx的原因，而重启nginx也没有用，尝试重启电脑</p>
+<p>nginx重启命令：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p>2.查看接口的方法名称，请求参数是否和前端api中一致</p>
+<p>3.查看 [missing | Hexo (suizuoa.top)](<a target="_blank" rel="noopener" href="http://suizuoa.top/2021/12/22/required">http://suizuoa.top/2021/12/22/required</a> request body is missing/) </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/23/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/" data-id="ckxicri3q0000e4vv5kox367c" data-title="跨域问题" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/error/" rel="tag">error</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-sdjioajhdoia" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/12/23/sdjioajhdoia/" class="article-date">
@@ -269,7 +320,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a>
+      <a href="/tags/error/" style="font-size: 20px;">error</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a>
     </div>
   </div>
 
@@ -289,6 +340,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/12/23/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">跨域问题</a>
+          </li>
         
           <li>
             <a href="/2021/12/23/sdjioajhdoia/">sdjioajhdoia</a>
