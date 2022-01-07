@@ -4,12 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="nacos远程调用, 过客">
-    <meta name="description" content="温习一下nacos远程调用方法的过程：
-流程为： Nacos注册-使用feign进行远程调用
-使用nacos之前需要进行下载和配置
-下载地址： https://github.com/alibaba/nacos/releases 
- 下载版本">
+    <meta name="keywords" content="No fallback instance of type, 过客">
+    <meta name="description" content="使用spring cloud 的fegin进行远程调用时，编译出错，报错信息如下：
+123456789101112131415161718192021222324252627282930313233343536373839404142434">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>nacos远程调用 | 过客</title>
+    <title>No fallback instance of type | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -313,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">nacos远程调用</h1>
+                    <h1 class="description center-align post-title">No fallback instance of type</h1>
                 </div>
             </div>
         </div>
@@ -434,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/study/">
-                                <span class="chip bg-color">study</span>
+                            <a href="/tags/error/">
+                                <span class="chip bg-color">error</span>
                             </a>
                         
                     </div>
@@ -450,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-06
+                    2022-01-07
                 </div>
                 
 
@@ -471,43 +468,15 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>温习一下nacos远程调用方法的过程：</p>
-<p>流程为： Nacos注册-使用feign进行远程调用</p>
-<p>使用nacos之前需要进行下载和配置</p>
-<p>下载地址： <a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases">https://github.com/alibaba/nacos/releases</a> </p>
-<p> 下载版本：nacos-server-1.1.4.tar.gz或nacos-server-1.1.4.zip，解压任意目录即可 </p>
-<p>​    启动文件\nacos-server-1.1.4\nacos\bin\startup.cmd(linux是sh)</p>
-<p>在pom中配置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--服务注册--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!--调用--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+                <p>使用spring cloud 的fegin进行远程调用时，编译出错，报错信息如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name &#x27;eduCommentController&#x27;: Unsatisfied dependency expressed through field &#x27;commentClient&#x27;; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#x27;com.xueshuai.eduservice.client.CommentClient&#x27;: FactoryBean threw exception on object creation; nested exception is java.lang.IllegalStateException: No fallback instance of type class com.xueshuai.eduservice.client.CommentFileDegradeFeignClient found for feign client service-ucenter</span><br><span class="line">	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)</span><br><span class="line">	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:116)</span><br><span class="line">	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:397)</span><br><span class="line">	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1429)</span><br><span class="line">	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)</span><br><span class="line">	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)</span><br><span class="line">	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)</span><br><span class="line">	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)</span><br><span class="line">	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)</span><br><span class="line">	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)</span><br><span class="line">	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879)</span><br><span class="line">	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)</span><br><span class="line">	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)</span><br><span class="line">	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)</span><br><span class="line">	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)</span><br><span class="line">	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)</span><br><span class="line">	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)</span><br><span class="line">	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)</span><br><span class="line">	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)</span><br><span class="line">	at com.xueshuai.eduservice.EduApplication.main(EduApplication.java:24)</span><br><span class="line">Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#x27;com.xueshuai.eduservice.client.CommentClient&#x27;: FactoryBean threw exception on object creation; nested exception is java.lang.IllegalStateException: No fallback instance of type class com.xueshuai.eduservice.client.CommentFileDegradeFeignClient found for feign client service-ucenter</span><br><span class="line">	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:178)</span><br><span class="line">	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getObjectFromFactoryBean(FactoryBeanRegistrySupport.java:101)</span><br><span class="line">	at org.springframework.beans.factory.support.AbstractBeanFactory.getObjectForBeanInstance(AbstractBeanFactory.java:1818)</span><br><span class="line">	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getObjectForBeanInstance(AbstractAutowireCapableBeanFactory.java:1266)</span><br><span class="line">	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:260)</span><br><span class="line">	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)</span><br><span class="line">	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)</span><br><span class="line">	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1510)</span><br><span class="line">	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1467)</span><br><span class="line">	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1250)</span><br><span class="line">	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)</span><br><span class="line">	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:636)</span><br><span class="line">	... 19 common frames omitted</span><br><span class="line">Caused by: java.lang.IllegalStateException: No fallback instance of type class com.xueshuai.eduservice.client.CommentFileDegradeFeignClient found for feign client service-ucenter</span><br><span class="line">	at org.springframework.cloud.openfeign.HystrixTargeter.getFromContext(HystrixTargeter.java:81)</span><br><span class="line">	at org.springframework.cloud.openfeign.HystrixTargeter.targetWithFallback(HystrixTargeter.java:72)</span><br><span class="line">	at org.springframework.cloud.openfeign.HystrixTargeter.target(HystrixTargeter.java:49)</span><br><span class="line">	at org.springframework.cloud.openfeign.FeignClientFactoryBean.loadBalance(FeignClientFactoryBean.java:242)</span><br><span class="line">	at org.springframework.cloud.openfeign.FeignClientFactoryBean.getTarget(FeignClientFactoryBean.java:271)</span><br><span class="line">	at org.springframework.cloud.openfeign.FeignClientFactoryBean.getObject(FeignClientFactoryBean.java:251)</span><br><span class="line">	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:171)</span><br><span class="line">	... 30 common frames omitted</span><br></pre></td></tr></table></figure>
 
-<h3 id="1-Nacos注册"><a href="#1-Nacos注册" class="headerlink" title="1.Nacos注册"></a>1.Nacos注册</h3><p>​    (1)找到<code>需要被调用方法</code>的模块（以下称为<code>生产者</code>）的application.properties，写入如下配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848</span><br></pre></td></tr></table></figure>
 
-<p>ps:如果是yml/yaml文件则按照其格式写入</p>
-<p>这代表的是nacos的地址以及将该模块注册入nacos，将来查找服务时寻找的是：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.application.name=service-ucenter</span><br></pre></td></tr></table></figure>
 
-<p>中的name值</p>
-<p>(2)在生产者的启动类上加上注解： @EnableDiscoveryClient ，作用是让注册中心扫描到该服务</p>
-<p>​    具体的例子：</p>
-<p><em><img src="/2022/010655535/1641467757598.png" class title="nacos注册"></em></p>
-<p>（3）查看nacos的控制台是否注册成功</p>
-<p>​        端口号是8848，访问地址是  <a target="_blank" rel="noopener" href="http://localhost:8848/nacos/#/login">http://localhost:8848/nacos/#/login</a></p>
-<p>​        账号密码都是nacos </p>
-<p><em><img src="/2022/010655535/1641467934182.png" class title="nacos注册中心"></em></p>
-<p>我们可以看到 service-ucenter 注册成功，名称就是spring.application.name=service-ucenter的name值</p>
-<p><em><img src="/2022/010655535/1641468067412.png" class title="注册成功"></em></p>
-<h3 id="2-使用feign进行远程调用"><a href="#2-使用feign进行远程调用" class="headerlink" title="2.使用feign进行远程调用"></a>2.使用feign进行远程调用</h3><p>注册成功之后，我们对其进行调用，以下称调用的模块为<code>消费者</code></p>
-<p>​    首先是消费者的注册，配置文件与消费者相同，主启动类上的注解更换为 @EnableFeignClients </p>
-<p>​    </p>
-<p>调用：</p>
-<p>创建接口，接口中用于调用，在接口上加入@FeignClient(name = “service-ucenter”,fallback = VodFileDegradeFeignClient.class)</p>
-<p>name值和生产者的服务名一致，fallback值为本接口实现类.class。fallback为了进行熔断降级处理</p>
-<p>加入@Component将其交给springboot托管。</p>
-<p>接口中具体写法如图所示：</p>
-<p><em><img src="/2022/010655535/1641470758792.png" class title="接口写法"></em></p>
-<p>实现类实现只需return即可。(实现类也要加@Component或类似注解来交给spring)</p>
-<p>之后在消费者中实例化之后就可以调用了，</p>
+<p>解决方法：</p>
+<p>查看消费者实现类或者接口中是否加上了@Component或者类似注解</p>
+<p>加上之后编译通过：</p>
+<p><em><img src="/2022/0107undefined/1641523960615.png" class title="编译通过"></em></p>
 
                 
             </div>
@@ -534,7 +503,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/010655535.html">http://example.com/2022/010655535.html</a>
+                    <a href="http://example.com/2022/010750003.html">http://example.com/2022/010750003.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -572,8 +541,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/study/">
-                                    <span class="chip bg-color">study</span>
+                                <a href="/tags/error/">
+                                    <span class="chip bg-color">error</span>
                                 </a>
                             
                         </div>
@@ -745,9 +714,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/010750003.html">
                     <div class="card-image">
@@ -765,9 +735,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -776,6 +746,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -794,13 +765,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/123029046.html">
+                <a href="/2022/010655535.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="hexo图片插入问题">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="nacos远程调用">
                         
-                        <span class="card-title">hexo图片插入问题</span>
+                        <span class="card-title">nacos远程调用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -811,7 +782,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-06
                             </span>
                         <span class="publish-author">
                             
@@ -824,8 +795,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/question/">
-                        <span class="chip bg-color">question</span>
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
                     </a>
                     
                 </div>
