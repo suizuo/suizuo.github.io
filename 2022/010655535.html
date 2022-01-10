@@ -507,7 +507,16 @@
 <p>接口中具体写法如图所示：</p>
 <p><em><img src="/2022/010655535/1641470758792.png" class title="接口写法"></em></p>
 <p>实现类实现只需return即可。(实现类也要加@Component或类似注解来交给spring)</p>
-<p>之后在消费者中实例化之后就可以调用了，</p>
+<p>之后在消费者中实例化之后就可以调用了。</p>
+<p>ps：如果接口中使用了@PathVariable()注解，则里面必须加上参数，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/eduService/courseFront/getCourseInfoOrder/&#123;id&#125;&quot;)</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> CourseWebVo <span class="title">getCourseInfoOrder</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> String id)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
 
                 
             </div>
