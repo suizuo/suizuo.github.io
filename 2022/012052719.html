@@ -4,11 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="按钮点击事件与失去焦点事件冲突问题, 过客">
-    <meta name="description" content="出现原因：
-输入框有两种状态：获得焦点，失去焦点，目前需要根据这两种状态做提交，但是当点击提交时，会默认失去焦点，造成冲突或者bug。
-解决方法：给按钮添加mousedown事件：
-1&amp;lt;input type=&amp;quot;button&amp;">
+    <meta name="keywords" content="常用linux命令, 过客">
+    <meta name="description" content="记录一下常用的linux命令
+
+cd /路径                        //进入***目录中，前面加/表示根目录，不加/表示从当前目录开始，加.或./也表示当前          路径,加../表示返回上一级目录
+ls ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +20,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>按钮点击事件与失去焦点事件冲突问题 | 过客</title>
+    <title>常用linux命令 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -312,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">按钮点击事件与失去焦点事件冲突问题</h1>
+                    <h1 class="description center-align post-title">常用linux命令</h1>
                 </div>
             </div>
         </div>
@@ -449,7 +449,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-09
+                    2022-01-20
                 </div>
                 
 
@@ -470,16 +470,24 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>出现原因：</p>
-<p>输入框有两种状态：获得焦点，失去焦点，目前需要根据这两种状态做提交，但是当点击提交时，会默认失去焦点，造成冲突或者bug。</p>
-<p>解决方法：给按钮添加mousedown事件：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;addComment()&quot;</span> <span class="attr">value</span>=<span class="string">&quot;回复&quot;</span> <span class="attr">class</span>=<span class="string">&quot;lh-reply-btn&quot;</span> @<span class="attr">mousedown</span>=<span class="string">&quot;msevent()&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>实现这个方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">msevent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     event.preventDefault();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个方法表示在鼠标移动到元素上方并摁下左键的同时执行的方法，</p>
-<p>event.preventDefault();的作用是阻止元素发生默认的行为。即输入框不会执行失去焦点的方法。</p>
+                <p>记录一下常用的linux命令</p>
+<ul>
+<li>cd /路径                        //进入***目录中，前面加/表示根目录，不加/表示从当前目录开始，加.或./也表示当前          路径,加<code>../</code>表示返回上一级目录</li>
+<li>ls                                  //查看当前路径中的文件</li>
+<li>mkdir  test                 //创建 “test”文件夹/目录</li>
+<li>rmdir   test                //删除“test”文件夹/目录    如果需要删除多个，则目录名使用<code>空格</code>隔开，只能删除<code>空目录</code></li>
+<li>rm        test/**           // 删除文件或文件夹，文件夹不能为空，参数有：-f 忽略不存在的文件，-r表示递归删             除，常用方法，rm -rf 目录          表示 将子目录及子目录中所有文件删除,并且不用确认。</li>
+<li>mv  /test1/file1 /test3/                    //   将/test1目录下的file1移动到/test3 目录，如需移动后修改文件名，则在移动后的目录下指定文件名，如mv  /test1/file1 /test3/file2</li>
+<li> cp                                        //复制文件，用法与mv相同</li>
+<li>cat  文件名                         //按序读取文件内容   </li>
+<li> ps -ef|grep xxx              //检查某个进程，ps命令将某个进程显示出来，grep命令是查找， |是管道符，表示同时执行，</li>
+<li> kill -9  进程pid                //根据<code>pid</code>杀掉某个进程，可以配合ps -ef|grep xxx 检查出来的pid使用</li>
+<li> tar –zxvf                         //解压压缩文件，一般用于.tar.gz文件                          </li>
+<li> ls -l /etc/alternatives/java                  //查看jdk路径</li>
+<li>top                                  //查看系统状况</li>
+<li>vim   文件                       //文本编辑器，进入后摁<code>i</code>键进入写入模式，<code>esc</code>键退出写入模式，<code>:wq</code>保存并退出<code>:q</code>没有改变文件内容时使用，表示退出<code>:q!</code>强制退出，并且不保存<code>:wq!</code>强制保存退出</li>
+</ul>
+<p>持续更新</p>
 
                 
             </div>
@@ -506,7 +514,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/010928976.html">http://example.com/2022/010928976.html</a>
+                    <a href="http://example.com/2022/012052719.html">http://example.com/2022/012052719.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -717,9 +725,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/012052719.html">
                     <div class="card-image">
@@ -737,9 +746,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -748,6 +757,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -766,13 +776,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/010943943.html">
+                <a href="/2022/010928976.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="vue点击一个元素，使指定输入框获得焦点">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="按钮点击事件与失去焦点事件冲突问题">
                         
-                        <span class="card-title">vue点击一个元素，使指定输入框获得焦点</span>
+                        <span class="card-title">按钮点击事件与失去焦点事件冲突问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
