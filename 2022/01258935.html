@@ -4,15 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="vue获取路径参数以及跳转刷新, 过客">
-    <meta name="description" content="1.获取到页面url上？后方参数：
-1this.$route.query.search             search表示？后面的参数名
+    <meta name="keywords" content="vue递归组件及其调用, 过客">
+    <meta name="description" content="需求：递归显示数据
+后端传过来的数据：
 
+前端需要接收并将其递归显示
+步骤，首先定义递归组件，在组件中自己使用自己
 
-获取到的值就是java
-2.跳转页面之后刷新页面
-
-">
+12345678910111213141516171819202122232425&amp;lt;template&amp;gt;  &amp;l">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +23,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>vue获取路径参数以及跳转刷新 | 过客</title>
+    <title>vue递归组件及其调用 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -321,7 +320,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">vue获取路径参数以及跳转刷新</h1>
+                    <h1 class="description center-align post-title">vue递归组件及其调用</h1>
                 </div>
             </div>
         </div>
@@ -453,7 +452,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-22
+                    2022-01-25
                 </div>
                 
 
@@ -474,13 +473,28 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>1.获取到页面url上？后方参数：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.$route.query.search             search表示？后面的参数名</span><br></pre></td></tr></table></figure>
+                <p>需求：递归显示数据</p>
+<p>后端传过来的数据：</p>
+<p><em><img src="/2022/0125undefined/1643120927280.png" class title="后端数据"></em></p>
+<p>前端需要接收并将其递归显示</p>
+<p>步骤，首先定义递归组件，在组件中自己使用自己</p>
+<p><em><img src="/2022/0125undefined/1643120987300.png" class title="创建组件文件"></em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">      &lt;li v-for=&quot;item in treeData&quot; :key=&quot;item.id&quot;&gt;</span><br><span class="line">          &lt;!-- 在遍历时使用数组本身,这里的item点后边的根据自己的需求写 --&gt;</span><br><span class="line">          &#123;&#123;item.content&#125;&#125;</span><br><span class="line">          &lt;!--  v-bind绑定组件的props的data为item.child--&gt;</span><br><span class="line">          &lt;!--自己使用自己并且定义结束条件，child就是后端传过来的数据的子数据 --&gt;</span><br><span class="line">          &lt;DefaultTree v-if=&quot;item.child&quot; :treeData=&quot;item.child&quot;&gt;&lt;/DefaultTree&gt;</span><br><span class="line">      &lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    //给文件一个name属性,name属性便是之后调用的组件名</span><br><span class="line">    name:&#x27;DefaultTree&#x27;,</span><br><span class="line">    //接收一个array类型的props</span><br><span class="line">    props:&#123;</span><br><span class="line">        treeData: Array,</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 
-<p><em><img src="/2022/012263621/1642866591354.png" class title="vue获取路径参数"></em></p>
-<p>获取到的值就是java</p>
-<p>2.跳转页面之后刷新页面</p>
-<p><em><img src="/2022/012263621/1642866678255.png" class title="vue跳转刷新"></em></p>
+
+
+<p>调用</p>
+<p>​    1.引入组件：import DefaultTree from ‘@/components/default-tree.vue’;</p>
+<p>​    2.声明组件：components:{  DefaultTree ，},</p>
+<p>​    3.获得数据/定义数据</p>
+<p>​    4.使用标签</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">&lt;!-- 标签名就是调用的组件名，:treeData后面是需要展示的数据的数组 --&gt;    </span><br><span class="line">&lt;DefaultTree :treeData=&#x27;qaList&#x27;&gt;&lt;/DefaultTree&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">//引入标签</span><br><span class="line">import DefaultTree from &#x27;@/components/default-tree.vue&#x27;;</span><br><span class="line">import qaApi from &#x27;@/api/qa&#x27;</span><br><span class="line">export default &#123;</span><br><span class="line">//声明组件</span><br><span class="line">components:&#123;</span><br><span class="line">    DefaultTree,</span><br><span class="line">&#125;,</span><br><span class="line">data()&#123;</span><br><span class="line">  return &#123;   </span><br><span class="line">   //数据</span><br><span class="line">   qaList:[]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">created() &#123;</span><br><span class="line">    this.allQa()</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">//获得数据</span><br><span class="line"> allQa()&#123;</span><br><span class="line">      qaApi.showAllQa()</span><br><span class="line">        .then(response =&gt;&#123;</span><br><span class="line">          this.qaList = response.data.data.list</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>效果展示：</p>
+<p><em><img src="/2022/0125undefined/1643121507621.png" class title="效果展示"></em></p>
+<p>感谢浏览</p>
 
                 
             </div>
@@ -507,7 +521,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/012263621.html">http://example.com/2022/012263621.html</a>
+                    <a href="http://example.com/2022/01258935.html">http://example.com/2022/01258935.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -718,9 +732,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/01258935.html">
                     <div class="card-image">
@@ -738,9 +753,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -749,6 +764,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -767,13 +783,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/012052719.html">
+                <a href="/2022/012263621.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="常用linux命令">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="vue获取路径参数以及跳转刷新">
                         
-                        <span class="card-title">常用linux命令</span>
+                        <span class="card-title">vue获取路径参数以及跳转刷新</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -784,7 +800,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-22
                             </span>
                         <span class="publish-author">
                             
