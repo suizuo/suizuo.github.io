@@ -474,16 +474,21 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><em><img src="/2022/0129undefined/1643465760893.png" class title="题目"></em></p>
+                <p><em><img src="/2022/012957550/1643465760893.png" class title="题目"></em></p>
 <p>题目：</p>
 <p>这个题目可能有点不好理解</p>
 <p>给定的原始方法是这样的</p>
-<p><em><img src="/2022/0129undefined/1643465832631.png" class></em></p>
+<p><em><img src="/2022/012957550/1643465832631.png" class></em></p>
 <p>比如示例一：[“CQueue”,”appendTail”,”deleteHead”,”deleteHead”]指的是执行这些方法的顺序，</p>
 <p>​                        [[],[3],[],[]]指的是这些方法对应的参数，比如CQueue()不需要参数而appendTail需要一个整数</p>
 <p>​                        输出：[null,null,3,-1]指的是执行完这个方法之后的返回值。</p>
 <p>​                        流程：CQueue()创建了两个栈，返回null，appendTail()方法将3添加进队列，返回值为null，所以为null，deleteHead()删除了栈顶，也就是这个3，要求将这个值返回所以是3，再执行一次deleteHead()因为栈内没有数据，根据题目，应该返回-1.</p>
 <p>题解：</p>
+<p>【</p>
+<p>ps:</p>
+<p>为什么要使用LinkedList</p>
+<p><em><img src="/2022/012957550/1643467667754.png" class title="使用LinkedList"></em></p>
+<p>】</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">CQueue</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">//两个栈，一个执行添加,一个执行删除</span>
         LinkedList<span class="token operator">&lt;</span>Integer<span class="token operator">></span> stack1<span class="token punctuation">;</span>
@@ -513,7 +518,8 @@
 <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>需要模仿的是队列的先进先出，而栈是先进后出，用两个栈相互倒腾就可以实现队列，当栈2不为空的时候,说明先进的那一部分还没有删完，等删完之后再将栈1中的数据再倒入栈二中。</p>
-<p><em><img src="/2022/0129undefined/1643467484244.png" class title="通过"></em></p>
+<p><em><img src="/2022/012957550/1643467484244.png" class title="通过"></em></p>
+<p>感谢观看</p>
 
                 
             </div>
