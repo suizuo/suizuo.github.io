@@ -9,7 +9,12 @@
 
 其实就是实现一个带有返回最小值功能的栈;
 解法1：
-1234567891011121314151617181920212223242526272829303132333435363738394041424344class MinS">
+class MinStack {
+    //定义一个链表，首先是头
+    private Node head;
+    
+    public MinStack() {
+  ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -34,7 +39,8 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -472,12 +478,58 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>题目:</p>
-<p><em><img src="/2022/0129undefined/1643446564817.png" class title="题目"></em></p>
+<p><em><img src="/2022/012963137/1643446564817.png" class title="题目"></em></p>
 <p>其实就是实现一个带有返回最小值功能的栈;</p>
 <p>解法1：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> </span>&#123;</span><br><span class="line">	<span class="comment">//定义一个链表，首先是头</span></span><br><span class="line">    <span class="keyword">private</span> Node head;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MinStack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//push为往栈里面存值</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//如果链表为null，表示是头节点，定义一个链表给他，当前值和最小值都是x，下一个节点为null</span></span><br><span class="line">         <span class="keyword">if</span> (head == <span class="keyword">null</span>)&#123;&#125;</span><br><span class="line">            head = <span class="keyword">new</span> Node(x, x, <span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="comment">//当前节点不是头节点，定义一个Node，将三个值传进去，next为上一个节点</span></span><br><span class="line">            head = <span class="keyword">new</span> Node(x, Math.min(head.min, x), head);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//pop为弹出数据，当弹出一个数据时，将本节点的next赋值给head，head回到了上一个节点,</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//top为栈的顶部数据，即head的当前值</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> head.val;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//min为最小值，即head的最小值</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> head.min;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//节点类，里面包含当前值，当前最小值，以及下一个节点</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> val;</span><br><span class="line">        <span class="keyword">int</span> min;</span><br><span class="line">        Node next;</span><br><span class="line">		<span class="comment">//加上有参构造</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> val, <span class="keyword">int</span> min, Node next)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">this</span>.val = val;</span><br><span class="line">            <span class="keyword">this</span>.min = min;</span><br><span class="line">            <span class="keyword">this</span>.next = next;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">MinStack</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//定义一个链表，首先是头</span>
+    <span class="token keyword">private</span> Node head<span class="token punctuation">;</span>
+    
+    <span class="token keyword">public</span> <span class="token function">MinStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment" spellcheck="true">//push为往栈里面存值</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//如果链表为null，表示是头节点，定义一个链表给他，当前值和最小值都是x，下一个节点为null</span>
+         <span class="token keyword">if</span> <span class="token punctuation">(</span>head <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            head <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> x<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+             <span class="token punctuation">}</span>
+        <span class="token keyword">else</span><span class="token punctuation">{</span>
+             <span class="token comment" spellcheck="true">//当前节点不是头节点，定义一个Node，将三个值传进去，next为上一个节点</span>
+            head <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>head<span class="token punctuation">.</span>min<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span> head<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//pop为弹出数据，当弹出一个数据时，将本节点的next赋值给head，head回到了上一个节点,</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         head <span class="token operator">=</span> head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//top为栈的顶部数据，即head的当前值</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> head<span class="token punctuation">.</span>val<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//min为最小值，即head的最小值</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> head<span class="token punctuation">.</span>min<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-<p><em><img src="/2022/0129undefined/1643447210229.png" class title="解法一成功"></em></p>
+    <span class="token comment" spellcheck="true">//节点类，里面包含当前值，当前最小值，以及下一个节点</span>
+    <span class="token keyword">private</span> <span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
+
+        <span class="token keyword">int</span> val<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> min<span class="token punctuation">;</span>
+        Node next<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//加上有参构造</span>
+        <span class="token keyword">public</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token keyword">int</span> val<span class="token punctuation">,</span> <span class="token keyword">int</span> min<span class="token punctuation">,</span> Node next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token keyword">this</span><span class="token punctuation">.</span>val <span class="token operator">=</span> val<span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>min <span class="token operator">=</span> min<span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>next <span class="token operator">=</span> next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><em><img src="/2022/012963137/1643447210229.png" class title="解法一成功"></em></p>
 <p>==================================分割线===============================================</p>
 <p>解法2：</p>
 <p>【ps：</p>
@@ -489,9 +541,40 @@
 <p><strong>不同点：</strong><br>peek()函数返回栈顶的元素，但不弹出该栈顶元素。</p>
 <p>pop()函数返回栈顶的元素，并且将该栈顶元素出栈。】</p>
 <p>题解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> </span>&#123;</span><br><span class="line">    <span class="comment">//定义两个栈，一个是数据栈，一个是辅助栈，</span></span><br><span class="line">    Stack&lt;Integer&gt; A, B;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MinStack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        A = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        B = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        A.add(x);</span><br><span class="line">     <span class="comment">//如果b为空或者b的顶部数据大于等于x，就将x放入b，来保证b的栈顶是最小的，即b栈的作用就是求最小值</span></span><br><span class="line">        <span class="keyword">if</span>(B.empty() || B.peek() &gt;= x)</span><br><span class="line">            B.add(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="comment">//当a弹出的时候，如果b的顶部数据等于a要弹出的数据，就将b顶也弹出，保证元素一致，因为上方是&gt;=，所以也避免了重复数据造成的影响。</span></span><br><span class="line">        <span class="keyword">if</span>(A.pop().equals(B.peek()))</span><br><span class="line">            B.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//a的栈顶就是顶部数据</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> A.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//b的栈顶就是最小数据</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> B.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><em><img src="/2022/0129undefined/1643462200855.png" class title="解法二成功"></em></p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">MinStack</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//定义两个栈，一个是数据栈，一个是辅助栈，</span>
+    Stack<span class="token operator">&lt;</span>Integer<span class="token operator">></span> A<span class="token punctuation">,</span> B<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">MinStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        A <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        B <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        
+        A<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token comment" spellcheck="true">//如果b为空或者b的顶部数据大于等于x，就将x放入b，来保证b的栈顶是最小的，即b栈的作用就是求最小值</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>B<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> B<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            B<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+            
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment" spellcheck="true">//当a弹出的时候，如果b的顶部数据等于a要弹出的数据，就将b顶也弹出，保证元素一致，因为上方是>=，所以也避免了重复数据造成的影响。</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>A<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>B<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            B<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+            
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//a的栈顶就是顶部数据</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> A<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//b的栈顶就是最小数据</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> B<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><em><img src="/2022/012963137/1643462200855.png" class title="解法二成功"></em></p>
 
                 
             </div>
@@ -827,7 +910,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -843,6 +926,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -985,7 +1074,7 @@
                    type="playlist"
                    id="503838841"
                    fixed='true'
-                   autoplay='true'
+                   autoplay='false'
                    theme='#42b983'
                    loop='all'
                    order='random'
