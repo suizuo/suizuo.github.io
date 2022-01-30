@@ -4,14 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="用两个栈实现队列, 过客">
-    <meta name="description" content="
-题目：
-这个题目可能有点不好理解
-给定的原始方法是这样的
+    <meta name="keywords" content="反转链表, 过客">
+    <meta name="description" content="题目
 
-比如示例一：[“CQueue”,”appendTail”,”deleteHead”,”deleteHead”]指的是执行这些方法的顺序，
-​                   ">
+解法1    迭代:
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -23,7 +24,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>用两个栈实现队列 | 过客</title>
+    <title>反转链表 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -316,12 +317,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">用两个栈实现队列</h1>
+                    <h1 class="description center-align post-title">反转链表</h1>
                 </div>
             </div>
         </div>
@@ -453,7 +454,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-29
+                    2022-01-30
                 </div>
                 
 
@@ -474,52 +475,64 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><em><img src="/2022/012957550/1643465760893.png" class title="题目"></em></p>
-<p>题目：</p>
-<p>这个题目可能有点不好理解</p>
-<p>给定的原始方法是这样的</p>
-<p><em><img src="/2022/012957550/1643465832631.png" class></em></p>
-<p>比如示例一：[“CQueue”,”appendTail”,”deleteHead”,”deleteHead”]指的是执行这些方法的顺序，</p>
-<p>​                        [[],[3],[],[]]指的是这些方法对应的参数，比如CQueue()不需要参数而appendTail需要一个整数</p>
-<p>​                        输出：[null,null,3,-1]指的是执行完这个方法之后的返回值。</p>
-<p>​                        流程：CQueue()创建了两个栈，返回null，appendTail()方法将3添加进队列，返回值为null，所以为null，deleteHead()删除了栈顶，也就是这个3，要求将这个值返回所以是3，再执行一次deleteHead()因为栈内没有数据，根据题目，应该返回-1.</p>
-<p>题解：</p>
-<p>【</p>
-<p>ps:</p>
-<p>为什么要使用LinkedList</p>
-<p><em><img src="/2022/012957550/1643467667754.png" class title="使用LinkedList"></em></p>
-<p>】</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">CQueue</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//两个栈，一个执行添加,一个执行删除</span>
-        LinkedList<span class="token operator">&lt;</span>Integer<span class="token operator">></span> stack1<span class="token punctuation">;</span>
-        LinkedList<span class="token operator">&lt;</span>Integer<span class="token operator">></span> stack2<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">CQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        stack1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        stack2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">appendTail</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//栈1只负责添加数据，当栈2为空时倒入</span>
-        stack1<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">deleteHead</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//如果栈2为空并且栈1为空,则证明栈内无数据，返回-1，如果栈2为空1不为空,1弹出数据并且加到2中(1倒入2中)，此时栈2的顶部就是原来栈1的底部，返回栈2顶即可，如果栈二不为空，直接返回栈2的顶部</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>stack2<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>stack1<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-          <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>stack1<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-              stack2<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>stack1<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-          <span class="token punctuation">}</span>
-          <span class="token keyword">return</span> stack2<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span>
-        <span class="token keyword">return</span> stack2<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <p>题目</p>
+<p><img src="/2022/1643545803488.png" alt="1643545803488"></p>
+<p>解法1    迭代:</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> ListNode <span class="token function">reverseList</span><span class="token punctuation">(</span>ListNode head<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//前节点</span>
+        ListNode prev <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//当前节点</span>
+        ListNode curr <span class="token operator">=</span> head<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>curr <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//定义next指针指向当前节点的下一个节点</span>
+            ListNode next <span class="token operator">=</span> curr<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//将当前节点的next指向prev，即修改了指针的指向，将原本指向后方的指针指向了前方</span>
+            curr<span class="token punctuation">.</span>next <span class="token operator">=</span> prev<span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//prev和curr前进一位</span>
+            prev <span class="token operator">=</span> curr<span class="token punctuation">;</span>
+            curr <span class="token operator">=</span> next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> prev<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>需要模仿的是队列的先进先出，而栈是先进后出，用两个栈相互倒腾就可以实现队列，当栈2不为空的时候,说明先进的那一部分还没有删完，等删完之后再将栈1中的数据再倒入栈二中。</p>
-<p><em><img src="/2022/012957550/1643467484244.png" class title="通过"></em></p>
-<p>感谢观看</p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>====================================分割线==============================================</p>
+<p>解法2  递归：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> ListNode <span class="token function">reverseList</span><span class="token punctuation">(</span>ListNode head<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">recur</span><span class="token punctuation">(</span>head<span class="token punctuation">,</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//递归方法</span>
+    <span class="token keyword">private</span> ListNode <span class="token function">recur</span><span class="token punctuation">(</span>ListNode cur<span class="token punctuation">,</span>ListNode pre<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//停止条件</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>cur<span class="token operator">==</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> pre<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+           <span class="token comment" spellcheck="true">//递归</span>
+            ListNode res <span class="token operator">=</span> <span class="token function">recur</span><span class="token punctuation">(</span>cur<span class="token punctuation">.</span>next<span class="token punctuation">,</span>cur<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//因为本步在最后一个递归执行的时候才执行，所以是从内到外依次执行</span>
+            cur<span class="token punctuation">.</span>next <span class="token operator">=</span> pre<span class="token punctuation">;</span>
+            <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -546,7 +559,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/012957550.html">http://example.com/2022/012957550.html</a>
+                    <a href="http://example.com/2022/0130967.html">http://example.com/2022/0130967.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -757,17 +770,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/013058399.html">
+                <a href="/2022/0130967.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="从尾到头打印链表">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="反转链表">
                         
-                        <span class="card-title">从尾到头打印链表</span>
+                        <span class="card-title">反转链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -777,9 +791,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -788,6 +802,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -806,13 +821,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/012963137.html">
+                <a href="/2022/013058399.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="包含min函数的栈">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="从尾到头打印链表">
                         
-                        <span class="card-title">包含min函数的栈</span>
+                        <span class="card-title">从尾到头打印链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -823,7 +838,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-30
                             </span>
                         <span class="publish-author">
                             
