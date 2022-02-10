@@ -822,7 +822,13 @@ class MinStack {
 前端需要接收并将其递归显示
 步骤，首先定义递归组件，在组件中自己使用自己
 
-12345678910111213141516171819202122232425&lt;template&gt;  &l
+
+  
+      
+          
+          {{item.content}}
+          
+ 
                                 
                             </div>
                             <div class="publish-info">
@@ -878,7 +884,7 @@ class MinStack {
                             <div class="summary block-with-text">
                                 
                                     1.获取到页面url上？后方参数：
-1this.$route.query.search             search表示？后面的参数名
+this.$route.query.search             search表示？后面的参数名
 
 
 获取到的值就是java
@@ -1000,7 +1006,7 @@ ls
                                     出现原因：
 输入框有两种状态：获得焦点，失去焦点，目前需要根据这两种状态做提交，但是当点击提交时，会默认失去焦点，造成冲突或者bug。
 解决方法：给按钮添加mousedown事件：
-1&lt;input type=&quot;button&
+&lt;input type="button" @clic
                                 
                             </div>
                             <div class="publish-info">
@@ -1057,7 +1063,7 @@ ls
                                 
                                     在做评论回复功能时，需要实现点击评论，传送到输入框并使输入框获得焦点：
 步骤：1.在输入框或者文本框的标签中添加ref:“”属性，例如：
-1&lt;textarea name=&quot;&quot; v-model=&quot;comme
+ &lt;textarea name="" v-model="comment.content" pla
                                 
                             </div>
                             <div class="publish-info">

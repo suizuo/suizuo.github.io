@@ -479,15 +479,24 @@
 <p> 下载版本：nacos-server-1.1.4.tar.gz或nacos-server-1.1.4.zip，解压任意目录即可 </p>
 <p>​    启动文件\nacos-server-1.1.4\nacos\bin\startup.cmd(linux是sh)</p>
 <p>在pom中配置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--服务注册--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!--调用--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-pom"><code class="language-pom"><!--服务注册-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+</dependency>
+<!--调用-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="1-Nacos注册"><a href="#1-Nacos注册" class="headerlink" title="1.Nacos注册"></a>1.Nacos注册</h3><p>​    (1)找到<code>需要被调用方法</code>的模块（以下称为<code>生产者</code>）的application.properties，写入如下配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-xml"><code class="language-xml">spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>ps:如果是yml/yaml文件则按照其格式写入</p>
 <p>这代表的是nacos的地址以及将该模块注册入nacos，将来查找服务时寻找的是：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.application.name=service-ucenter</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-xml"><code class="language-xml">spring.application.name=service-ucenter
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>中的name值</p>
 <p>(2)在生产者的启动类上加上注解： @EnableDiscoveryClient ，作用是让注册中心扫描到该服务</p>
 <p>​    具体的例子：</p>
@@ -510,14 +519,9 @@
 <p>实现类实现只需return即可。(实现类也要加@Component或类似注解来交给spring)</p>
 <p>之后在消费者中实例化之后就可以调用了。</p>
 <p>ps：如果接口中使用了@PathVariable()注解，则里面必须加上参数，例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/eduService/courseFront/getCourseInfoOrder/&#123;id&#125;&quot;)</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> CourseWebVo <span class="title">getCourseInfoOrder</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> String id)</span></span>;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
+<pre class="line-numbers language-java"><code class="language-java"> <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/eduService/courseFront/getCourseInfoOrder/{id}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> CourseWebVo <span class="token function">getCourseInfoOrder</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> String id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
                 
             </div>

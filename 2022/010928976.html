@@ -8,7 +8,7 @@
     <meta name="description" content="出现原因：
 输入框有两种状态：获得焦点，失去焦点，目前需要根据这两种状态做提交，但是当点击提交时，会默认失去焦点，造成冲突或者bug。
 解决方法：给按钮添加mousedown事件：
-1&amp;lt;input type=&amp;quot;button&amp;">
+&amp;lt;input type=&#34;button&#34; @clic">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -474,11 +474,13 @@
                 <p>出现原因：</p>
 <p>输入框有两种状态：获得焦点，失去焦点，目前需要根据这两种状态做提交，但是当点击提交时，会默认失去焦点，造成冲突或者bug。</p>
 <p>解决方法：给按钮添加mousedown事件：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;addComment()&quot;</span> <span class="attr">value</span>=<span class="string">&quot;回复&quot;</span> <span class="attr">class</span>=<span class="string">&quot;lh-reply-btn&quot;</span> @<span class="attr">mousedown</span>=<span class="string">&quot;msevent()&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>addComment()<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>回复<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lh-reply-btn<span class="token punctuation">"</span></span> <span class="token attr-name">@mousedown</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>msevent()<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>实现这个方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">msevent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     event.preventDefault();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-javascript"><code class="language-javascript">  <span class="token function">msevent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+       event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>这个方法表示在鼠标移动到元素上方并摁下左键的同时执行的方法，</p>
 <p>event.preventDefault();的作用是阻止元素发生默认的行为。即输入框不会执行失去焦点的方法。</p>
 <hr>

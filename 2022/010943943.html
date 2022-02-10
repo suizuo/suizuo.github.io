@@ -7,7 +7,7 @@
     <meta name="keywords" content="vue点击一个元素，使指定输入框获得焦点, 过客">
     <meta name="description" content="在做评论回复功能时，需要实现点击评论，传送到输入框并使输入框获得焦点：
 步骤：1.在输入框或者文本框的标签中添加ref:“”属性，例如：
-1&amp;lt;textarea name=&amp;quot;&amp;quot; v-model=&amp;quot;comme">
+ &amp;lt;textarea name=&#34;&#34; v-model=&#34;comment.content&#34; pla">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -472,14 +472,17 @@
             <div id="articleContent">
                 <p>在做评论回复功能时，需要实现点击评论，传送到输入框并使输入框获得焦点：</p>
 <p>步骤：1.在输入框或者文本框的标签中添加<code>ref:“”</code>属性，例如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;comment.content&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;输入您要评论的文字&quot;</span> <span class="attr">id</span>=<span class="string">&quot;commentContent&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;child&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-html"><code class="language-html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>textarea</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment.content<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>输入您要评论的文字<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>commentContent<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>child<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>textarea</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在评论的区域添加点击事件：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(comment,index) in comments&quot;</span> <span class="attr">v-bind:key</span>=<span class="string">&quot;index&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;addCommentTwo()&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-html"><code class="language-html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(comment,index) in comments<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">v-bind:</span>key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>index<span class="token punctuation">"</span></span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>addCommentTwo()<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>下方js实现：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">addCommentTwo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">let</span> childMessage = <span class="built_in">this</span>.$refs.child</span><br><span class="line">   childMessage.focus()</span><br><span class="line">   &#125;,</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-js"><code class="language-js"> <span class="token function">addCommentTwo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">let</span> childMessage <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>child
+    childMessage<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>效果展示：</p>
 <p><em><img src="/2022/010943943/1641719672888.png" class title="点击评论区域"></em></p>
 <p><em><img src="/2022/010943943/1641719720604.png" class title="跳转到输入框并且输入框获得焦点"></em></p>
