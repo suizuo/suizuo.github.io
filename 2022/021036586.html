@@ -4,15 +4,18 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="反转链表, 过客">
-    <meta name="description" content="题目
+    <meta name="keywords" content="复杂链表的复制, 过客">
+    <meta name="description" content="题目：
 
-解法1    迭代:
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next">
+解法1:
+/*
+// Definition for a Node.
+class Node {
+    int val;
+    Node next;
+    Node random;
+
+    public Node(int va">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +27,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>反转链表 | 过客</title>
+    <title>复杂链表的复制 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -317,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">反转链表</h1>
+                    <h1 class="description center-align post-title">复杂链表的复制</h1>
                 </div>
             </div>
         </div>
@@ -454,7 +457,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-30
+                    2022-02-10
                 </div>
                 
 
@@ -475,64 +478,73 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目</p>
-<p><img src="/2022/1643545803488.png" alt="1643545803488"></p>
-<p>解法1    迭代:</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */</span>
+                <p>题目：</p>
+<p><em><img src="/2022/0210undefined/1644479720152.png" class title="复杂链表的复制"></em></p>
+<p>解法1:</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
+// Definition for a Node.
+class Node {
+    int val;
+    Node next;
+    Node random;
+
+    public Node(int val) {
+        this.val = val;
+        this.next = null;
+        this.random = null;
+    }
+}
+*/</span>
 <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> ListNode <span class="token function">reverseList</span><span class="token punctuation">(</span>ListNode head<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//前节点</span>
-        ListNode prev <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//当前节点</span>
-        ListNode curr <span class="token operator">=</span> head<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>curr <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//定义next指针指向当前节点的下一个节点</span>
-            ListNode next <span class="token operator">=</span> curr<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//将当前节点的next指向prev，即修改了指针的指向，将原本指向后方的指针指向了前方</span>
-            curr<span class="token punctuation">.</span>next <span class="token operator">=</span> prev<span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//prev和curr前进一位</span>
-            prev <span class="token operator">=</span> curr<span class="token punctuation">;</span>
-            curr <span class="token operator">=</span> next<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> Node <span class="token function">copyRandomList</span><span class="token punctuation">(</span>Node head<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>head<span class="token operator">==</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> prev<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//从头结点开始</span>
+        Node cur <span class="token operator">=</span> head<span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>cur<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//复制各个节点</span>
+            Node tmp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>cur<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//原来1-2-3</span>
+            <span class="token comment" spellcheck="true">//现在是1和1的复制都指向2，类推</span>
+            tmp<span class="token punctuation">.</span>next <span class="token operator">=</span> cur<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//将1指向1的复制，成为1-(1)-2</span>
+            cur<span class="token punctuation">.</span>next <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//走向下一个节点</span>
+            cur <span class="token operator">=</span> tmp<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//现在的链表是1-(1)-2-(2)-3-(3)-null，还有随机节点没有解决</span>
+        <span class="token comment" spellcheck="true">//解决的方法是：让自己的下一节点也就是复制节点指向自己的random节点的下一位</span>
+        <span class="token comment" spellcheck="true">//从头结点开始  </span>
+        cur <span class="token operator">=</span> head<span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>cur<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>cur<span class="token punctuation">.</span>random<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                 cur<span class="token punctuation">.</span>next<span class="token punctuation">.</span>random <span class="token operator">=</span> cur<span class="token punctuation">.</span>random<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">//指向下一个原节点</span>
+            cur<span class="token operator">=</span>cur<span class="token punctuation">.</span>next<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//现在只需要将得到的链表拆分就可以得到所复制的链表</span>
+        <span class="token comment" spellcheck="true">//我们需要的链表是从原链表的第二个节点开始的</span>
+        cur <span class="token operator">=</span> head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//pre就是我们得到的总的链表</span>
+        Node pre <span class="token operator">=</span> head<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//新链表的头节点</span>
+        Node res <span class="token operator">=</span> head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>cur<span class="token punctuation">.</span>next <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            pre<span class="token punctuation">.</span>next <span class="token operator">=</span> pre<span class="token punctuation">.</span>next<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+            cur<span class="token punctuation">.</span>next <span class="token operator">=</span> cur<span class="token punctuation">.</span>next<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//最后得到的pre就是原本的链表</span>
+            pre <span class="token operator">=</span> pre<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+            cur <span class="token operator">=</span> cur<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//原链表的最后一个节点</span>
+        pre<span class="token punctuation">.</span>next <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//将res返回</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>====================================分割线==============================================</p>
-<p>解法2  递归：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */</span>
-<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> ListNode <span class="token function">reverseList</span><span class="token punctuation">(</span>ListNode head<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token function">recur</span><span class="token punctuation">(</span>head<span class="token punctuation">,</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//递归方法</span>
-    <span class="token keyword">private</span> ListNode <span class="token function">recur</span><span class="token punctuation">(</span>ListNode cur<span class="token punctuation">,</span>ListNode pre<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//停止条件</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>cur<span class="token operator">==</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">return</span> pre<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-           <span class="token comment" spellcheck="true">//递归</span>
-            ListNode res <span class="token operator">=</span> <span class="token function">recur</span><span class="token punctuation">(</span>cur<span class="token punctuation">.</span>next<span class="token punctuation">,</span>cur<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//因为本步在最后一个递归执行的时候才执行，所以是从内到外依次执行</span>
-            cur<span class="token punctuation">.</span>next <span class="token operator">=</span> pre<span class="token punctuation">;</span>
-            <span class="token keyword">return</span> res<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -559,7 +571,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/0130967.html">http://example.com/2022/0130967.html</a>
+                    <a href="http://example.com/2022/021036586.html">http://example.com/2022/021036586.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -770,9 +782,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/021036586.html">
                     <div class="card-image">
@@ -790,9 +803,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -801,6 +814,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -819,13 +833,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/013058399.html">
+                <a href="/2022/0130967.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="从尾到头打印链表">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="反转链表">
                         
-                        <span class="card-title">从尾到头打印链表</span>
+                        <span class="card-title">反转链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
