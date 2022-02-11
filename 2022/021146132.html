@@ -611,8 +611,8 @@ design_mode<span class="token punctuation">.</span>Singleton<span class="token p
 <p>====================</p>
 <p><code>ps:</code>什么是指令重排：</p>
 <p>​    在并发编程中，我们常常关注三个问题：原子性，可见性，有序性。这里我们主要说后两种</p>
-<p>​    可见性是指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值</p>
-<p>​    有序性指的是程序执行的顺序按照代码的先后顺序执行 。指令重排就会改变这种顺序，处理器为了提高程序运行效率，会对代码进行优化，也就是说，处理器会改变代码顺序，但是他会保证最终执行结果与代码按顺序执行的结果是一致的。</p>
+<p>​            可见性是指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值</p>
+<p>​            有序性指的是程序执行的顺序按照代码的先后顺序执行 。指令重排就会改变这种顺序，处理器为了提高程序运行效率，会对代码进行优化，也就是说，处理器会改变代码顺序，但是他会保证最终执行结果与代码按顺序执行的结果是一致的。</p>
 <p>​        是怎么保证的呢:</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//语句1</span>
 <span class="token keyword">int</span> r <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//语句2</span>
@@ -682,6 +682,7 @@ inited <span class="token operator">=</span> <span class="token boolean">true</s
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><code>评价:</code>用了都说好，但是我不太会。另外只有他不会被反射破坏。</p>
 <p>推荐使用：1，3，4，5</p>
+<p>感谢浏览</p>
 
                 
             </div>
