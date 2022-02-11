@@ -4,18 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="复杂链表的复制, 过客">
-    <meta name="description" content="题目：
-
-解法1:
-/*
-// Definition for a Node.
-class Node {
-    int val;
-    Node next;
-    Node random;
-
-    public Node(int va">
+    <meta name="keywords" content="单例模式, 过客">
+    <meta name="description" content="单例模式类型：创建型
+单例模式的定义是： 某个类只有一个实例，且自行实例化并向整个系统提供此实例 
+什么时候只需要一个实例呢，就比如a，b两个类都可以读取同一份配置并且需要对其修改，当a类new了一个实例之后对其进行了修改，这个时候b如果也">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -27,7 +19,7 @@ class Node {
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>复杂链表的复制 | 过客</title>
+    <title>单例模式 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -320,12 +312,12 @@ class Node {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">复杂链表的复制</h1>
+                    <h1 class="description center-align post-title">单例模式</h1>
                 </div>
             </div>
         </div>
@@ -441,8 +433,8 @@ class Node {
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/study/">
-                                <span class="chip bg-color">study</span>
+                            <a href="/tags/design-mode/">
+                                <span class="chip bg-color">design_mode</span>
                             </a>
                         
                     </div>
@@ -457,7 +449,7 @@ class Node {
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-10
+                    2022-02-11
                 </div>
                 
 
@@ -478,73 +470,219 @@ class Node {
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目：</p>
-<p><em><img src="/2022/021036586/1644479720152.png" class title="复杂链表的复制"></em></p>
-<p>解法1:</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
-// Definition for a Node.
-class Node {
-    int val;
-    Node next;
-    Node random;
+                <h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>类型：创建型</p>
+<p>单例模式的定义是： 某个类<code>只有一个实例</code>，且自行实例化并向整个系统提供此实例 </p>
+<p>什么时候只需要一个实例呢，就比如a，b两个类都可以读取同一份配置并且需要对其修改，当a类new了一个实例之后对其进行了修改，这个时候b如果也new一个实例并且打印a刚才修改的配置，会打印出来什么呢，肯定是修改前的配置，因为配置并没有被修改，a修改的只是他new出来的对象的值，那么现在的需求要怎么实现呢？</p>
+<p>方式一：将配置文件中的配置修改为静态，让每个类都可以调用</p>
+<p>​                缺点：静态数据不会被gc回收，数据多时会严重<code>影响内存</code>；</p>
+<p>方式二：保证a类和b类创建出来的对象是同一个并且是唯一的；这就需要单例模式</p>
+<p>那么，怎么保证单例呢：1.自己在自己中创建对象，2.不让别人new，因为每次new都是创建新对象3.让别人可以                                            访问到自己创建的对象</p>
+<h3 id="单例模式的写法："><a href="#单例模式的写法：" class="headerlink" title="单例模式的写法："></a>单例模式的写法：</h3><p>单例分为饿汉式和懒汉式，<code>饿汉式</code>指我提前创建好了实例，不管需不需要。<code>懒汉式</code>指你需要我才创建实例</p>
+<p>共有五种写法：静态常量，单null，双null检查，静态内部类和枚举。</p>
+<h4 id="1、静态常量"><a href="#1、静态常量" class="headerlink" title="1、静态常量"></a>1、静态常量</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> design_mode<span class="token punctuation">.</span>Singleton<span class="token punctuation">;</span>
 
-    public Node(int val) {
-        this.val = val;
-        this.next = null;
-        this.random = null;
-    }
-}
-*/</span>
-<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> Node <span class="token function">copyRandomList</span><span class="token punctuation">(</span>Node head<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>head<span class="token operator">==</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//从头结点开始</span>
-        Node cur <span class="token operator">=</span> head<span class="token punctuation">;</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span>cur<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//复制各个节点</span>
-            Node tmp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>cur<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//原来1-2-3</span>
-            <span class="token comment" spellcheck="true">//现在是1和1的复制都指向2，类推</span>
-            tmp<span class="token punctuation">.</span>next <span class="token operator">=</span> cur<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//将1指向1的复制，成为1-(1)-2</span>
-            cur<span class="token punctuation">.</span>next <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//走向下一个节点</span>
-            cur <span class="token operator">=</span> tmp<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//现在的链表是1-(1)-2-(2)-3-(3)-null，还有随机节点没有解决</span>
-        <span class="token comment" spellcheck="true">//解决的方法是：让自己的下一节点也就是复制节点指向自己的random节点的下一位</span>
-        <span class="token comment" spellcheck="true">//从头结点开始  </span>
-        cur <span class="token operator">=</span> head<span class="token punctuation">;</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span>cur<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>cur<span class="token punctuation">.</span>random<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                 cur<span class="token punctuation">.</span>next<span class="token punctuation">.</span>random <span class="token operator">=</span> cur<span class="token punctuation">.</span>random<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token comment" spellcheck="true">//指向下一个原节点</span>
-            cur<span class="token operator">=</span>cur<span class="token punctuation">.</span>next<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//现在只需要将得到的链表拆分就可以得到所复制的链表</span>
-        <span class="token comment" spellcheck="true">//我们需要的链表是从原链表的第二个节点开始的</span>
-        cur <span class="token operator">=</span> head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//pre就是我们得到的总的链表</span>
-        Node pre <span class="token operator">=</span> head<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//新链表的头节点</span>
-        Node res <span class="token operator">=</span> head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span>cur<span class="token punctuation">.</span>next <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            pre<span class="token punctuation">.</span>next <span class="token operator">=</span> pre<span class="token punctuation">.</span>next<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-            cur<span class="token punctuation">.</span>next <span class="token operator">=</span> cur<span class="token punctuation">.</span>next<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//最后得到的pre就是原本的链表</span>
-            pre <span class="token operator">=</span> pre<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-            cur <span class="token operator">=</span> cur<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//原链表的最后一个节点</span>
-        pre<span class="token punctuation">.</span>next <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//将res返回</span>
-        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Constructor<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>InvocationTargetException<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * Created with IntelliJ IDEA.
+ *
+ * @Author: 薛帅
+ * @Date: 2022/02/11/10:46
+ * @Description: 单例模式
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton_Pattern</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> Singleton_Pattern a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton_Pattern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//私有构造器</span>
+    <span class="token keyword">private</span> <span class="token function">Singleton_Pattern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//提供对外访问的方法</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Singleton_Pattern <span class="token function">getA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<span class="token keyword">class</span> <span class="token class-name">test</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchMethodException<span class="token punctuation">,</span> IllegalAccessException<span class="token punctuation">,</span> InvocationTargetException<span class="token punctuation">,</span> InstantiationException <span class="token punctuation">{</span>
+        Singleton_Pattern test <span class="token operator">=</span> Singleton_Pattern<span class="token punctuation">.</span><span class="token function">getA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>test<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//通过反射获取对象</span>
+        <span class="token comment" spellcheck="true">//获得构造器并且不执行权限检查</span>
+        Constructor<span class="token operator">&lt;</span>Singleton_Pattern<span class="token operator">></span> declaredConstructor <span class="token operator">=</span> Singleton_Pattern<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getDeclaredConstructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        declaredConstructor<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Singleton_Pattern test1 <span class="token operator">=</span> declaredConstructor<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>test1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>控制台输出</p>
+<pre class="line-numbers language-java"><code class="language-java">design_mode<span class="token punctuation">.</span>Singleton<span class="token punctuation">.</span>Singleton_Pattern<span class="token annotation punctuation">@16b98e56</span>
+design_mode<span class="token punctuation">.</span>Singleton<span class="token punctuation">.</span>Singleton_Pattern<span class="token annotation punctuation">@7ef20235</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>可以得出不是一个对象，单例被破坏。</p>
+<p><code>评价</code>：因为它作为静态常量，在类加载的时候就已经执行了，所以提前创建好了实例，属于饿汉式，因为是静态只会执行一次，所以也是线程安全的。缺点是可以被反射创建实例。</p>
+<p><code>ps:</code>前四种方法都可以被反射破坏</p>
+<h4 id="2-单null检查"><a href="#2-单null检查" class="headerlink" title="2.单null检查"></a>2.单null检查</h4><pre class="line-numbers language-java"><code class="language-java">
+<span class="token comment" spellcheck="true">/**
+ * Created with IntelliJ IDEA.
+ *
+ * @Author: 薛帅
+ * @Date: 2022/02/11/10:46
+ * @Description: 单例模式
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton_Pattern</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> Singleton_Pattern a<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//私有构造器</span>
+    <span class="token keyword">private</span> <span class="token function">Singleton_Pattern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Singleton_Pattern <span class="token function">getA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//如果a为null则创建一个对象a，如果不为null直接返回a</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton_Pattern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">test</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//调用</span>
+        Singleton_Pattern<span class="token punctuation">.</span><span class="token function">getA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>评价</code>：他是在调用这个方法的时候才执行的，属于懒汉式，缺点是线程不安全，比如线程1访问时进行16行的判断，在判断完成但是没有创建对象的时候，线程2进来了，他也判断a == null,也会创建对象，这也就破坏了单例模式。</p>
+<p>有人说在判断之后加一个同步锁如下所示</p>
+<pre class="line-numbers language-java"><code class="language-java">   <span class="token keyword">public</span> <span class="token keyword">static</span> Singleton_Pattern <span class="token function">getA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>Singleton_Pattern<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton_Pattern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>但是问题依旧没用解决，当线程1进入判断，在锁之前，进程2进入判断，这个时候还没有创建对象，所以进程2判断也通过，然后进程1和2就会排队创建对象。</p>
+<p>又有人说，在这个get方法上加锁就可以了，如下所示：</p>
+<pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">synchronized</span> Singleton_Pattern <span class="token function">getA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton_Pattern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样是可以的，但是每次进入这个方法都需要排队，即使已经有了对象，get的时候也要被锁一下，极大的影响了性能。</p>
+<p>这样就引出了另一种写法，双null检查</p>
+<h4 id="3-双null检查"><a href="#3-双null检查" class="headerlink" title="3.双null检查"></a>3.双null检查</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * Created with IntelliJ IDEA.
+ *
+ * @Author: 薛帅
+ * @Date: 2022/02/11/10:46
+ * @Description: 单例模式
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton_Pattern</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">volatile</span> Singleton_Pattern a<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//私有构造器</span>
+    <span class="token keyword">private</span> <span class="token function">Singleton_Pattern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Singleton_Pattern <span class="token function">getA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>Singleton_Pattern<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">==</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton_Pattern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">test</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//调用</span>
+        Singleton_Pattern<span class="token punctuation">.</span><span class="token function">getA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p> volatile关键字可以阻止jvm的指令重排以及保证可见性</p>
+<p><code>评价</code>：双null判断很好的解决了线程不安全问题和效率过低问题，当线程1进入的时候，如果已经有对象，则直接返回，如果没有的话进入锁，这个时候线程2也判断进入锁，他们会排队再进行一次判断，如果发现已经有对象，则返回，没有的话创建对象。(注意不要忘记volatile关键字)</p>
+<p>====================</p>
+<p><code>ps:</code>什么是指令重排：</p>
+<p>​    在并发编程中，我们常常关注三个问题：原子性，可见性，有序性</p>
+<pre><code> 可见性是指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值。 
+</code></pre>
+<p>​    有序性指的是程序执行的顺序按照代码的先后顺序执行 。指令重排就会改变这种顺序，处理器为了提高程序运行效率，会对代码进行优化，也就是说，处理器会改变代码顺序，但是他会保证最终执行结果与代码按顺序执行的结果是一致的</p>
+<p>​        是怎么保证的呢:</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//语句1</span>
+<span class="token keyword">int</span> r <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//语句2</span>
+a <span class="token operator">=</span> a <span class="token operator">+</span> <span class="token number">3</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//语句3</span>
+r <span class="token operator">=</span> a<span class="token operator">*</span>a<span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//语句4</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>他的执行顺序不可能是2143，因为4必须用到3的结果，这个时候处理器就会保证3在4之前执行,</p>
+<p>指令重排看上去没有问题，但是在多线程情况下就可能会出错，例如：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//线程1:</span>
+context <span class="token operator">=</span> <span class="token function">loadContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//语句1</span>
+inited <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>             <span class="token comment" spellcheck="true">//语句2</span>
+ 
+<span class="token comment" spellcheck="true">//线程2:</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>inited <span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token function">sleep</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token function">doSomethingwithconfig</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在线程1中语句1和语句2没有关联，所以可能是先执行的语句2，这个时候线程二检测inited等于true，然后执行dosome方法。但是context并没有值，这个时候程序就会出错。</p>
+<p>参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/dolphin0520/p/3920373.html">Java并发编程：volatile关键字解析 - Matrix海子 - 博客园 (cnblogs.com)</a> </p>
+<p>=====================</p>
+<h4 id="4-静态内部类"><a href="#4-静态内部类" class="headerlink" title="4.静态内部类"></a>4.静态内部类</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * Created with IntelliJ IDEA.
+ *
+ * @Author: 薛帅
+ * @Date: 2022/02/11/10:46
+ * @Description: 单例模式
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton_Pattern</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token function">Singleton_Pattern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">a</span><span class="token punctuation">{</span>
+        <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> Singleton_Pattern aa <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton_Pattern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Singleton_Pattern <span class="token function">getA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">.</span>aa<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">test</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Singleton_Pattern<span class="token punctuation">.</span><span class="token function">getA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>评价：</code>懒汉式，因为在访问时才会加载静态内部类，才会创建对象。static保证线程安全。</p>
+<h4 id="5-枚举"><a href="#5-枚举" class="headerlink" title="5.枚举"></a>5.枚举</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * Created with IntelliJ IDEA.
+ *
+ * @Author: 薛帅
+ * @Date: 2022/02/11/13:28
+ * @Description:
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">enum</span> Singleton_pattern_enum <span class="token punctuation">{</span>
+        A<span class="token punctuation">;</span>
+        <span class="token keyword">private</span> <span class="token function">Singleton_pattern_enum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">test1</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Singleton_pattern_enum<span class="token punctuation">.</span>A<span class="token punctuation">.</span><span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>评价:</code>用了都说好，但是我不太会。另外只有他不会被反射破坏。</p>
+<p>推荐使用：1，3，4，5</p>
 
                 
             </div>
@@ -571,7 +709,7 @@ class Node {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/021036586.html">http://example.com/2022/021036586.html</a>
+                    <a href="http://example.com/2022/021146132.html">http://example.com/2022/021146132.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -609,8 +747,8 @@ class Node {
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/study/">
-                                    <span class="chip bg-color">study</span>
+                                <a href="/tags/design-mode/">
+                                    <span class="chip bg-color">design_mode</span>
                                 </a>
                             
                         </div>
@@ -782,9 +920,10 @@ class Node {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/021146132.html">
                     <div class="card-image">
@@ -802,9 +941,9 @@ class Node {
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -813,6 +952,7 @@ class Node {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -831,13 +971,13 @@ class Node {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/0130967.html">
+                <a href="/2022/021036586.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="反转链表">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="复杂链表的复制">
                         
-                        <span class="card-title">反转链表</span>
+                        <span class="card-title">复杂链表的复制</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -848,7 +988,7 @@ class Node {
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-10
                             </span>
                         <span class="publish-author">
                             
