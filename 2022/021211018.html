@@ -4,17 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="替换空格, 过客">
+    <meta name="keywords" content="左旋转字符串, 过客">
     <meta name="description" content="题目：
 
 解法1：
 class Solution {
-    public String replaceSpace(String s) {
-        return s.replace(&#34; &#34;,&#34;%20&#34;);
-    }
-}
-
-调用函数">
+    public String reverseLeftWords(String s, int n) {
+        //取得从n开始之后的值+0-n的值
+        retu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -26,7 +23,7 @@ class Solution {
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>替换空格 | 过客</title>
+    <title>左旋转字符串 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -319,12 +316,12 @@ class Solution {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">替换空格</h1>
+                    <h1 class="description center-align post-title">左旋转字符串</h1>
                 </div>
             </div>
         </div>
@@ -478,38 +475,44 @@ class Solution {
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>题目：</p>
-<p><em><img src="/2022/021212603/1644655465036.png" class title="替换空格"></em></p>
+<p><em><img src="/2022/0212undefined/1644675473116.png" class title="左旋转字符串"></em></p>
 <p>解法1：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> String <span class="token function">replaceSpace</span><span class="token punctuation">(</span>String s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> s<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">,</span><span class="token string">"%20"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> String <span class="token function">reverseLeftWords</span><span class="token punctuation">(</span>String s<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//取得从n开始之后的值+0-n的值</span>
+        <span class="token keyword">return</span> s<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">+</span> s<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>调用函数库解决</p>
-<p>=======================================================</p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>===========================================================</p>
 <p>解法2：</p>
+<p>思路：反转</p>
+<p> 例如：输入: s = “abcdef”, n= 2</p>
+<pre><code>     以第二个数为分界线，两边都反转得到&quot;ba fedc&quot;
+</code></pre>
+<p>​        将全部反转得到”cdef ab“</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> String <span class="token function">replaceSpace</span><span class="token punctuation">(</span>String s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//定义一个字符串长度三倍的字符数组，保证可以放下所有的字符</span>
-        <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">char</span><span class="token punctuation">[</span>s<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//初始化size</span>
-        <span class="token keyword">int</span> size <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//遍历原数组</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> s<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//charAt(i)表示取出字符串中第i个字符，如果等于空格的话，让他之后的三个分别是%20</span>
-             <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">' '</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                array<span class="token punctuation">[</span>size<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'%'</span><span class="token punctuation">;</span>
-                array<span class="token punctuation">[</span>size<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'2'</span><span class="token punctuation">;</span>
-                array<span class="token punctuation">[</span>size<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'0'</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-                <span class="token comment" spellcheck="true">//不是空格就复制原有的字符</span>
-               array<span class="token punctuation">[</span>size<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> String <span class="token function">reverseLeftWords</span><span class="token punctuation">(</span>String s<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//因为字符串不可变，我们需要转换</span>
+        <span class="token comment" spellcheck="true">//toCharArray() 方法将字符串转换为字符数组。</span>
+        <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> str <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">toCharArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> len <span class="token operator">=</span> str<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//两边反转</span>
+        <span class="token function">reverse</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">reverse</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span>n<span class="token punctuation">,</span>len<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//整体反转</span>
+        <span class="token function">reverse</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>len<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reverse</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> str<span class="token punctuation">,</span><span class="token keyword">int</span> left<span class="token punctuation">,</span><span class="token keyword">int</span> right<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>left <span class="token operator">&lt;</span> right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">char</span> temp <span class="token operator">=</span> str<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                str<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">=</span> str<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                str<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+                right<span class="token operator">--</span><span class="token punctuation">;</span>
+                left<span class="token operator">++</span><span class="token punctuation">;</span> 
             <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//新建一个字符串，内容为array，从第0个开始，截取size个字符构建字符串</span>
-        String newStr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>array<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>size<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> newStr<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -539,7 +542,7 @@ class Solution {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/021212603.html">http://example.com/2022/021212603.html</a>
+                    <a href="http://example.com/2022/021211018.html">http://example.com/2022/021211018.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -750,9 +753,10 @@ class Solution {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/021211018.html">
                     <div class="card-image">
@@ -770,9 +774,9 @@ class Solution {
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -781,6 +785,7 @@ class Solution {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -799,13 +804,13 @@ class Solution {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/021129711.html">
+                <a href="/2022/021212603.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="建造者模式">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="替换空格">
                         
-                        <span class="card-title">建造者模式</span>
+                        <span class="card-title">替换空格</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -816,7 +821,7 @@ class Solution {
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-12
                             </span>
                         <span class="publish-author">
                             
@@ -829,8 +834,8 @@ class Solution {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/design-mode/">
-                        <span class="chip bg-color">design_mode</span>
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
                     </a>
                     
                 </div>
