@@ -4,13 +4,17 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="建造者模式, 过客">
-    <meta name="description" content="建造者模式类型：创建型
-使用场景：当实体类的构造函数的参数超过4个，并且其中有一些可选的参数时，可以使用
-以前我们遇到有可选参数的对象实例化时，通常有这两种方式：
-1.折叠构造器
-/**
- * Created with IntelliJ I">
+    <meta name="keywords" content="替换空格, 过客">
+    <meta name="description" content="题目：
+
+解法1：
+class Solution {
+    public String replaceSpace(String s) {
+        return s.replace(&#34; &#34;,&#34;%20&#34;);
+    }
+}
+
+调用函数">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +26,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>建造者模式 | 过客</title>
+    <title>替换空格 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -315,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">建造者模式</h1>
+                    <h1 class="description center-align post-title">替换空格</h1>
                 </div>
             </div>
         </div>
@@ -436,8 +440,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/design-mode/">
-                                <span class="chip bg-color">design_mode</span>
+                            <a href="/tags/study/">
+                                <span class="chip bg-color">study</span>
                             </a>
                         
                     </div>
@@ -452,7 +456,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-11
+                    2022-02-12
                 </div>
                 
 
@@ -473,227 +477,42 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><p>类型：创建型</p>
-<p>使用场景：当实体类的构造函数的参数超过4个，并且其中有一些可选的参数时，可以使用</p>
-<p>以前我们遇到有可选参数的对象实例化时，通常有这两种方式：</p>
-<p>1.折叠构造器</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * Created with IntelliJ IDEA.
- *
- * @Author: 薛帅
- * @Date: 2022/02/12/11:11
- * @Description:
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Builder_pattern</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">private</span> String a<span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//必填</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> b<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//选填</span>
-    <span class="token keyword">private</span> String c<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> d<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> String e<span class="token punctuation">;</span>
-    
-    <span class="token keyword">public</span> <span class="token function">Builder_pattern</span><span class="token punctuation">(</span>String a<span class="token punctuation">,</span><span class="token keyword">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token function">Builder_pattern</span><span class="token punctuation">(</span>String a<span class="token punctuation">,</span><span class="token keyword">int</span> b<span class="token punctuation">,</span>String c<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token function">Builder_pattern</span><span class="token punctuation">(</span>String a<span class="token punctuation">,</span><span class="token keyword">int</span> b<span class="token punctuation">,</span>String c<span class="token punctuation">,</span><span class="token keyword">int</span> d<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">,</span>d<span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-
-    <span class="token keyword">public</span> <span class="token function">Builder_pattern</span><span class="token punctuation">(</span>String a<span class="token punctuation">,</span><span class="token keyword">int</span> b<span class="token punctuation">,</span>String c<span class="token punctuation">,</span><span class="token keyword">int</span> d<span class="token punctuation">,</span>String e<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>a <span class="token operator">=</span> a<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>b <span class="token operator">=</span> b<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>c <span class="token operator">=</span> c<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>d <span class="token operator">=</span> d<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>e <span class="token operator">=</span> e<span class="token punctuation">;</span>
-
-    <span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">//调用</span>
-<span class="token keyword">class</span> <span class="token class-name">test</span><span class="token punctuation">{</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-        String a <span class="token operator">=</span> <span class="token string">"a"</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> b <span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>
-        String c <span class="token operator">=</span> <span class="token string">"c"</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//至少需要两个参数a,b</span>
-        Builder_pattern test1 <span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Builder_pattern</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Builder_pattern test2 <span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Builder_pattern</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token punctuation">}</span>
-
-
-
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>评价：这种方法传参的时候容易传混。</p>
-<p>2.JavaBean</p>
-<pre class="line-numbers language-java"><code class="language-java">
-<span class="token comment" spellcheck="true">/**
- * Created with IntelliJ IDEA.
- *
- * @Author: 薛帅
- * @Date: 2022/02/12/11:11
- * @Description:
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Builder_pattern</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">private</span> String a<span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//必填</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> b<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//必填</span>
-    <span class="token keyword">private</span> String c<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> d<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> String e<span class="token punctuation">;</span>
-
-    <span class="token keyword">public</span> String <span class="token function">getA</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> a<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setA</span><span class="token punctuation">(</span>String a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>a <span class="token operator">=</span> a<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getB</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> b<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setB</span><span class="token punctuation">(</span><span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>b <span class="token operator">=</span> b<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> String <span class="token function">getC</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> c<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setC</span><span class="token punctuation">(</span>String c<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>c <span class="token operator">=</span> c<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getD</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> d<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setD</span><span class="token punctuation">(</span><span class="token keyword">int</span> d<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>d <span class="token operator">=</span> d<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> String <span class="token function">getE</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> e<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setE</span><span class="token punctuation">(</span>String e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>e <span class="token operator">=</span> e<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token function">Builder_pattern</span><span class="token punctuation">(</span>String a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">,</span> String c<span class="token punctuation">,</span> <span class="token keyword">int</span> d<span class="token punctuation">,</span> String e<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>a <span class="token operator">=</span> a<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>b <span class="token operator">=</span> b<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>c <span class="token operator">=</span> c<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>d <span class="token operator">=</span> d<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>e <span class="token operator">=</span> e<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token function">Builder_pattern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span>
-
-
-<span class="token keyword">class</span> <span class="token class-name">test</span><span class="token punctuation">{</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        String a <span class="token operator">=</span> <span class="token string">"a"</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> b <span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>
-        String c <span class="token operator">=</span> <span class="token string">"c"</span><span class="token punctuation">;</span>
-        Builder_pattern builder_pattern <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Builder_pattern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        builder_pattern<span class="token punctuation">.</span><span class="token function">setA</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        builder_pattern<span class="token punctuation">.</span><span class="token function">setB</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        builder_pattern<span class="token punctuation">.</span><span class="token function">setC</span><span class="token punctuation">(</span><span class="token string">"c"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <p>题目：</p>
+<p><em><img src="/2022/0212undefined/1644655465036.png" class title="替换空格"></em></p>
+<p>解法1：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> String <span class="token function">replaceSpace</span><span class="token punctuation">(</span>String s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> s<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">,</span><span class="token string">"%20"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>评价：JavaBean的方式如果属性过多，那么就要写一堆set，繁琐而且容易出错，并且是不安全的因为  实例化对象的行为不在同一状态(不理解)。</p>
-<p>最终我们决定使用<code>建造者模式</code> </p>
-<h3 id="建造者模式实现方式"><a href="#建造者模式实现方式" class="headerlink" title="建造者模式实现方式"></a>建造者模式实现方式</h3><p>1.在实体类中创建一个静态内部类，将实体类中的参数复制到静态内部类中</p>
-<p>2.在实体类中创建一个私有的构造函数,参数为刚创建的静态内部类的类型</p>
-<p>3.在静态内部类中创建公共的构造函数，参数为必填的属性</p>
-<p>4.在静态内部类中设置函数，对实体类中可选的参数进行赋值，返回静态内部类的实例</p>
-<p>5.在静态内部类中创建build()方法，在里面构建实体类并返回</p>
-<p>具体代码:</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * Created with IntelliJ IDEA.
- *
- * @Author: 薛帅
- * @Date: 2022/02/12/11:11
- * @Description:
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Builder_pattern</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">private</span> String a<span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//必填</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> b<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//必填</span>
-    <span class="token keyword">private</span> String c<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> d<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> String e<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//私有构造器，参数是Builder</span>
-    <span class="token keyword">private</span> <span class="token function">Builder_pattern</span><span class="token punctuation">(</span>Builder builder<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>a <span class="token operator">=</span> builder<span class="token punctuation">.</span>a<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>b <span class="token operator">=</span> builder<span class="token punctuation">.</span>b<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>c <span class="token operator">=</span> builder<span class="token punctuation">.</span>c<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>d <span class="token operator">=</span> builder<span class="token punctuation">.</span>d<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>e <span class="token operator">=</span> builder<span class="token punctuation">.</span>e<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Builder</span><span class="token punctuation">{</span>
-        
-        <span class="token keyword">private</span> String a<span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//必填</span>
-        <span class="token keyword">private</span> <span class="token keyword">int</span> b<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//必填</span>
-        <span class="token keyword">private</span> String c<span class="token punctuation">;</span>
-        <span class="token keyword">private</span> <span class="token keyword">int</span> d<span class="token punctuation">;</span>
-        <span class="token keyword">private</span> String e<span class="token punctuation">;</span>
-        <span class="token keyword">public</span> <span class="token function">Builder</span><span class="token punctuation">(</span>String a<span class="token punctuation">,</span><span class="token keyword">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>a <span class="token operator">=</span> a<span class="token punctuation">;</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>b <span class="token operator">=</span> b<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>调用函数库解决</p>
+<p>=======================================================</p>
+<p>解法2：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> String <span class="token function">replaceSpace</span><span class="token punctuation">(</span>String s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//定义一个字符串长度三倍的字符数组，保证可以放下所有的字符</span>
+        <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">char</span><span class="token punctuation">[</span>s<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//初始化size</span>
+        <span class="token keyword">int</span> size <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//遍历原数组</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> s<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//charAt(i)表示取出字符串中第i个字符，如果等于空格的话，让他之后的三个分别是%20</span>
+             <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">' '</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                array<span class="token punctuation">[</span>size<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'%'</span><span class="token punctuation">;</span>
+                array<span class="token punctuation">[</span>size<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'2'</span><span class="token punctuation">;</span>
+                array<span class="token punctuation">[</span>size<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'0'</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">//不是空格就复制原有的字符</span>
+               array<span class="token punctuation">[</span>size<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
-        <span class="token keyword">public</span> Builder <span class="token function">setC</span><span class="token punctuation">(</span>String c<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>c <span class="token operator">=</span> c<span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//构建完成之后返回自己</span>
-            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">public</span> Builder <span class="token function">setD</span><span class="token punctuation">(</span><span class="token keyword">int</span> d<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>d <span class="token operator">=</span> d<span class="token punctuation">;</span>
-            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">public</span> Builder <span class="token function">setE</span><span class="token punctuation">(</span>String e<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>e <span class="token operator">=</span> e<span class="token punctuation">;</span>
-            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">public</span> Builder_pattern <span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Builder_pattern</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//新建一个字符串，内容为array，从第0个开始，截取size个字符构建字符串</span>
+        String newStr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>array<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> newStr<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-
-
-<span class="token keyword">class</span> <span class="token class-name">test</span><span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//调用</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Builder_pattern test1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Builder_pattern<span class="token punctuation">.</span>Builder</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">setC</span><span class="token punctuation">(</span><span class="token string">"c"</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">setD</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">setE</span><span class="token punctuation">(</span><span class="token string">"e"</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>   
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>感谢浏览</p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -720,7 +539,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/021129711.html">http://example.com/2022/021129711.html</a>
+                    <a href="http://example.com/2022/021212603.html">http://example.com/2022/021212603.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -758,8 +577,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/design-mode/">
-                                    <span class="chip bg-color">design_mode</span>
+                                <a href="/tags/study/">
+                                    <span class="chip bg-color">study</span>
                                 </a>
                             
                         </div>
@@ -931,9 +750,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/021212603.html">
                     <div class="card-image">
@@ -951,9 +771,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -962,6 +782,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -980,13 +801,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/021146132.html">
+                <a href="/2022/021129711.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="单例模式">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="建造者模式">
                         
-                        <span class="card-title">单例模式</span>
+                        <span class="card-title">建造者模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
