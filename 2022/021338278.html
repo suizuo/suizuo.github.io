@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="工厂模式, 过客">
-    <meta name="description" content="工厂模式工厂模式分为三种，分别是简单工厂模式，工厂模式和抽象工厂模式，由于简单工厂模式是工厂模式的一种特例，所以简单工厂属于工厂模式。所以有的时候也说工厂模式分为工厂模式和抽象工厂模式两种
-简单工厂模式场景：需要new对象的时候，不想直接n">
+    <meta name="keywords" content="数组中重复的数字, 过客">
+    <meta name="description" content="题目
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>工厂模式 | 过客</title>
+    <title>数组中重复的数字 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">工厂模式</h1>
+                    <h1 class="description center-align post-title">数组中重复的数字</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/design-mode/">
-                                <span class="chip bg-color">design_mode</span>
+                            <a href="/tags/study/">
+                                <span class="chip bg-color">study</span>
                             </a>
                         
                     </div>
@@ -469,245 +469,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>工厂模式分为三种，分别是<code>简单工厂模式</code>，<code>工厂模式</code>和<code>抽象工厂模式</code>，由于简单工厂模式是工厂模式的一种特例，所以简单工厂属于工厂模式。所以有的时候也说工厂模式分为<code>工厂模式</code>和<code>抽象工厂模式</code>两种</p>
-<h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3><p>场景：需要new对象的时候，不想直接new，因为可能会产生耦合，或者是对象构建过程非常<code>复杂</code>。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * Created with IntelliJ IDEA.
- *
- * @Author: 薛帅
- * @Date: 2022/02/13/10:43
- * @Description:
- */</span>
-
-<span class="token comment" spellcheck="true">//抽象基类</span>
-<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Product</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//第一种产品类</span>
-<span class="token keyword">class</span> <span class="token class-name">Product1</span> <span class="token keyword">extends</span> <span class="token class-name">Product</span><span class="token punctuation">{</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"这是产品1该做的事"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//第二种产品类</span>
-<span class="token keyword">class</span> <span class="token class-name">Product2</span> <span class="token keyword">extends</span> <span class="token class-name">Product</span><span class="token punctuation">{</span>
-
-
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"这是产品2该做的事"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">//简单工厂方法类</span>
-<span class="token keyword">class</span> <span class="token class-name">SimpleFactory</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Product <span class="token function">makeProduct</span><span class="token punctuation">(</span>String str<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        Product product <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        <span class="token keyword">switch</span> <span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">case</span> <span class="token string">"1"</span><span class="token operator">:</span>
-                product <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Product1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token keyword">case</span> <span class="token string">"2"</span><span class="token operator">:</span>
-                product <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Product2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token keyword">default</span><span class="token operator">:</span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> product<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">class</span> <span class="token class-name">test</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Product product1 <span class="token operator">=</span> SimpleFactory<span class="token punctuation">.</span><span class="token function">makeProduct</span><span class="token punctuation">(</span><span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        product1<span class="token punctuation">.</span><span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这样test里面就不需要关心产品是怎么生成的，这在构建复杂产品的时候提供的便利。只需要传参即可。</p>
-<p>缺点：每增加一个产品类，就需要修改工厂，违反开闭原则。</p>
-<p>为了克服这个缺点，工厂模式就出来了</p>
-<h3 id="工厂模式-1"><a href="#工厂模式-1" class="headerlink" title="工厂模式"></a>工厂模式</h3><p>场景：和简单工厂一致。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * Created with IntelliJ IDEA.
- *
- * @Author: 薛帅
- * @Date: 2022/02/13/10:43
- * @Description:
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Factory_Pattern</span> <span class="token punctuation">{</span>
-
-<span class="token punctuation">}</span>
-
-
-<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Product</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Product1</span> <span class="token keyword">extends</span> <span class="token class-name">Product</span><span class="token punctuation">{</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"这是产品1该做的事"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Product2</span> <span class="token keyword">extends</span> <span class="token class-name">Product</span><span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"这是产品2该做的事"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">//抽象工厂类</span>
-<span class="token keyword">interface</span> <span class="token class-name">ProductFactory</span><span class="token punctuation">{</span>
-    Product <span class="token function">makeProduct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//产品1的工厂</span>
-<span class="token keyword">class</span> <span class="token class-name">product1Factory</span> <span class="token keyword">implements</span>  <span class="token class-name">ProductFactory</span><span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Product <span class="token function">makeProduct</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Product1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">//产品2的工厂</span>
-<span class="token keyword">class</span> <span class="token class-name">product2Factory</span> <span class="token keyword">implements</span>  <span class="token class-name">ProductFactory</span><span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Product <span class="token function">makeProduct</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Product2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-
-<span class="token keyword">class</span> <span class="token class-name">test</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//生产产品1</span>
-        ProductFactory pro1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">product1Factory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        pro1<span class="token punctuation">.</span><span class="token function">makeProduct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//生产产品2</span>
-        ProductFactory pro2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">product2Factory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        pro2<span class="token punctuation">.</span><span class="token function">makeProduct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>工厂模式解决了简单工厂模式的缺点，当我们需要增加一个工厂类时，只需要添加一个类实现抽象工厂即可。</p>
-<h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><p>场景:当我们需要多个产品族，每一个产品族里有一系列产品，这一系列产品一般是不变的，如果经常需要变动，可以使用工厂模式而非抽象工厂</p>
-<p>例子：小米和华为是两个不同的产品族，他们里面有手机，电脑。我们需要生产他们</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * Created with IntelliJ IDEA.
- *
- * @Author: 薛帅
- * @Date: 2022/02/13/10:43
- * @Description:
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Factory_Pattern</span> <span class="token punctuation">{</span>
-
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">//电脑的抽象基类</span>
-<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Computer</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">class</span> <span class="token class-name">MiComputer</span> <span class="token keyword">extends</span> <span class="token class-name">Computer</span><span class="token punctuation">{</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"这是小米电脑该做的事"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">class</span> <span class="token class-name">HComputer</span> <span class="token keyword">extends</span> <span class="token class-name">Computer</span><span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"这是华为电脑该做的事"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">//手机的抽象基类</span>
-<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Phone</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">class</span> <span class="token class-name">MiPhone</span> <span class="token keyword">extends</span> <span class="token class-name">Phone</span><span class="token punctuation">{</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"这是小米手机该做的事"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">class</span> <span class="token class-name">HPhone</span> <span class="token keyword">extends</span> <span class="token class-name">Phone</span><span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"这是华为手机该做的事"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//在定义工厂时我们按照产品族来定义工厂</span>
-<span class="token comment" spellcheck="true">//抽象工厂类</span>
-<span class="token keyword">interface</span> <span class="token class-name">AbstractFactory</span> <span class="token punctuation">{</span>
-    Computer <span class="token function">makeComputer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Phone <span class="token function">makePhone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//小米的工厂</span>
-<span class="token keyword">class</span> <span class="token class-name">MiFactory</span> <span class="token keyword">implements</span>  <span class="token class-name">AbstractFactory</span><span class="token punctuation">{</span>
-
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Computer <span class="token function">makeComputer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">MiComputer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Phone <span class="token function">makePhone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">MiPhone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//华为的工厂</span>
-<span class="token keyword">class</span> <span class="token class-name">Hfactory</span> <span class="token keyword">implements</span>  <span class="token class-name">AbstractFactory</span><span class="token punctuation">{</span>
-
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Computer <span class="token function">makeComputer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">HComputer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Phone <span class="token function">makePhone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">HPhone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-
-
-
-<span class="token keyword">class</span> <span class="token class-name">test</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-        <span class="token comment" spellcheck="true">//小米生产线</span>
-        AbstractFactory mifactory <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MiFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        mifactory<span class="token punctuation">.</span><span class="token function">makeComputer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        mifactory<span class="token punctuation">.</span><span class="token function">makePhone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">//华为生产线</span>
-        AbstractFactory hfactory <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Hfactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        hfactory<span class="token punctuation">.</span><span class="token function">makeComputer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        hfactory<span class="token punctuation">.</span><span class="token function">makePhone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>当我们需要增加产品族的时候，需要添加一个类实现抽象工厂，再添加他们旗下的产品。</p>
-<p>感谢浏览</p>
-<p><code>ps</code>:如果对象非常简单的话，或者是只需要通过new就可以创建的对象,就不需要使用工厂模式，如果要用的话还需要引入工厂类，增加系统复杂度</p>
-
+                <p>题目</p>
+<p><em><img src="/2022/0213undefined/1644742246035.png" class title="数组中重复的数字}&lt;&#x2F;em&gt;&lt;&#x2F;p&gt; &lt;p&gt;解法1：&lt;&#x2F;p&gt; &lt;p&gt;思路：用一个集合存储遇到的数字，如果遇到一个数字已经在集合中，这个数字就是重复数字&lt;&#x2F;p&gt; &lt;pre&gt;&lt;code class&#x3D;java&gt;class Solution &amp;#123; public int findRepeatNumber(int[] nums) &amp;#123; Set&lt;Integer&gt; set &#x3D; new HashSet&lt;Integer&gt;(); int rep &#x3D; -1; for(int num:nums)&amp;#123; &#x2F;&#x2F; Set.add() 方法用来向 Set 集合添加对象。如果 Set 集合中已经包含相同的对象，则不改变 Set 集合。 &#x2F;&#x2F;该方法返回值为 boolean 对象，如果 Set 集合中不包含要添加的对象，则添加对象并返回true，否则返回false。 if(!set.add(num))&amp;#123; rep &#x3D; num; break; &amp;#125; &amp;#125; return rep; &amp;#125; &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt; &lt;p&gt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&lt;&#x2F;p&gt; &lt;p&gt;解法2&lt;&#x2F;p&gt; &lt;p&gt;思路&lt;&#x2F;p&gt; &lt;p&gt; 题目中说在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内，这说明，如果数组num中没有重复数字，那么数组中的索引和值是对应的关系，即：第一个数字是1，第二个数字是2，以此类推。但是现在是有重复的值的，如果是排序好的数组，可以得出那个与索引不相等的值，一定是重复的。所以我们遍历数组并进行交换，使得索引和值相互对应。&lt;&#x2F;p&gt; &lt;pre&gt;&lt;code class&#x3D;java&gt;class Solution &amp;#123; public int findRepeatNumber(int[] nums) &amp;#123; int i &#x3D; 0; &#x2F;&#x2F;遍历数组 while(i &lt; nums.length) &amp;#123; &#x2F;&#x2F;如果索引与值相等 if(nums[i] &#x3D;&#x3D; i) &amp;#123; &#x2F;&#x2F;进行下一个 i++; continue; &amp;#125; &#x2F;&#x2F;索引与值不相等，看这个值原本应该在的位置对应的值与这个值是否相等 if(nums[nums[i]] &#x3D;&#x3D; nums[i]) &amp;#123; &#x2F;&#x2F;如果相等，就直接返回 return nums[i]; &amp;#125; &#x2F;&#x2F;如果这个值作为索引对应的值与这个值不相等，就交换这两个数，使得这个值跟索引一致 int tmp &#x3D; nums[i]; nums[i] &#x3D; nums[tmp]; nums[tmp] &#x3D; tmp; &amp;#125; &#x2F;&#x2F;没有找到 return -1; &amp;#125; &amp;#125; &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt; &lt;p&gt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&lt;&#x2F;p&gt; &lt;p&gt;解法3:&lt;&#x2F;p&gt; &lt;p&gt;思路：数组排序之后判断相邻元素是否相等&lt;&#x2F;p&gt; &lt;pre&gt;&lt;code class&#x3D;java&gt;class Solution &amp;#123; public int findRepeatNumber(int[] nums) &amp;#123; Arrays.sort(nums); int i; for (i &#x3D; 0; i&lt;nums.length; i++)&amp;#123; if (nums[i]&#x3D;&#x3D;nums[i+1])&amp;#123; break; &amp;#125; &amp;#125; return nums[i]; &amp;#125; &amp;#125; &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt; &lt;p&gt;解法二效率更高&lt;&#x2F;p&gt; &lt;p&gt;感谢浏览&lt;&#x2F;p&gt;"></em></p>
                 
             </div>
             <hr/>
@@ -733,7 +496,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/02136013.html">http://example.com/2022/02136013.html</a>
+                    <a href="http://example.com/2022/021338278.html">http://example.com/2022/021338278.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -771,8 +534,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/design-mode/">
-                                    <span class="chip bg-color">design_mode</span>
+                                <a href="/tags/study/">
+                                    <span class="chip bg-color">study</span>
                                 </a>
                             
                         </div>
@@ -944,9 +707,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/021338278.html">
                     <div class="card-image">
@@ -964,9 +728,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -975,6 +739,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -993,13 +758,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/021211018.html">
+                <a href="/2022/02136013.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="左旋转字符串">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="工厂模式">
                         
-                        <span class="card-title">左旋转字符串</span>
+                        <span class="card-title">工厂模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1010,7 +775,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-13
                             </span>
                         <span class="publish-author">
                             
@@ -1023,8 +788,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/study/">
-                        <span class="chip bg-color">study</span>
+                    <a href="/tags/design-mode/">
+                        <span class="chip bg-color">design_mode</span>
                     </a>
                     
                 </div>
