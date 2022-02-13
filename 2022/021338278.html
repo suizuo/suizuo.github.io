@@ -6,7 +6,12 @@
     <meta charset="utf-8">
     <meta name="keywords" content="数组中重复的数字, 过客">
     <meta name="description" content="题目
-">
+
+解法1：
+思路：用一个集合存储遇到的数字，如果遇到一个数字已经在集合中，这个数字就是重复数字
+class Solution {
+    public int findRepeatNumber(int[] nums) {
+      ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -470,7 +475,73 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>题目</p>
-<p><em><img src="/2022/0213undefined/1644742246035.png" class title="数组中重复的数字}&lt;&#x2F;em&gt;&lt;&#x2F;p&gt; &lt;p&gt;解法1：&lt;&#x2F;p&gt; &lt;p&gt;思路：用一个集合存储遇到的数字，如果遇到一个数字已经在集合中，这个数字就是重复数字&lt;&#x2F;p&gt; &lt;pre&gt;&lt;code class&#x3D;java&gt;class Solution &amp;#123; public int findRepeatNumber(int[] nums) &amp;#123; Set&lt;Integer&gt; set &#x3D; new HashSet&lt;Integer&gt;(); int rep &#x3D; -1; for(int num:nums)&amp;#123; &#x2F;&#x2F; Set.add() 方法用来向 Set 集合添加对象。如果 Set 集合中已经包含相同的对象，则不改变 Set 集合。 &#x2F;&#x2F;该方法返回值为 boolean 对象，如果 Set 集合中不包含要添加的对象，则添加对象并返回true，否则返回false。 if(!set.add(num))&amp;#123; rep &#x3D; num; break; &amp;#125; &amp;#125; return rep; &amp;#125; &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt; &lt;p&gt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&lt;&#x2F;p&gt; &lt;p&gt;解法2&lt;&#x2F;p&gt; &lt;p&gt;思路&lt;&#x2F;p&gt; &lt;p&gt; 题目中说在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内，这说明，如果数组num中没有重复数字，那么数组中的索引和值是对应的关系，即：第一个数字是1，第二个数字是2，以此类推。但是现在是有重复的值的，如果是排序好的数组，可以得出那个与索引不相等的值，一定是重复的。所以我们遍历数组并进行交换，使得索引和值相互对应。&lt;&#x2F;p&gt; &lt;pre&gt;&lt;code class&#x3D;java&gt;class Solution &amp;#123; public int findRepeatNumber(int[] nums) &amp;#123; int i &#x3D; 0; &#x2F;&#x2F;遍历数组 while(i &lt; nums.length) &amp;#123; &#x2F;&#x2F;如果索引与值相等 if(nums[i] &#x3D;&#x3D; i) &amp;#123; &#x2F;&#x2F;进行下一个 i++; continue; &amp;#125; &#x2F;&#x2F;索引与值不相等，看这个值原本应该在的位置对应的值与这个值是否相等 if(nums[nums[i]] &#x3D;&#x3D; nums[i]) &amp;#123; &#x2F;&#x2F;如果相等，就直接返回 return nums[i]; &amp;#125; &#x2F;&#x2F;如果这个值作为索引对应的值与这个值不相等，就交换这两个数，使得这个值跟索引一致 int tmp &#x3D; nums[i]; nums[i] &#x3D; nums[tmp]; nums[tmp] &#x3D; tmp; &amp;#125; &#x2F;&#x2F;没有找到 return -1; &amp;#125; &amp;#125; &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt; &lt;p&gt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&lt;&#x2F;p&gt; &lt;p&gt;解法3:&lt;&#x2F;p&gt; &lt;p&gt;思路：数组排序之后判断相邻元素是否相等&lt;&#x2F;p&gt; &lt;pre&gt;&lt;code class&#x3D;java&gt;class Solution &amp;#123; public int findRepeatNumber(int[] nums) &amp;#123; Arrays.sort(nums); int i; for (i &#x3D; 0; i&lt;nums.length; i++)&amp;#123; if (nums[i]&#x3D;&#x3D;nums[i+1])&amp;#123; break; &amp;#125; &amp;#125; return nums[i]; &amp;#125; &amp;#125; &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt; &lt;p&gt;解法二效率更高&lt;&#x2F;p&gt; &lt;p&gt;感谢浏览&lt;&#x2F;p&gt;"></em></p>
+<p><em><img src="/2022/021338278/1644742246035.png" class title="数组中重复的数字"></em></p>
+<p>解法1：</p>
+<p>思路：用一个集合存储遇到的数字，如果遇到一个数字已经在集合中，这个数字就是重复数字</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">findRepeatNumber</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Set<span class="token operator">&lt;</span>Integer<span class="token operator">></span> set <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> rep <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token operator">:</span>nums<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token comment" spellcheck="true">// Set.add() 方法用来向 Set 集合添加对象。如果 Set 集合中已经包含相同的对象，则不改变 Set 集合。</span>
+<span class="token comment" spellcheck="true">//该方法返回值为 boolean 对象，如果 Set 集合中不包含要添加的对象，则添加对象并返回true，否则返回false。</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>set<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                rep <span class="token operator">=</span> num<span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> rep<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>=========================================================</p>
+<p>解法2</p>
+<p>思路</p>
+<p> 题目中说在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内，这说明，如果数组num中没有重复数字，那么数组中的索引和值是对应的关系，即：第一个数字是1，第二个数字是2，以此类推。但是现在是有重复的值的，如果是排序好的数组，可以得出那个与索引不相等的值，一定是重复的。所以我们遍历数组并进行交换，使得索引和值相互对应。</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">findRepeatNumber</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//遍历数组</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//如果索引与值相等</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//进行下一个</span>
+            i<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">//索引与值不相等，看这个值原本应该在的位置对应的值与这个值是否相等</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">==</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">//如果相等，就直接返回</span>
+                <span class="token keyword">return</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">//如果这个值作为索引对应的值与这个值不相等，就交换这两个数，使得这个值跟索引一致</span>
+            <span class="token keyword">int</span> tmp <span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span>tmp<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            nums<span class="token punctuation">[</span>tmp<span class="token punctuation">]</span> <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//没有找到</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>==================================================</p>
+<p>解法3:</p>
+<p>思路：数组排序之后判断相邻元素是否相等</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">findRepeatNumber</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Arrays<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span>nums<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>解法二效率更高</p>
+<p>感谢浏览</p>
+
                 
             </div>
             <hr/>
