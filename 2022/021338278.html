@@ -494,7 +494,7 @@ class Solution {
     <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>=========================================================</p>
-<p>解法2</p>
+<p>解法2(推荐)</p>
 <p>思路</p>
 <p> 题目中说在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内，这说明，如果数组num中没有重复数字，那么数组中的索引和值是对应的关系，即：第一个数字是1，第二个数字是2，以此类推。但是现在是有重复的值的，如果是排序好的数组，可以得出那个与索引不相等的值，一定是重复的。所以我们遍历数组并进行交换，使得索引和值相互对应。</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
