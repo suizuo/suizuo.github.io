@@ -4,11 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="二维数组中的查找, 过客">
-    <meta name="description" content="题目
+    <meta name="keywords" content="旋转数组的最小值, 过客">
+    <meta name="description" content="题目:
 
-解法：
-思路：我们以题目中的矩阵为例，左上和右下两个角分别是最小和最大。我们如果以他们为起点，就不好判断指针该往哪边走，但是左下角他所在的列是依次递减，行却是依次递增。右上角同理。所以我们可以从这两个角出发，比如我们从左下角出发，记">
+虽然不是整体升序，但是我们可以把它看成两个升序的,也可以用二分
+    class Solution {
+        public int minArray(int[] numbers) {
+            int l">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +22,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>二维数组中的查找 | 过客</title>
+    <title>旋转数组的最小值 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -313,12 +315,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">二维数组中的查找</h1>
+                    <h1 class="description center-align post-title">旋转数组的最小值</h1>
                 </div>
             </div>
         </div>
@@ -471,34 +473,31 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目</p>
-<p><em><img src="/2022/021745951/1645073541593.png" class title="二维数组中的查找"></em></p>
-<p>解法：</p>
-<p>思路：我们以题目中的矩阵为例，左上和右下两个角分别是最小和最大。我们如果以他们为起点，就不好判断指针该往哪边走，但是左下角他所在的列是依次递减，行却是依次递增。右上角同理。所以我们可以从这两个角出发，比如我们从左下角出发，记为flag如果target&gt;flag，那么flag这一列肯定都比flag要小，我们就舍弃这一列，小于也是同理。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">findNumberIn2DArray</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> matrix<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//最后一行</span>
-        <span class="token keyword">int</span> i <span class="token operator">=</span> matrix<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//第一列</span>
-        <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> j <span class="token operator">&lt;</span> matrix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>matrix<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token comment" spellcheck="true">//这一行舍弃</span>
-                i<span class="token operator">--</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>matrix<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token comment" spellcheck="true">//这一列舍弃</span>
-                j<span class="token operator">++</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>matrix<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+                <p>题目:</p>
+<p><em><img src="/2022/0217undefined/1645087821760.png" class title="旋转数组的最小数字"></em></p>
+<p>虽然不是整体升序，但是我们可以把它看成两个升序的,也可以用二分</p>
+<pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">minArray</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> numbers<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> right <span class="token operator">=</span> numbers<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;</span> right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">int</span> mid <span class="token operator">=</span> left <span class="token operator">+</span> <span class="token punctuation">(</span>right <span class="token operator">-</span> left<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>numbers<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> numbers<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token comment" spellcheck="true">//如果中间值大于右值，说明是递增的，舍弃前半部分</span>
+                    left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>numbers<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> numbers<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token comment" spellcheck="true">//如果中间值小于左侧，那么他之后肯定不是最小值，舍弃他右边</span>
+                    right <span class="token operator">=</span> mid<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>numbers<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> numbers<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token comment" spellcheck="true">//如果中间值等于左侧,我们无法判断是否是最小，所以我们将right-1来缩小范围</span>
+                   right<span class="token operator">--</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
             <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> numbers<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//数组中没有查到该数</span>
-         <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>补充：在二维数组中matrix.length为行数，matrix[0].length为列数</p>
-<p>此文仅作为本人学习笔记使用</p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>ps:</code>不可以用numbers[mid]和 numbers[left]进行比较，因为不能确定left是否属于第一个递增的数组，比如12345，没有偏转或者说偏转值为0.这个时候left是属于第二个递增的数组的。所以不能比较。而right一定是属于第二个数组的。所以我们用numbers[mid]和 numbers[left]进行比较。</p>
 
                 
             </div>
@@ -525,7 +524,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/021745951.html">http://example.com/2022/021745951.html</a>
+                    <a href="http://example.com/2022/021760340.html">http://example.com/2022/021760340.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -736,9 +735,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/021760340.html">
                     <div class="card-image">
@@ -756,9 +756,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -767,6 +767,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -785,13 +786,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/021639554.html">
+                <a href="/2022/021745951.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="适配器模式">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="二维数组中的查找">
                         
-                        <span class="card-title">适配器模式</span>
+                        <span class="card-title">二维数组中的查找</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -802,7 +803,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-17
                             </span>
                         <span class="publish-author">
                             
@@ -815,8 +816,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/design-mode/">
-                        <span class="chip bg-color">design_mode</span>
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
                     </a>
                     
                 </div>
