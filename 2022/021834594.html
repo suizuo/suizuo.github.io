@@ -4,13 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="旋转数组的最小值, 过客">
-    <meta name="description" content="题目:
+    <meta name="keywords" content="第一个只出现一次的字符, 过客">
+    <meta name="description" content="题目
 
-虽然不是整体升序，但是我们可以把它看成两个升序的,也可以用二分
-    class Solution {
-        public int minArray(int[] numbers) {
-            int l">
+解法1：
+哈希表
+思路：遍历字符串，将其放入哈希表，key为这个字母，value为是否重复，如果有重复的进来，就将value置为false，然后遍历一遍字符串(不可以遍历哈希表，因为哈希表是无序的)，找到第一个等于true的即可
+c">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +22,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>旋转数组的最小值 | 过客</title>
+    <title>第一个只出现一次的字符 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -315,12 +315,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">旋转数组的最小值</h1>
+                    <h1 class="description center-align post-title">第一个只出现一次的字符</h1>
                 </div>
             </div>
         </div>
@@ -452,7 +452,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-17
+                    2022-02-18
                 </div>
                 
 
@@ -473,31 +473,33 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目:</p>
-<p><em><img src="/2022/021760340/1645087821760.png" class title="旋转数组的最小数字"></em></p>
-<p>虽然不是整体升序，但是我们可以把它看成两个升序的,也可以用二分</p>
-<pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-        <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">minArray</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> numbers<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-            <span class="token keyword">int</span> right <span class="token operator">=</span> numbers<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-                <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;</span> right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">int</span> mid <span class="token operator">=</span> left <span class="token operator">+</span> <span class="token punctuation">(</span>right <span class="token operator">-</span> left<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>numbers<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> numbers<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    <span class="token comment" spellcheck="true">//如果中间值大于右值，说明是递增的，舍弃前半部分</span>
-                    left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>numbers<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> numbers<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    <span class="token comment" spellcheck="true">//如果中间值小于左侧，那么他之后肯定不是最小值，舍弃他右边</span>
-                    right <span class="token operator">=</span> mid<span class="token punctuation">;</span>
-                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>numbers<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> numbers<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    <span class="token comment" spellcheck="true">//如果中间值等于左侧,我们无法判断是否是最小，所以我们将right-1来缩小范围</span>
-                   right<span class="token operator">--</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">return</span> numbers<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <p>题目</p>
+<p><em><img src="/2022/0218undefined/1645159369148.png" class title="第一个只出现一次的字符"></em></p>
+<p>解法1：</p>
+<p>哈希表</p>
+<p>思路：遍历字符串，将其放入哈希表，key为这个字母，value为是否重复，如果有重复的进来，就将value置为false，然后遍历一遍字符串(不可以遍历哈希表，因为哈希表是无序的)，找到第一个等于true的即可</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">char</span> <span class="token function">firstUniqChar</span><span class="token punctuation">(</span>String s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        
+        HashMap<span class="token operator">&lt;</span>Character<span class="token punctuation">,</span>Boolean<span class="token operator">></span> dic <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> sc <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">toCharArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">char</span> c <span class="token operator">:</span> sc<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//如果遇到重复，就会将重复值的value变为false</span>
+            dic<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span> <span class="token operator">!</span>dic<span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//在字典中查找第一个等于true的</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">char</span> c <span class="token operator">:</span> sc<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>dic<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> c<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">//否则就是没有不重复的数字</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token string">' '</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>ps:</code>不可以用numbers[mid]和 numbers[left]进行比较，因为不能确定left是否属于第一个递增的数组，比如12345，没有偏转或者说偏转值为0.这个时候left是属于第二个递增的数组的。所以不能比较。而right一定是属于第二个数组的。所以我们用numbers[mid]和 numbers[left]进行比较。</p>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>ps:</code>第二个遍历我们不可以遍历哈希表，但是我们可以遍历有序哈希表如 LinkedHashMap ，所以我们可以使用 LinkedHashMap 代替HashMap,在数据量比较大的情况下效率更高。也可以使用数组，定义一个长度为26的数组，将给定字符串统计到数组，数组的值改变，类似于HashMap</p>
+<p>​        </p>
 
                 
             </div>
@@ -524,7 +526,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/021760340.html">http://example.com/2022/021760340.html</a>
+                    <a href="http://example.com/2022/021834594.html">http://example.com/2022/021834594.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -735,9 +737,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/021834594.html">
                     <div class="card-image">
@@ -755,9 +758,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -766,6 +769,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -784,13 +788,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/021745951.html">
+                <a href="/2022/021760340.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="二维数组中的查找">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="旋转数组的最小值">
                         
-                        <span class="card-title">二维数组中的查找</span>
+                        <span class="card-title">旋转数组的最小值</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
