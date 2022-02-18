@@ -4,13 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="第一个只出现一次的字符, 过客">
-    <meta name="description" content="题目
-
-解法1：
-哈希表
-思路：遍历字符串，将其放入哈希表，key为这个字母，value为是否重复，如果有重复的进来，就将value置为false，然后遍历一遍字符串(不可以遍历哈希表，因为哈希表是无序的)，找到第一个等于true的即可
-c">
+    <meta name="keywords" content="装饰器模式, 过客">
+    <meta name="description" content="装饰器模式定义： 装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。 
+类型：结构型
+场景： 动态地给一个对象添加一些额外的职责。就增加功能来说，如果需要新增职责太多，就会出现一系列排列组">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +19,7 @@ c">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>第一个只出现一次的字符 | 过客</title>
+    <title>装饰器模式 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -315,12 +312,12 @@ c">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">第一个只出现一次的字符</h1>
+                    <h1 class="description center-align post-title">装饰器模式</h1>
                 </div>
             </div>
         </div>
@@ -436,8 +433,8 @@ c">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/study/">
-                                <span class="chip bg-color">study</span>
+                            <a href="/tags/design-mode/">
+                                <span class="chip bg-color">design_mode</span>
                             </a>
                         
                     </div>
@@ -473,33 +470,131 @@ c">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目</p>
-<p><em><img src="/2022/021834594/1645159369148.png" class title="第一个只出现一次的字符"></em></p>
-<p>解法1：</p>
-<p>哈希表</p>
-<p>思路：遍历字符串，将其放入哈希表，key为这个字母，value为是否重复，如果有重复的进来，就将value置为false，然后遍历一遍字符串(不可以遍历哈希表，因为哈希表是无序的)，找到第一个等于true的即可</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">char</span> <span class="token function">firstUniqChar</span><span class="token punctuation">(</span>String s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        
-        HashMap<span class="token operator">&lt;</span>Character<span class="token punctuation">,</span>Boolean<span class="token operator">></span> dic <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> sc <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">toCharArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">char</span> c <span class="token operator">:</span> sc<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//如果遇到重复，就会将重复值的value变为false</span>
-            dic<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span> <span class="token operator">!</span>dic<span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//在字典中查找第一个等于true的</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">char</span> c <span class="token operator">:</span> sc<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>dic<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">return</span> c<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token comment" spellcheck="true">//否则就是没有不重复的数字</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> <span class="token string">' '</span><span class="token punctuation">;</span>
+                <h2 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h2><p>定义： 装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。 </p>
+<p>类型：结构型</p>
+<p>场景： 动态地给一个对象添加一些额外的职责。就增加功能来说，如果需要新增职责太多，就会出现一系列排列组合，想要全部以子类的形式来写是非常麻烦而且容易出错的。装饰器模式相比生成子类更为灵活 ，可以用来代替继承。</p>
+<p>需求：装修房屋，有基本功能和附加功能，基本功能是必须的，而附加功能则是可选的</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * Created with IntelliJ IDEA.
+ *
+ * @Author: 薛帅
+ * @Date: 2022/02/18/17:04
+ * @Description:
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Decorator_Pattern</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment" spellcheck="true">//基本类型接口</span>
+<span class="token keyword">interface</span> <span class="token class-name">IDecorator</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//装修方法</span>
+    <span class="token keyword">void</span> <span class="token function">Dodecorator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+
+<span class="token comment" spellcheck="true">//基本类,实现必要方法</span>
+<span class="token keyword">class</span> <span class="token class-name">Decorator</span> <span class="token keyword">implements</span> <span class="token class-name">IDecorator</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">Dodecorator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"装修房屋必要方法"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>ps:</code>第二个遍历我们不可以遍历哈希表，但是我们可以遍历有序哈希表如 LinkedHashMap ，所以我们可以使用 LinkedHashMap 代替HashMap,在数据量比较大的情况下效率更高。也可以使用数组，定义一个长度为26的数组，将给定字符串统计到数组，数组的值改变，类似于HashMap</p>
-<p>​        </p>
+
+
+
+
+<span class="token comment" spellcheck="true">//基本装饰类</span>
+<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">BaseDecorator</span> <span class="token keyword">implements</span> <span class="token class-name">IDecorator</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//包含基本类</span>
+    <span class="token keyword">private</span> IDecorator decorator<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">BaseDecorator</span><span class="token punctuation">(</span>IDecorator decorator<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>decorator <span class="token operator">=</span> decorator<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">Dodecorator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>decorator <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            decorator<span class="token punctuation">.</span><span class="token function">Dodecorator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment" spellcheck="true">//现在我们需要添加一个新功能</span>
+<span class="token keyword">class</span> <span class="token class-name">NewDecorator</span> <span class="token keyword">extends</span> <span class="token class-name">BaseDecorator</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//必须继承父类构造器，也就是有了基本装修方法</span>
+    <span class="token keyword">public</span> <span class="token function">NewDecorator</span><span class="token punctuation">(</span>IDecorator decorator<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>decorator<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">Dodecorator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"新增功能"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">Dodecorator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+
+<span class="token comment" spellcheck="true">//现在我们需要再添加一个新功能</span>
+<span class="token keyword">class</span> <span class="token class-name">NewDecorator1</span> <span class="token keyword">extends</span> <span class="token class-name">BaseDecorator</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//必须继承父类构造器，也就是有了基本装修方法</span>
+    <span class="token keyword">public</span> <span class="token function">NewDecorator1</span><span class="token punctuation">(</span>IDecorator decorator<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>decorator<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">Dodecorator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"新增功能1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">Dodecorator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+
+<span class="token comment" spellcheck="true">//测试    我现在需要先有基本功能，然后有新增功能1的房子，有新增功能2的房子</span>
+<span class="token keyword">class</span> <span class="token class-name">test</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        IDecorator house <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Decorator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//基本房子</span>
+        house<span class="token punctuation">.</span><span class="token function">Dodecorator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"==="</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//新增功能的房子</span>
+        house <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NewDecorator</span><span class="token punctuation">(</span>house<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        house<span class="token punctuation">.</span><span class="token function">Dodecorator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"==="</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//新增功能1的房子</span>
+        house <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NewDecorator1</span><span class="token punctuation">(</span>house<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        house<span class="token punctuation">.</span><span class="token function">Dodecorator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"==="</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment" spellcheck="true">//有一个新房子，只需要功能1，</span>
+        IDecorator house1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Decorator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        house1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NewDecorator1</span><span class="token punctuation">(</span>house1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        house1<span class="token punctuation">.</span><span class="token function">Dodecorator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>控制台输出</p>
+<pre class="line-numbers language-java"><code class="language-java">装修房屋必要方法
+<span class="token operator">==</span><span class="token operator">=</span>
+新增功能
+装修房屋必要方法
+<span class="token operator">==</span><span class="token operator">=</span>
+新增功能<span class="token number">1</span>
+新增功能
+装修房屋必要方法
+<span class="token operator">==</span><span class="token operator">=</span>
+新增功能<span class="token number">1</span>
+装修房屋必要方法
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此文仅作为本人学习笔记使用</p>
 
                 
             </div>
@@ -526,7 +621,7 @@ c">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/021834594.html">http://example.com/2022/021834594.html</a>
+                    <a href="http://example.com/2022/021864336.html">http://example.com/2022/021864336.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -564,8 +659,8 @@ c">
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/study/">
-                                    <span class="chip bg-color">study</span>
+                                <a href="/tags/design-mode/">
+                                    <span class="chip bg-color">design_mode</span>
                                 </a>
                             
                         </div>
@@ -737,9 +832,10 @@ c">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/021864336.html">
                     <div class="card-image">
@@ -757,9 +853,9 @@ c">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -768,6 +864,7 @@ c">
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -786,13 +883,13 @@ c">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/021760340.html">
+                <a href="/2022/021834594.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="旋转数组的最小值">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="第一个只出现一次的字符">
                         
-                        <span class="card-title">旋转数组的最小值</span>
+                        <span class="card-title">第一个只出现一次的字符</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -803,7 +900,7 @@ c">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-18
                             </span>
                         <span class="publish-author">
                             
