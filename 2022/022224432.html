@@ -4,12 +4,16 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="外观模式, 过客">
-    <meta name="description" content="外观模式类型：结构型
-场景：需要提供一个统一操作界面给用户使用
-例如一个影院，在工作人员点击停止之后，有如下步骤：关闭播放器，上升屏幕，关灯等等等等。但是工作人员不需要关心内部细节，只需要点击停止即可
+    <meta name="keywords" content="二叉树的镜像, 过客">
+    <meta name="description" content="题目
+
+解法1：递归
 /**
- * Created with">
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +25,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>外观模式 | 过客</title>
+    <title>二叉树的镜像 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -314,12 +318,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">外观模式</h1>
+                    <h1 class="description center-align post-title">二叉树的镜像</h1>
                 </div>
             </div>
         </div>
@@ -435,8 +439,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/design-mode/">
-                                <span class="chip bg-color">design_mode</span>
+                            <a href="/tags/study/">
+                                <span class="chip bg-color">study</span>
                             </a>
                         
                     </div>
@@ -472,124 +476,73 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h2><p>类型：结构型</p>
-<p>场景：需要提供一个统一操作界面给用户使用</p>
-<p>例如一个影院，在工作人员点击停止之后，有如下步骤：关闭播放器，上升屏幕，关灯等等等等。但是工作人员不需要关心内部细节，只需要点击停止即可</p>
+                <p>题目</p>
+<p><em><img src="/2022/0222undefined/1645537365225.png" class title="二叉树的镜像"></em></p>
+<p>解法1：递归</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * Created with IntelliJ IDEA.
- *
- * @Author: 薛帅
- * @Date: 2022/02/22/16:36
- * @Description:
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
  */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Facade_Pattern</span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">//播放器</span>
-<span class="token keyword">class</span> <span class="token class-name">Player</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//使用单例模式</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Player pla <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Player</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">private</span> <span class="token function">Player</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Player <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> pla<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">on</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"开启播放器"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">off</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"关闭播放器"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">//屏幕</span>
-<span class="token keyword">class</span> <span class="token class-name">Screen</span> <span class="token punctuation">{</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Screen scr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Screen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">private</span> <span class="token function">Screen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Screen <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> scr<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">up</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"上升屏幕"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">down</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"下降屏幕"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> TreeNode <span class="token function">mirrorTree</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//递归跳出条件</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//暂存left节点，因为在后续递归中left会改变</span>
+        TreeNode tmp <span class="token operator">=</span> root<span class="token punctuation">.</span>left<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//递归过程</span>
+        root<span class="token punctuation">.</span>left <span class="token operator">=</span> <span class="token function">mirrorTree</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        root<span class="token punctuation">.</span>right <span class="token operator">=</span> <span class="token function">mirrorTree</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> root<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//灯</span>
-<span class="token keyword">class</span> <span class="token class-name">Lamp</span> <span class="token punctuation">{</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Lamp lam <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Lamp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">private</span> <span class="token function">Lamp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Lamp <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> lam<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>=======================================================================</p>
+<p>解法2：辅助栈</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> TreeNode <span class="token function">mirrorTree</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//定义辅助栈  作用是防止因交换而左右不清</span>
+        Stack<span class="token operator">&lt;</span>TreeNode<span class="token operator">></span> stack <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span>TreeNode<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//将节点添加进去     [4]</span>
+        stack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>stack<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//弹出一个节点    []</span>
+            TreeNode node <span class="token operator">=</span> stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>left <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">//[2]</span>
+                stack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>right <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">//[2,7]</span>
+                stack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">//交换左右</span>
+            TreeNode tmp <span class="token operator">=</span> node<span class="token punctuation">.</span>left<span class="token punctuation">;</span>
+            node<span class="token punctuation">.</span>left <span class="token operator">=</span> node<span class="token punctuation">.</span>right<span class="token punctuation">;</span>
+            node<span class="token punctuation">.</span>right <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> root<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">on</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"开灯"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">off</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"关灯"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
 <span class="token punctuation">}</span>
-
-
-<span class="token comment" spellcheck="true">//外观类</span>
-<span class="token keyword">class</span> <span class="token class-name">Facade</span> <span class="token punctuation">{</span>
-    <span class="token keyword">private</span> Player player<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> Screen screen<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> Lamp lamp<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//这里的构造器不使用参数，而是获得单例对象</span>
-    <span class="token keyword">public</span> <span class="token function">Facade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>player <span class="token operator">=</span> Player<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>screen <span class="token operator">=</span> Screen<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>lamp <span class="token operator">=</span> Lamp<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">//开启</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">open</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"准备放映======"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        player<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        screen<span class="token punctuation">.</span><span class="token function">up</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        lamp<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"开始放映======="</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">off</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"按下了关闭====="</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        player<span class="token punctuation">.</span><span class="token function">off</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        screen<span class="token punctuation">.</span><span class="token function">down</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        lamp<span class="token punctuation">.</span><span class="token function">off</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"结束======"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>控制台输出</p>
-<pre class="line-numbers language-java"><code class="language-java">准备放映<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
-开启播放器
-上升屏幕
-开灯
-开始放映<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>
-按下了关闭<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>
-关闭播放器
-下降屏幕
-关灯
-结束<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -616,7 +569,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/022233100.html">http://example.com/2022/022233100.html</a>
+                    <a href="http://example.com/2022/022224432.html">http://example.com/2022/022224432.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -654,8 +607,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/design-mode/">
-                                    <span class="chip bg-color">design_mode</span>
+                                <a href="/tags/study/">
+                                    <span class="chip bg-color">study</span>
                                 </a>
                             
                         </div>
@@ -827,9 +780,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/022224432.html">
                     <div class="card-image">
@@ -847,9 +801,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -858,6 +812,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -876,13 +831,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/022259410.html">
+                <a href="/2022/022233100.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="树的子结构">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="外观模式">
                         
-                        <span class="card-title">树的子结构</span>
+                        <span class="card-title">外观模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -906,8 +861,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/study/">
-                        <span class="chip bg-color">study</span>
+                    <a href="/tags/design-mode/">
+                        <span class="chip bg-color">design_mode</span>
                     </a>
                     
                 </div>
