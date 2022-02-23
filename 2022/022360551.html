@@ -475,7 +475,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>题目：</p>
-<p><em><img src="/2022/0223undefined/1645606815075.png" class title="对称的二叉树"></em></p>
+<p><em><img src="/2022/022360551/1645606815075.png" class title="对称的二叉树"></em></p>
 <pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isSymmetric</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">//特例</span>
         <span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -495,7 +495,7 @@
             <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
         <span class="token comment" spellcheck="true">//如果L和R对称的话，说明L的左子节点和R的右子节点一定相等，L的右子节点和R的左子节点一定相同。</span>
-        <span class="token keyword">return</span> <span class="token function">recur</span><span class="token punctuation">(</span>L<span class="token punctuation">.</span>left<span class="token punctuation">,</span>R<span class="token punctuation">.</span>right<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token function">recur</span><span class="token punctuation">(</span>L<span class="token punctuation">.</span>right<span class="token punctuation">,</span>R<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token function">recur</span><span class="token punctuation">(</span>L<span class="token punctuation">.</span>left<span class="token punctuation">,</span>R<span class="token punctuation">.</span>right<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token function">recur</span><span class="token punctuation">(</span>L<span class="token punctuation">.</span>right<span class="token punctuation">,</span>R<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
