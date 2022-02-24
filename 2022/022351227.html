@@ -4,14 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="对称的二叉树, 过客">
-    <meta name="description" content="题目：
+    <meta name="keywords" content="斐波那契数列, 过客">
+    <meta name="description" content="题目
 
-    public boolean isSymmetric(TreeNode root) {
-        //特例
-        if(root == null) {
-            return true;
-  ">
+解法1(不行)：
+class Solution {
+    public int fib(int n) {
+        // 0 1 1 2 3 5 8 13
+        if (n == 0) {
+            ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -23,7 +24,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>对称的二叉树 | 过客</title>
+    <title>斐波那契数列 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -321,7 +322,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">对称的二叉树</h1>
+                    <h1 class="description center-align post-title">斐波那契数列</h1>
                 </div>
             </div>
         </div>
@@ -474,32 +475,44 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目：</p>
-<p><em><img src="/2022/022360551/1645606815075.png" class title="对称的二叉树"></em></p>
-<pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isSymmetric</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//特例</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token function">recur</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <p>题目</p>
+<p><img src="/2022/1645629585326.png" alt="1645629585326"></p>
+<p>解法1(不行)：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">fib</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 0 1 1 2 3 5 8 13</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">boolean</span> <span class="token function">recur</span><span class="token punctuation">(</span>TreeNode L<span class="token punctuation">,</span>TreeNode R<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//左右都为空，说明对称</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>L <span class="token operator">==</span> null <span class="token operator">&amp;&amp;</span> R <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">||</span> n <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//左右只有一边为空或者左右的值不相等，说明不对称</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>L <span class="token operator">==</span> null <span class="token operator">||</span> R <span class="token operator">==</span> null <span class="token operator">||</span> L<span class="token punctuation">.</span>val <span class="token operator">!=</span> R<span class="token punctuation">.</span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//如果L和R对称的话，说明L的左子节点和R的右子节点一定相等，L的右子节点和R的左子节点一定相同。</span>
-        <span class="token keyword">return</span> <span class="token function">recur</span><span class="token punctuation">(</span>L<span class="token punctuation">.</span>left<span class="token punctuation">,</span>R<span class="token punctuation">.</span>right<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token function">recur</span><span class="token punctuation">(</span>L<span class="token punctuation">.</span>right<span class="token punctuation">,</span>R<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">fib</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">fib</span><span class="token punctuation">(</span>n <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>此文仅作为本人学习笔记使用</p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>递归嘛，简单。</p>
+<p>结果，</p>
+<p><img src="/2022/1645629663028.png" alt="1645629663028"></p>
+<p>原因是这个递归的时间复杂度是2^n，有大量的重复计算。在递归次数较大时时间呈指数增长</p>
+<p>====================================================</p>
+<p>解法2：</p>
+<p>动态规划</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">fib</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> fn0 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> fn1 <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> temp<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            temp <span class="token operator">=</span> fn0 <span class="token operator">+</span> fn1<span class="token punctuation">;</span>
+            fn0 <span class="token operator">=</span> fn1<span class="token punctuation">;</span>
+            fn1 <span class="token operator">=</span> temp<span class="token operator">%</span> <span class="token number">1000000007</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 每次运算都取模 避免越界</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> fn1<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -526,7 +539,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/022360551.html">http://example.com/2022/022360551.html</a>
+                    <a href="http://example.com/2022/022351227.html">http://example.com/2022/022351227.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -741,13 +754,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/022351227.html">
+                <a href="/2022/022442855.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="斐波那契数列">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="模板方法模式">
                         
-                        <span class="card-title">斐波那契数列</span>
+                        <span class="card-title">模板方法模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -758,7 +771,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-23
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
                         </span>
                         <span class="publish-author">
                             
@@ -771,8 +784,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/study/">
-                        <span class="chip bg-color">study</span>
+                    <a href="/tags/design-mode/">
+                        <span class="chip bg-color">design_mode</span>
                     </a>
                     
                 </div>
@@ -786,13 +799,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/022224432.html">
+                <a href="/2022/022360551.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="二叉树的镜像">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="对称的二叉树">
                         
-                        <span class="card-title">二叉树的镜像</span>
+                        <span class="card-title">对称的二叉树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -803,7 +816,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-23
                             </span>
                         <span class="publish-author">
                             
