@@ -7,12 +7,12 @@
     <meta name="keywords" content="斐波那契数列, 过客">
     <meta name="description" content="题目
 
-解法1(不行)：
+解法1(不完全行)：
+​    思路：递归
 class Solution {
     public int fib(int n) {
         // 0 1 1 2 3 5 8 13
-        if (n == 0) {
-            ">
+        if (n == 0) {">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -476,8 +476,9 @@ class Solution {
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>题目</p>
-<p><img src="/2022/1645629585326.png" alt="1645629585326"></p>
-<p>解法1(不行)：</p>
+<p><em><img src="/2022/022351227/1645629585326.png" class title="斐波那契数列"></em></p>
+<p>解法1(不完全行)：</p>
+<p>​    思路：递归</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">fib</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// 0 1 1 2 3 5 8 13</span>
@@ -493,7 +494,7 @@ class Solution {
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>递归嘛，简单。</p>
 <p>结果，</p>
-<p><img src="/2022/1645629663028.png" alt="1645629663028"></p>
+<p><em><img src="/2022/022351227/1645629663028.png" class title="超出时间限制"></em></p>
 <p>原因是这个递归的时间复杂度是2^n，有大量的重复计算。在递归次数较大时时间呈指数增长</p>
 <p>====================================================</p>
 <p>解法2：</p>
