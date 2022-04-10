@@ -4,15 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="二叉搜索树的第k大节点, 过客">
-    <meta name="description" content="题目:
+    <meta name="keywords" content="扑克牌中的顺子, 过客">
+    <meta name="description" content="题目
 
-解法1:二叉树的反向中序遍历
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode">
+class Solution {
+    
+    public boolean isStraight(int[] nums) {
+        //因为0可以当任何,所以要想是顺子，在没有除0的重复以外，将数组排序，第一个不是顺">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +22,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>二叉搜索树的第k大节点 | 过客</title>
+    <title>扑克牌中的顺子 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -317,12 +315,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">二叉搜索树的第k大节点</h1>
+                    <h1 class="description center-align post-title">扑克牌中的顺子</h1>
                 </div>
             </div>
         </div>
@@ -454,7 +452,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-04-07
+                    2022-04-09
                 </div>
                 
 
@@ -475,41 +473,32 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目:</p>
-<p><em><img src="/2022/040764475/1649322531455.png" class title="二叉搜索树的第k大节点"></em></p>
-<p>解法1:<br>二叉树的反向中序遍历</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */</span>
-<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-     <span class="token keyword">int</span> res<span class="token punctuation">;</span>
-     <span class="token keyword">int</span> k<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">kthLargest</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">,</span> <span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>k <span class="token operator">=</span> k<span class="token punctuation">;</span>
-            <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> res<span class="token punctuation">;</span>
-
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span><span class="token punctuation">;</span>
+                <p>题目</p>
+<p><em><img src="/2022/0409undefined/1649578764377.png" class title="扑克牌中的顺子"></em></p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isStraight</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//因为0可以当任何,所以要想是顺子，在没有除0的重复以外，将数组排序，第一个不是顺子的数和最后一个数，记为m.n，</span>
+        <span class="token comment" spellcheck="true">// nums[m] - nums[n] &lt; 5 的话，就可以组成顺子，其余的位置都可以由0补上</span>
+        <span class="token comment" spellcheck="true">//排序</span>
+        <span class="token comment" spellcheck="true">//定义0的数量</span>
+        <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        Arrays<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//遍历</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//0的数量</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                j<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">//不等于0的重复，直接返回false</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> nums<span class="token punctuation">[</span> i <span class="token operator">+</span><span class="token number">1</span> <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
-        <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>k <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            res <span class="token operator">=</span> root<span class="token punctuation">.</span>val<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        k<span class="token operator">--</span><span class="token punctuation">;</span>
-        <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> nums<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">-</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>此文仅作为本人学习笔记使用</p>
 
                 
@@ -537,7 +526,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/040764475.html">http://example.com/2022/040764475.html</a>
+                    <a href="http://example.com/2022/040933768.html">http://example.com/2022/040933768.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -752,13 +741,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/040933768.html">
+                <a href="/2022/041050387.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="扑克牌中的顺子">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="最小的k个数">
                         
-                        <span class="card-title">扑克牌中的顺子</span>
+                        <span class="card-title">最小的k个数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -769,7 +758,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-09
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-10
                         </span>
                         <span class="publish-author">
                             
@@ -778,14 +767,6 @@
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/study/">
-                        <span class="chip bg-color">study</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -797,13 +778,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/040721310.html">
+                <a href="/2022/040764475.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="二叉搜索树与双向链表">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="二叉搜索树的第k大节点">
                         
-                        <span class="card-title">二叉搜索树与双向链表</span>
+                        <span class="card-title">二叉搜索树的第k大节点</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
