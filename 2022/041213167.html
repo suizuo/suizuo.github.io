@@ -4,16 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="平衡二叉树, 过客">
-    <meta name="description" content="题目
+    <meta name="keywords" content="求1+2+...+n, 过客">
+    <meta name="description" content="题目:
 
 解法1:
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *  ">
+class Solution {
+    int sum = 0;
+    public int sumNums(int n) {
+        boolean b = n &gt; 0 &amp;amp;&amp;amp; (sum = ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +23,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>平衡二叉树 | 过客</title>
+    <title>求1+2+...+n | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -274,12 +272,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">平衡二叉树</h1>
+                    <h1 class="description center-align post-title">求1+2+...+n</h1>
                 </div>
             </div>
         </div>
@@ -432,49 +430,17 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目</p>
-<p><em><img src="/2022/041229208/1649762070506.png" class title="平衡二叉树"></em></p>
+                <p>题目:</p>
+<p><em><img src="/2022/0412undefined/1649765708756.png" class title="求1+2+...+n"></em></p>
 <p>解法1:</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Returnty</span> <span class="token punctuation">{</span>
-      <span class="token keyword">boolean</span> isbal<span class="token punctuation">;</span>
-      <span class="token keyword">int</span> deep<span class="token punctuation">;</span>
-
-      <span class="token keyword">public</span> <span class="token function">Returnty</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> isbal<span class="token punctuation">,</span> <span class="token keyword">int</span> deep<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          <span class="token keyword">this</span><span class="token punctuation">.</span>isbal <span class="token operator">=</span> isbal<span class="token punctuation">;</span>
-          <span class="token keyword">this</span><span class="token punctuation">.</span>deep <span class="token operator">=</span> deep<span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isBalanced</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            Returnty process <span class="token operator">=</span> <span class="token function">process</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    <span class="token keyword">return</span> process<span class="token punctuation">.</span>isbal<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-     <span class="token keyword">public</span> Returnty <span class="token function">process</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Returnty</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        Returnty leftData <span class="token operator">=</span> <span class="token function">process</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Returnty rightData <span class="token operator">=</span> <span class="token function">process</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> height <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>leftData<span class="token punctuation">.</span>deep<span class="token punctuation">,</span>rightData<span class="token punctuation">.</span>deep<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">boolean</span> isb <span class="token operator">=</span> leftData<span class="token punctuation">.</span>isbal <span class="token operator">&amp;&amp;</span> rightData<span class="token punctuation">.</span>isbal <span class="token operator">&amp;&amp;</span> Math<span class="token punctuation">.</span><span class="token function">abs</span><span class="token punctuation">(</span>leftData<span class="token punctuation">.</span>deep <span class="token operator">-</span> rightData<span class="token punctuation">.</span>deep<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Returnty</span><span class="token punctuation">(</span>isb<span class="token punctuation">,</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">sumNums</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">boolean</span> b <span class="token operator">=</span> n <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>sum <span class="token operator">=</span> <span class="token function">sumNums</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> n<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>此文仅作为本人学习笔记使用</p>
 
                 
@@ -502,7 +468,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/041229208.html">http://example.com/2022/041229208.html</a>
+                    <a href="http://example.com/2022/041213167.html">http://example.com/2022/041213167.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -713,9 +679,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/041213167.html">
                     <div class="card-image">
@@ -733,9 +700,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -744,6 +711,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -762,13 +730,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/041217746.html">
+                <a href="/2022/041229208.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="二叉树的深度">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="平衡二叉树">
                         
-                        <span class="card-title">二叉树的深度</span>
+                        <span class="card-title">平衡二叉树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
