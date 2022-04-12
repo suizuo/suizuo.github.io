@@ -4,17 +4,16 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="数据流中的中位数, 过客">
-    <meta name="description" content="题目:
+    <meta name="keywords" content="平衡二叉树, 过客">
+    <meta name="description" content="题目
 
 解法1:
-class MedianFinder {
-
-    //小根堆
-    PriorityQueue&amp;lt;Integer&gt; L;
-    //大根堆
-    PriorityQueue&amp;lt;Integer&gt; B;
-  ">
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *  ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -26,7 +25,7 @@ class MedianFinder {
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>数据流中的中位数 | 过客</title>
+    <title>平衡二叉树 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -275,12 +274,12 @@ class MedianFinder {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">数据流中的中位数</h1>
+                    <h1 class="description center-align post-title">平衡二叉树</h1>
                 </div>
             </div>
         </div>
@@ -412,7 +411,7 @@ class MedianFinder {
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-04-11
+                    2022-04-12
                 </div>
                 
 
@@ -433,52 +432,49 @@ class MedianFinder {
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目:</p>
-<p><em><img src="/2022/04111517/1649691004553.png" class title="数据流中的中位数"></em></p>
+                <p>题目</p>
+<p><em><img src="/2022/0412undefined/1649762070506.png" class title="平衡二叉树"></em></p>
 <p>解法1:</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">MedianFinder</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */</span>
 
-    <span class="token comment" spellcheck="true">//小根堆</span>
-    PriorityQueue<span class="token operator">&lt;</span>Integer<span class="token operator">></span> L<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//大根堆</span>
-    PriorityQueue<span class="token operator">&lt;</span>Integer<span class="token operator">></span> B<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">/** initialize your data structure here. */</span>
-    <span class="token keyword">public</span> <span class="token function">MedianFinder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        L <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PriorityQueue</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        B <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PriorityQueue</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>y <span class="token operator">-</span> x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
     
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addNum</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//该向L添加了，但是不能直接添加，因为不知道这个值是大还是小，</span>
-    <span class="token comment" spellcheck="true">// 所以我们直接添加到小的里面，然后将小的里面的对顶弹出，放到大的里面，从而保证总是符合规定的</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>L<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> B<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            L<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            B<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>L<span class="token punctuation">.</span><span class="token function">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//同理</span>
-            B<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            L<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>B<span class="token punctuation">.</span><span class="token function">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Returnty</span> <span class="token punctuation">{</span>
+      <span class="token keyword">boolean</span> isbal<span class="token punctuation">;</span>
+      <span class="token keyword">int</span> deep<span class="token punctuation">;</span>
+
+      <span class="token keyword">public</span> <span class="token function">Returnty</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> isbal<span class="token punctuation">,</span> <span class="token keyword">int</span> deep<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>isbal <span class="token operator">=</span> isbal<span class="token punctuation">;</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>deep <span class="token operator">=</span> deep<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isBalanced</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Returnty process <span class="token operator">=</span> <span class="token function">process</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">return</span> process<span class="token punctuation">.</span>isbal<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    
-    <span class="token keyword">public</span> <span class="token keyword">double</span> <span class="token function">findMedian</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//偶数</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>L<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> B<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>L<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> B<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//奇数，直接返回小的堆顶</span>
-            <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span>L<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     <span class="token keyword">public</span> Returnty <span class="token function">process</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Returnty</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
+        Returnty leftData <span class="token operator">=</span> <span class="token function">process</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Returnty rightData <span class="token operator">=</span> <span class="token function">process</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> height <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>leftData<span class="token punctuation">.</span>deep<span class="token punctuation">,</span>rightData<span class="token punctuation">.</span>deep<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">boolean</span> isb <span class="token operator">=</span> leftData<span class="token punctuation">.</span>isbal <span class="token operator">&amp;&amp;</span> rightData<span class="token punctuation">.</span>isbal <span class="token operator">&amp;&amp;</span> Math<span class="token punctuation">.</span><span class="token function">abs</span><span class="token punctuation">(</span>leftData<span class="token punctuation">.</span>deep <span class="token operator">-</span> rightData<span class="token punctuation">.</span>deep<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Returnty</span><span class="token punctuation">(</span>isb<span class="token punctuation">,</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">/**
- * Your MedianFinder object will be instantiated and called as such:
- * MedianFinder obj = new MedianFinder();
- * obj.addNum(num);
- * double param_2 = obj.findMedian();
- */</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>此文仅作为本人学习笔记使用</p>
 
                 
@@ -506,7 +502,7 @@ class MedianFinder {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/04111517.html">http://example.com/2022/04111517.html</a>
+                    <a href="http://example.com/2022/041229208.html">http://example.com/2022/041229208.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -717,17 +713,18 @@ class MedianFinder {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/041217746.html">
+                <a href="/2022/041229208.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="二叉树的深度">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="平衡二叉树">
                         
-                        <span class="card-title">二叉树的深度</span>
+                        <span class="card-title">平衡二叉树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -737,9 +734,9 @@ class MedianFinder {
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -748,6 +745,7 @@ class MedianFinder {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -766,13 +764,13 @@ class MedianFinder {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/041050388.html">
+                <a href="/2022/041217746.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="最小的k个数">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="二叉树的深度">
                         
-                        <span class="card-title">最小的k个数</span>
+                        <span class="card-title">二叉树的深度</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -783,7 +781,7 @@ class MedianFinder {
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-12
                             </span>
                         <span class="publish-author">
                             
