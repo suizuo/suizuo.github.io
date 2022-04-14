@@ -4,15 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="二叉树的最近公共祖先, 过客">
-    <meta name="description" content="题目:
+    <meta name="keywords" content="重建二叉树, 过客">
+    <meta name="description" content="题目
 
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
  *     int val;
  *     TreeNode left;
- *     T">
+ *     Tr">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +24,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>二叉树的最近公共祖先 | 过客</title>
+    <title>重建二叉树 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -295,12 +295,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">二叉树的最近公共祖先</h1>
+                    <h1 class="description center-align post-title">重建二叉树</h1>
                 </div>
             </div>
         </div>
@@ -453,8 +453,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目:</p>
-<p><em><img src="/2022/04141838/1649918830465.png" class title="二叉树的最近公共祖先"></em></p>
+                <p>题目</p>
+<p><em><img src="/2022/0414undefined/1649928867555.png" class title="重建二叉树"></em></p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -462,29 +462,36 @@
  *     TreeNode left;
  *     TreeNode right;
  *     TreeNode(int x) { val = x; }
- * }    
+ * }
  */</span>
 <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> TreeNode <span class="token function">lowestCommonAncestor</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">,</span> TreeNode p<span class="token punctuation">,</span> TreeNode q<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//如果root为空或者root为pq中的一个,说明root就是pq的最近公共祖先</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> null <span class="token operator">||</span> root <span class="token operator">==</span> p <span class="token operator">||</span> root <span class="token operator">==</span> q<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> preorder<span class="token punctuation">;</span>
+    HashMap<span class="token operator">&lt;</span>Integer<span class="token punctuation">,</span>Integer<span class="token operator">></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> TreeNode <span class="token function">buildTree</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> preorder<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> inorder<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>preorder <span class="token operator">=</span> preorder<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//将inorder放入map中</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> inorder<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>inorder<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token function">recure</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> inorder<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> TreeNode <span class="token function">recure</span><span class="token punctuation">(</span><span class="token keyword">int</span> cur<span class="token punctuation">,</span><span class="token keyword">int</span> pre_left<span class="token punctuation">,</span> <span class="token keyword">int</span> pre_right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>pre_left <span class="token operator">></span> pre_right <span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//找出根节点</span>
+        TreeNode root <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TreeNode</span><span class="token punctuation">(</span>preorder<span class="token punctuation">[</span>cur<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//获取根节点在中序遍历中的位置索引</span>
+        <span class="token keyword">int</span> i <span class="token operator">=</span> map<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//左递归,根节点也就是现在位置 + 1</span>
+        root<span class="token punctuation">.</span>left <span class="token operator">=</span> <span class="token function">recure</span><span class="token punctuation">(</span>cur <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>pre_left<span class="token punctuation">,</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//右递归</span>
+        root<span class="token punctuation">.</span>right <span class="token operator">=</span> <span class="token function">recure</span><span class="token punctuation">(</span>cur <span class="token operator">+</span> <span class="token punctuation">(</span>i <span class="token operator">-</span> pre_left<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>pre_right<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> root<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    TreeNode left <span class="token operator">=</span> <span class="token function">lowestCommonAncestor</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span>p<span class="token punctuation">,</span>q<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    TreeNode right <span class="token operator">=</span> <span class="token function">lowestCommonAncestor</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span>p<span class="token punctuation">,</span>q<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">//left 为空说明left没有公共祖先，那么返回right</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>left <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> right<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//反之亦然</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>right <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> left<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> root<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>此文仅作为本人学习笔记使用</p>
 
                 
@@ -512,7 +519,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/04141838.html">http://example.com/2022/04141838.html</a>
+                    <a href="http://example.com/2022/041419604.html">http://example.com/2022/041419604.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -723,9 +730,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/041419604.html">
                     <div class="card-image">
@@ -743,9 +751,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -754,6 +762,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -772,13 +781,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/041355569.html">
+                <a href="/2022/04141838.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="二叉搜索树的最近公共祖先">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="二叉树的最近公共祖先">
                         
-                        <span class="card-title">二叉搜索树的最近公共祖先</span>
+                        <span class="card-title">二叉树的最近公共祖先</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -789,7 +798,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-14
                             </span>
                         <span class="publish-author">
                             
