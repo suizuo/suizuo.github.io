@@ -4,17 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="包含min函数的栈, 过客">
-    <meta name="description" content="题目:
+    <meta name="keywords" content="数值的整数次方, 过客">
+    <meta name="description" content="题目
 
-其实就是实现一个带有返回最小值功能的栈;
-解法1：
-class MinStack {
-    //定义一个链表，首先是头
-    private Node head;
-    
-    public MinStack() {
-  ">
+
+class Solution {
+    public double myPow(double x, int n) {
+        if(x == 0) return 0;
+        long b = n;
+      ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -26,7 +24,7 @@ class MinStack {
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>包含min函数的栈 | 过客</title>
+    <title>数值的整数次方 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -297,12 +295,12 @@ class MinStack {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">包含min函数的栈</h1>
+                    <h1 class="description center-align post-title">数值的整数次方</h1>
                 </div>
             </div>
         </div>
@@ -434,7 +432,7 @@ class MinStack {
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-29
+                    2022-04-16
                 </div>
                 
 
@@ -448,14 +446,14 @@ class MinStack {
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    587
+                    68
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -470,104 +468,31 @@ class MinStack {
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目:</p>
-<p><em><img src="/2022/012963137/1643446564817.png" class title="题目"></em></p>
-<p>其实就是实现一个带有返回最小值功能的栈;</p>
-<p>解法1：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">MinStack</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//定义一个链表，首先是头</span>
-    <span class="token keyword">private</span> Node head<span class="token punctuation">;</span>
-    
-    <span class="token keyword">public</span> <span class="token function">MinStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token punctuation">}</span>
-    
-    <span class="token comment" spellcheck="true">//push为往栈里面存值</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//如果链表为null，表示是头节点，定义一个链表给他，当前值和最小值都是x，下一个节点为null</span>
-         <span class="token keyword">if</span> <span class="token punctuation">(</span>head <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            head <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> x<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
-             <span class="token punctuation">}</span>
-        <span class="token keyword">else</span><span class="token punctuation">{</span>
-             <span class="token comment" spellcheck="true">//当前节点不是头节点，定义一个Node，将三个值传进去，next为上一个节点</span>
-            head <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>head<span class="token punctuation">.</span>min<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span> head<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <p>题目</p>
+<p><em><img src="/2022/0416undefined/1650110856421.png" class title="数值的整数次方"></em></p>
+<p><img src="/2022/1650110856421.png" alt="1650110856421"></p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">double</span> <span class="token function">myPow</span><span class="token punctuation">(</span><span class="token keyword">double</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>x <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">long</span> b <span class="token operator">=</span> n<span class="token punctuation">;</span>
+        <span class="token keyword">double</span> res <span class="token operator">=</span> <span class="token number">1.0</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//负数</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>b <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            x <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">/</span> x<span class="token punctuation">;</span>
+            b <span class="token operator">=</span> <span class="token operator">-</span>b<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//pop为弹出数据，当弹出一个数据时，将本节点的next赋值给head，head回到了上一个节点,</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-         head <span class="token operator">=</span> head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//top为栈的顶部数据，即head的当前值</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> head<span class="token punctuation">.</span>val<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//min为最小值，即head的最小值</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> head<span class="token punctuation">.</span>min<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">//节点类，里面包含当前值，当前最小值，以及下一个节点</span>
-    <span class="token keyword">private</span> <span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
-
-        <span class="token keyword">int</span> val<span class="token punctuation">;</span>
-        <span class="token keyword">int</span> min<span class="token punctuation">;</span>
-        Node next<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//加上有参构造</span>
-        <span class="token keyword">public</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token keyword">int</span> val<span class="token punctuation">,</span> <span class="token keyword">int</span> min<span class="token punctuation">,</span> Node next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-            <span class="token keyword">this</span><span class="token punctuation">.</span>val <span class="token operator">=</span> val<span class="token punctuation">;</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>min <span class="token operator">=</span> min<span class="token punctuation">;</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>next <span class="token operator">=</span> next<span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>b <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//是需要的数</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>b <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                res <span class="token operator">*=</span> x<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            x <span class="token operator">*=</span> x<span class="token punctuation">;</span>
+            b <span class="token operator">>>=</span> <span class="token number">1</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><em><img src="/2022/012963137/1643447210229.png" class title="解法一成功"></em></p>
-<p>==================================分割线===============================================</p>
-<p>解法2：</p>
-<p>【ps：</p>
-<p>add，push都可以向stack中添加元素。</p>
-<p><strong>不同点：</strong></p>
-<p>add是继承自Vector(有点像arraylist)的方法，且返回值类型是boolean。</p>
-<p>push是Stack自身的方法，返回值类型是参数类型。</p>
-<p>peek，pop都是返回栈顶元素。</p>
-<p><strong>不同点：</strong><br>peek()函数返回栈顶的元素，但不弹出该栈顶元素。</p>
-<p>pop()函数返回栈顶的元素，并且将该栈顶元素出栈。】</p>
-<p>题解</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">MinStack</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//定义两个栈，一个是数据栈，一个是辅助栈，</span>
-    Stack<span class="token operator">&lt;</span>Integer<span class="token operator">></span> A<span class="token punctuation">,</span> B<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">MinStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        A <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        B <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        
-        A<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token comment" spellcheck="true">//如果b为空或者b的顶部数据大于等于x，就将x放入b，来保证b的栈顶是最小的，即b栈的作用就是求最小值</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>B<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> B<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> x<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            B<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-            
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-<span class="token comment" spellcheck="true">//当a弹出的时候，如果b的顶部数据等于a要弹出的数据，就将b顶也弹出，保证元素一致，因为上方是>=，所以也避免了重复数据造成的影响。</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>A<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>B<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            B<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-            
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//a的栈顶就是顶部数据</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> A<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//b的栈顶就是最小数据</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> B<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><em><img src="/2022/012963137/1643462200855.png" class title="解法二成功"></em></p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>此文仅作为本人学习笔记使用</p>
 
                 
@@ -595,7 +520,7 @@ class MinStack {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/012963137.html">http://example.com/2022/012963137.html</a>
+                    <a href="http://example.com/2022/041615437.html">http://example.com/2022/041615437.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -806,17 +731,18 @@ class MinStack {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/012957550.html">
+                <a href="/2022/041615437.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="用两个栈实现队列">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="数值的整数次方">
                         
-                        <span class="card-title">用两个栈实现队列</span>
+                        <span class="card-title">数值的整数次方</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -826,9 +752,9 @@ class MinStack {
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -837,6 +763,7 @@ class MinStack {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -855,13 +782,13 @@ class MinStack {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01258935.html">
+                <a href="/2022/041419604.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="vue递归组件及其调用">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="重建二叉树">
                         
-                        <span class="card-title">vue递归组件及其调用</span>
+                        <span class="card-title">重建二叉树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -872,7 +799,7 @@ class MinStack {
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-14
                             </span>
                         <span class="publish-author">
                             
@@ -885,8 +812,8 @@ class MinStack {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/study/">
-                        <span class="chip bg-color">study</span>
+                    <a href="/tags/leetcode/">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
                 </div>

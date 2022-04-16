@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>数值的整数次方</title>
+      <link href="/2022/041615437.html"/>
+      <url>/2022/041615437.html</url>
+      
+        <content type="html"><![CDATA[<p>题目</p><p><em><img src="/2022/0416undefined/1650110856421.png" class title="数值的整数次方"></em></p><p><img src="/2022/1650110856421.png" alt="1650110856421"></p><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>    <span class="token keyword">public</span> <span class="token keyword">double</span> <span class="token function">myPow</span><span class="token punctuation">(</span><span class="token keyword">double</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token keyword">if</span><span class="token punctuation">(</span>x <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>        <span class="token keyword">long</span> b <span class="token operator">=</span> n<span class="token punctuation">;</span>        <span class="token keyword">double</span> res <span class="token operator">=</span> <span class="token number">1.0</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//负数</span>        <span class="token keyword">if</span><span class="token punctuation">(</span>b <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>            x <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">/</span> x<span class="token punctuation">;</span>            b <span class="token operator">=</span> <span class="token operator">-</span>b<span class="token punctuation">;</span>        <span class="token punctuation">}</span>        <span class="token keyword">while</span><span class="token punctuation">(</span>b <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>            <span class="token comment" spellcheck="true">//是需要的数</span>            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>b <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>                res <span class="token operator">*=</span> x<span class="token punctuation">;</span>            <span class="token punctuation">}</span>            x <span class="token operator">*=</span> x<span class="token punctuation">;</span>            b <span class="token operator">>>=</span> <span class="token number">1</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>        <span class="token keyword">return</span> res<span class="token punctuation">;</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>此文仅作为本人学习笔记使用</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>重建二叉树</title>
       <link href="/2022/041419604.html"/>
       <url>/2022/041419604.html</url>
@@ -14,7 +33,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -33,7 +52,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -52,7 +71,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -71,7 +90,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -90,7 +109,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -109,7 +128,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -128,7 +147,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -147,7 +166,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -166,7 +185,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -185,7 +204,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -204,7 +223,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -223,7 +242,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -242,7 +261,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -261,7 +280,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -280,7 +299,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -299,7 +318,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -318,7 +337,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -337,7 +356,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -356,7 +375,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -375,7 +394,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -394,7 +413,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -413,7 +432,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -432,7 +451,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -470,7 +489,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -489,7 +508,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -527,7 +546,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -546,7 +565,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -584,7 +603,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -603,7 +622,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -622,7 +641,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -660,7 +679,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -698,7 +717,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -717,7 +736,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -736,7 +755,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -774,7 +793,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -793,7 +812,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -812,7 +831,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -850,7 +869,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -869,7 +888,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -907,7 +926,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -945,7 +964,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -964,7 +983,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -1021,7 +1040,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -1040,7 +1059,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -1059,7 +1078,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -1078,7 +1097,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -1097,7 +1116,7 @@
       
         <tags>
             
-            <tag> study </tag>
+            <tag> leetcode </tag>
             
         </tags>
       
