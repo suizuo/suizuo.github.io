@@ -553,7 +553,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <li><p>初始化（initialization）</p>
 <ul>
 <li>初始化阶段就是执行类构造器方法 <code>&lt;clinit&gt;()</code>的过程</li>
-<li>此方法不需要定义，是javac编译器自动收集类中的所有类变量的赋值动作和静态代码块中的语句合并而来</li>
+<li>此方法不需要定义，是javac编译器自动收集类中的所有类变量(静态变量)的赋值动作和静态代码块中的语句合并而来(没有静态变量赋值动作或静态代码块就不会有这个方法)</li>
 <li>构造器方法中指令按语句在源文件中出现的顺序执行</li>
 <li><code>&lt;clinit&gt;()</code>不同于 类的构造器(关联:构造器是虚拟机视角下的<code>&lt;init&gt;()</code>)</li>
 <li>若该类具有父类，jvm会保证子类的<code>&lt;clinit&gt;()</code>执行前，父类的<code>&lt;clinit&gt;()</code>已经执行完毕</li>
@@ -561,8 +561,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 </ul>
 </li>
 </ul>
-<p><em><img src="/2022/041828161/1650559623839.png" class title="初始化"></em></p>
-<p><img src="/2022/1650559738769.png" alt="1650559738769"></p>
+<p><em><img src="/2022/041828161/1650560125506.png" class></em></p>
 <p>持续更新</p>
 
                 
