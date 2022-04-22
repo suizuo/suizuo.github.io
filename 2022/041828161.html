@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-22
+                    2022-04-23
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
 
@@ -562,6 +562,17 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 </li>
 </ul>
 <p><em><img src="/2022/041828161/1650560125506.png" class></em></p>
+<h4 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h4><h5 id="类加载器的分类"><a href="#类加载器的分类" class="headerlink" title="类加载器的分类"></a>类加载器的分类</h5><p>jvm支持的类加载器分为两种，分别为<code>引导类加载器(BootstrapClassLoader)</code>和<code>自定义类加载器(User-Defined ClassLoader)</code></p>
+<p>自定义类加载器一般指程序中由开发人员自定义的一类加载器。但在Java虚拟机规范中将<code>所有派生于抽象类ClassLoader的类加载器都划分为自定义类加载器</code></p>
+<p>常见的类加载器有三个:引导类加载器，扩展类加载器(Extension Class Loader)，系统类加载器(应用程序类加载器)(System Class Loader)</p>
+<blockquote>
+<p>因为扩展类加载器和系统类加载器可以理解为都间接继承于(不是)引导类加载器（其实是逻辑上的上下层关系），根据Java虚拟机规范，他们两个属于自定义类加载器，所以还是两种</p>
+</blockquote>
+<p><em><img src="/2022/041828161/1650644507597.png" class title="类加载器的分类"></em></p>
+<blockquote>
+<p>对于用户自定义类来说，默认使用系统类加载器进行加载</p>
+<p>系统的核心类库，使用引导类加载器进行加载</p>
+</blockquote>
 <p>持续更新</p>
 
                 
@@ -1090,7 +1101,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">27.7k</span>
+                        class="white-color">28k</span>
             
             
             
