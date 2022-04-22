@@ -443,14 +443,14 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    6 分
                 </div>
                 
 
@@ -581,6 +581,33 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <li>加载扩展类和应用程序类加载器，并指定为他们的父类加载器</li>
 <li>处于安全考虑，BootStrap启动类加载器只加载包名为java、javax、sun开头的类</li>
 </ul>
+<h5 id="扩展类加载器"><a href="#扩展类加载器" class="headerlink" title="扩展类加载器"></a>扩展类加载器</h5><ul>
+<li>由java编写，由sun.misc.Launcher$ExtClassLoader实现(作为内部类)</li>
+<li>派生于ClassLoader类</li>
+<li>父类加载器为启动类加载器</li>
+<li>从java.ext.dirs系统属性所指定的目录或从jdk安装目录的子目录中加载类库，如果用户创建的jar放在此目录下，也会自动由扩展类加载器加载</li>
+</ul>
+<h5 id="应用程序类加载器-系统类加载器"><a href="#应用程序类加载器-系统类加载器" class="headerlink" title="应用程序类加载器(系统类加载器)"></a>应用程序类加载器(系统类加载器)</h5><ul>
+<li><p>java语言编写，由sun.misc.Launcher$AppClassLoader实现(作为内部类)</p>
+</li>
+<li><p>派生于ClassLoader类</p>
+</li>
+<li><p>父类加载器为启动类加载器</p>
+</li>
+<li><p>负责加载环境变量classpath或系统属性，java.class.path指定路径下的类库</p>
+</li>
+<li><p>该类加载的是程序中默认的类加载器，一般来说，java应用的类都是由他来完成加载</p>
+</li>
+</ul>
+<h5 id="用户自定义类加载器"><a href="#用户自定义类加载器" class="headerlink" title="用户自定义类加载器"></a>用户自定义类加载器</h5><p>为什么需要自定义类加载器</p>
+<ul>
+<li>隔离加载类</li>
+<li>修改类加载的方式</li>
+<li>扩展加载源</li>
+<li>防止源码泄露</li>
+</ul>
+<p>用户自定义类加载器的实现步骤</p>
+<p><em><img src="/2022/041828161/1650648724070.png" class title="用户自定义类加载器的实现步骤"></em></p>
 <p>持续更新</p>
 
                 
@@ -1109,7 +1136,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">28.1k</span>
+                        class="white-color">28.4k</span>
             
             
             
