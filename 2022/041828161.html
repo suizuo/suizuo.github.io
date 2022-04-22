@@ -443,7 +443,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    1.6k
                 </div>
                 
 
@@ -562,7 +562,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 </li>
 </ul>
 <p><em><img src="/2022/041828161/1650560125506.png" class></em></p>
-<h4 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h4><h5 id="类加载器的分类"><a href="#类加载器的分类" class="headerlink" title="类加载器的分类"></a>类加载器的分类</h5><p>jvm支持的类加载器分为两种，分别为<code>引导类加载器(BootstrapClassLoader)</code>和<code>自定义类加载器(User-Defined ClassLoader)</code></p>
+<h4 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h4><p>jvm支持的类加载器分为两种，分别为<code>引导类加载器(BootstrapClassLoader)</code>和<code>自定义类加载器(User-Defined ClassLoader)</code></p>
 <p>自定义类加载器一般指程序中由开发人员自定义的一类加载器。但在Java虚拟机规范中将<code>所有派生于抽象类ClassLoader的类加载器都划分为自定义类加载器</code></p>
 <p>常见的类加载器有三个:引导类加载器，扩展类加载器(Extension Class Loader)，系统类加载器(应用程序类加载器)(System Class Loader)</p>
 <blockquote>
@@ -573,6 +573,14 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <p>对于用户自定义类来说，默认使用系统类加载器进行加载</p>
 <p>系统的核心类库，使用引导类加载器进行加载</p>
 </blockquote>
+<p>引导类加载器无法获取到</p>
+<h5 id="引导类加载器（启动类加载器）"><a href="#引导类加载器（启动类加载器）" class="headerlink" title="引导类加载器（启动类加载器）"></a>引导类加载器（启动类加载器）</h5><ul>
+<li>由C/C++语言实现，嵌套在JVM内部</li>
+<li>它用来加载Java的核心库(JAVA_HOME/jre/lib/rt.jar、resources.jar或sun.boot.class.path路径下的内容)，用于提供提供JVM自身需要的类</li>
+<li>并不继承自java.lang.ClassLoader,没有父加载器</li>
+<li>加载扩展类和应用程序类加载器，并指定为他们的父类加载器</li>
+<li>处于安全考虑，BootStrap启动类加载器只加载包名为java、javax、sun开头的类</li>
+</ul>
 <p>持续更新</p>
 
                 
@@ -1101,7 +1109,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">28k</span>
+                        class="white-color">28.1k</span>
             
             
             
