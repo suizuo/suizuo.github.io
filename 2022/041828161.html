@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-23
+                    2022-04-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    2.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    9 分
                 </div>
                 
 
@@ -608,6 +608,27 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 </ul>
 <p>用户自定义类加载器的实现步骤</p>
 <p><em><img src="/2022/041828161/1650648724070.png" class title="用户自定义类加载器的实现步骤"></em></p>
+<h3 id="ClassLoader类"><a href="#ClassLoader类" class="headerlink" title="ClassLoader类"></a>ClassLoader类</h3><p>ClassLoader类是一个抽象类，其后所有的类加载器都直接或间接继承于ClassLoader(不包含启动类加载器，因为启动类加载器是由C++编写的)</p>
+<h3 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h3><p>java虚拟机对class文件采用的是按需加载的方式，加载某个类的class文件时使用的是双亲委派机制，即把请求交给父类处理，是一种任务委派模式</p>
+<p>原理:</p>
+<ol>
+<li>如果一个类加载器收到了类加载请求，他并不会自己先去加载，而是把这个请求委托给父类的加载器执行</li>
+<li>如果父类加载器还存在其他父类加载器，则进一步向上委托，依次递归，请求最终将达到顶层的启动类加载器</li>
+<li>如果父类加载器可以完成类加载任务，就成功返回，反之子加载器才会尝试自己去加载</li>
+</ol>
+<p>例如用户自定义了一个java.lang.String类，在加载的时候，虚拟机就会把这个请求委托给父类执行，可以防止恶意用户篡改核心api；也可以避免类重复加载</p>
+<h3 id="沙箱安全机制"><a href="#沙箱安全机制" class="headerlink" title="沙箱安全机制"></a>沙箱安全机制</h3><p>沙箱是一个限制程序运行的环境，他会将java代码限定在虚拟机（JVM）特定的运行范围中，并且严格限制代码对本地系统的资源访问，包括<code>cpu,内存，文件系统，网络</code>，不同级别的沙箱对这些资源的访问的限制也可以不一样。</p>
+<p>在java中将执行程序分为本地代码和远程代码两种，本地代码默认可信任，可访问本地一切自有，远程代码默认不可信，用户可以指定远程代码的权限</p>
+<p>组成沙箱的基本条件:1.字节码校验器:确保Java类文件遵循Java语言规范,但核心类通不过字节码校验</p>
+<p>​                                2.类装载器:可以防止恶意代码去干涉善意代码，守护了被信任的类库边界，将代码归入保护                                域，确定了代码可以进行那些操作</p>
+<p>虚拟机为不同的类加载器载入得类提供不同的命名空间，相互之间不可见。</p>
+<h3 id="判断是否是同一个类"><a href="#判断是否是同一个类" class="headerlink" title="判断是否是同一个类"></a>判断是否是同一个类</h3><ul>
+<li>类的全限定类名一致。</li>
+<li>加载这个类的类加载器相同</li>
+</ul>
+<h3 id="对类加载器的引用"><a href="#对类加载器的引用" class="headerlink" title="对类加载器的引用"></a>对类加载器的引用</h3><p>JVM必须知道一个类是由启动类加载器加载的还是由用户类加载器加载的，如果是前者，那么JVM<code>会将这个类加载器的一个引用作为类信息的一部分保存在方法区</code>，当解析一个类型到另一个类型的引用时，jvm需要保证这两个类型的类加载器是相同的</p>
+<h3 id="类的主动使用和被动使用"><a href="#类的主动使用和被动使用" class="headerlink" title="类的主动使用和被动使用"></a>类的主动使用和被动使用</h3><p><em><img src="/2022/041828161/1650733653043.png" class title="类的主动使用和被动使用"></em></p>
+<h2 id="运行时数据区内部结构"><a href="#运行时数据区内部结构" class="headerlink" title="运行时数据区内部结构"></a>运行时数据区内部结构</h2><h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><p>内存是硬盘和cpu的中间仓库和桥梁，承载着操作系统和应用程序的实时运行</p>
 <p>持续更新….</p>
 
                 
@@ -940,6 +961,43 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 </div>
 
 
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 过客<br />'
+            + '文章作者: 岁左<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
 
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
@@ -1136,7 +1194,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">28.4k</span>
+                        class="white-color">29.3k</span>
             
             
             
