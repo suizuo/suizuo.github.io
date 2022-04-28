@@ -436,14 +436,14 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-24
+                    2022-04-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.6k
+                    2.8k
                 </div>
                 
 
@@ -628,7 +628,10 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 </ul>
 <h3 id="对类加载器的引用"><a href="#对类加载器的引用" class="headerlink" title="对类加载器的引用"></a>对类加载器的引用</h3><p>JVM必须知道一个类是由启动类加载器加载的还是由用户类加载器加载的，如果是前者，那么JVM<code>会将这个类加载器的一个引用作为类信息的一部分保存在方法区</code>，当解析一个类型到另一个类型的引用时，jvm需要保证这两个类型的类加载器是相同的</p>
 <h3 id="类的主动使用和被动使用"><a href="#类的主动使用和被动使用" class="headerlink" title="类的主动使用和被动使用"></a>类的主动使用和被动使用</h3><p><em><img src="/2022/041828161/1650733653043.png" class title="类的主动使用和被动使用"></em></p>
-<h2 id="运行时数据区内部结构"><a href="#运行时数据区内部结构" class="headerlink" title="运行时数据区内部结构"></a>运行时数据区内部结构</h2><h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><p>内存是硬盘和cpu的中间仓库和桥梁，承载着操作系统和应用程序的实时运行</p>
+<h2 id="运行时数据区内部结构"><a href="#运行时数据区内部结构" class="headerlink" title="运行时数据区内部结构"></a>运行时数据区内部结构</h2><h5 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h5><p>内存是硬盘和cpu的中间仓库和桥梁，承载着操作系统和应用程序的实时运行，java内存布局规定了java在运行过程中内存申请，分配，管理的策略，保证了Jvm的高效稳定运行，不同的jvm对于内存的划分方式和管理机制存在着部分差异。</p>
+<h5 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h5><p>线程是一个程序里的运行单元，jvm允许一个应用程序有多个线程来并行执行</p>
+<p>在Hotspot JVM里，每个线程都与操作系统的本地线程直接映射。操作系统负责所有线程的安排调度到任何一个可用cpu上，一旦本地线程初始化成功，他就会调用Java线程中的run()方法。</p>
+<h3 id="程序计数器-PC寄存器（PC-Register）"><a href="#程序计数器-PC寄存器（PC-Register）" class="headerlink" title="程序计数器(PC寄存器（PC Register）)"></a>程序计数器(PC寄存器（PC Register）)</h3><p>pc寄存器用来存储指向下一条指令的地址，也即将要执行的指令代码，由执行引擎读取下一条指令</p>
 <p>持续更新….</p>
 
                 
@@ -1194,7 +1197,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">29.6k</span>
+                        class="white-color">30k</span>
             
             
             
