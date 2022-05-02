@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-26
+                    2022-05-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.8k
+                    3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    10 分
                 </div>
                 
 
@@ -631,7 +631,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <h2 id="运行时数据区内部结构"><a href="#运行时数据区内部结构" class="headerlink" title="运行时数据区内部结构"></a>运行时数据区内部结构</h2><h5 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h5><p>内存是硬盘和cpu的中间仓库和桥梁，承载着操作系统和应用程序的实时运行，java内存布局规定了java在运行过程中内存申请，分配，管理的策略，保证了Jvm的高效稳定运行，不同的jvm对于内存的划分方式和管理机制存在着部分差异。</p>
 <h5 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h5><p>线程是一个程序里的运行单元，jvm允许一个应用程序有多个线程来并行执行</p>
 <p>在Hotspot JVM里，每个线程都与操作系统的本地线程直接映射。操作系统负责所有线程的安排调度到任何一个可用cpu上，一旦本地线程初始化成功，他就会调用Java线程中的run()方法。</p>
-<h3 id="程序计数器-PC寄存器（PC-Register）"><a href="#程序计数器-PC寄存器（PC-Register）" class="headerlink" title="程序计数器(PC寄存器（PC Register）)"></a>程序计数器(PC寄存器（PC Register）)</h3><p>pc寄存器用来存储指向下一条指令的地址，也即将要执行的指令代码，由执行引擎读取下一条指令</p>
+<h3 id="程序计数器-PC寄存器（PC-Register）"><a href="#程序计数器-PC寄存器（PC-Register）" class="headerlink" title="程序计数器(PC寄存器（PC Register）)"></a>程序计数器(PC寄存器（PC Register）)</h3><p><em><img src="/2022/041828161/1651419461055.png" class></em></p>
+<ul>
+<li><p>pc寄存器用来存储指向下一条指令的地址，也即将要执行的指令代码，由执行引擎读取下一条指令。</p>
+</li>
+<li><p>是运行速度最快的区域，但是空间很小(因为只需要存储下一条指令的地址)</p>
+</li>
+<li><p>每个线程都有自己的程序计数器，是线程私有的，生命周期与线程的生命周期保持一致。</p>
+</li>
+<li><p>任何时间，一个线程都只有一个方法在执行，也就是所谓的当前方法，程序计数器会存储当前线程正在执行的Java方法的JVM指令地址，如果是在执行native方法也就是本地方法，则是未指定值(因为计数器是java层面的)。</p>
+</li>
+<li><p>他是程序控制流的指示器，分支，循环，跳转，异常处理，线程恢复等基础功能都需要依赖这个计数器来完成</p>
+</li>
+<li><p>他是唯一一个不会出现OutOfMemoryError的区域</p>
+</li>
+</ul>
 <p>持续更新….</p>
 
                 
@@ -1197,7 +1211,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">30.4k</span>
+                        class="white-color">31k</span>
             
             
             
