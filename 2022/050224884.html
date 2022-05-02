@@ -4,16 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="二叉搜索树与双向链表, 过客">
-    <meta name="description" content="题目:
-
-解法1:因为是二叉搜索树，所以我们使用二叉树的中序遍历
-/*
-// Definition for a Node.
-class Node {
-    public int val;
-    public Node left;
-   ">
+    <meta name="keywords" content="Linux笔记, 过客">
+    <meta name="description" content="Linux网络连接的三种方式桥接模式虚拟系统可以和外部系统通讯，但是容易造成ip冲突(超过255)
+NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然后在需要访问外部的时候，自动转换成你母机ip去访问外部，但是外部不可以直接访">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +18,7 @@ class Node {
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>二叉搜索树与双向链表 | 过客</title>
+    <title>Linux笔记 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -296,12 +289,12 @@ class Node {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">二叉搜索树与双向链表</h1>
+                    <h1 class="description center-align post-title">Linux笔记</h1>
                 </div>
             </div>
         </div>
@@ -417,8 +410,8 @@ class Node {
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/leetcode/">
-                                <span class="chip bg-color">leetcode</span>
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
                             </a>
                         
                     </div>
@@ -433,28 +426,28 @@ class Node {
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-04-07
+                    2022-05-02
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-16
+                    2022-05-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    166
+                    913
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -469,64 +462,50 @@ class Node {
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目:</p>
-<p><em><img src="/2022/040721310/1649319867865.png" class title="二叉搜索树与双向链表"></em></p>
-<p>解法1:因为是二叉搜索树，所以我们使用二叉树的中序遍历</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
-// Definition for a Node.
-class Node {
-    public int val;
-    public Node left;
-    public Node right;
-
-    public Node() {}
-
-    public Node(int _val) {
-        val = _val;
-    }
-
-    public Node(int _val,Node _left,Node _right) {
-        val = _val;
-        left = _left;
-        right = _right;
-    }
-};
-*/</span>
-<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-   Node pre<span class="token punctuation">;</span>
-    Node head<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> Node <span class="token function">treeToDoublyList</span><span class="token punctuation">(</span>Node root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        head<span class="token punctuation">.</span>left <span class="token operator">=</span> pre<span class="token punctuation">;</span>
-        pre<span class="token punctuation">.</span>right <span class="token operator">=</span> head<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> head<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span>Node root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//有左节点，就把当前节点给链表的右</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>pre <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            pre<span class="token punctuation">.</span>right <span class="token operator">=</span> root<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//没有左节点,就证明当前节点是头节点</span>
-            head <span class="token operator">=</span> root<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//修改指向</span>
-        root<span class="token punctuation">.</span>left <span class="token operator">=</span> pre<span class="token punctuation">;</span>
-
-        pre <span class="token operator">=</span> root<span class="token punctuation">;</span>
-        <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>此文仅作为本人学习笔记使用</p>
+                <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h3 id="网络连接的三种方式"><a href="#网络连接的三种方式" class="headerlink" title="网络连接的三种方式"></a>网络连接的三种方式</h3><h4 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h4><p>虚拟系统可以和外部系统通讯，但是容易造成ip冲突(超过255)</p>
+<h4 id="NAT模式"><a href="#NAT模式" class="headerlink" title="NAT模式"></a>NAT模式</h4><p>NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然后在需要访问外部的时候，自动转换成你母机ip去访问外部，但是外部不可以直接访问内部</p>
+<h4 id="主机模式"><a href="#主机模式" class="headerlink" title="主机模式"></a>主机模式</h4><p>相当于一个独立的系统，不与外界发生联系</p>
+<h3 id="Linux目录结构"><a href="#Linux目录结构" class="headerlink" title="Linux目录结构"></a>Linux目录结构</h3><ul>
+<li>/bin               (/usr/bin、/usr/local/bin),是Binary的缩写，存放着最常使用的命令</li>
+<li>/sbin               存放的是系统管理员使用的系统管理程序</li>
+<li>/home             存放普通用户的主目录，在linux中每个用户都有自己的目录</li>
+<li>/root               系统管理员，也成为超级权限者的用户主目录</li>
+<li>/lib                   系统开机所需要的最基本的动态连接共享库</li>
+<li>/lost+found      一般情况是空的，当系统非法关机后，这里就存放了一些文件</li>
+<li>/etc                 所有的系统管理所需要的配置文件和子目录，例如mysql的my.conf</li>
+<li>/usr                 用户的很多应用程序和文件都放在这个目录下，类似于windows的program files目录</li>
+<li>/boot              存放的是启动linux时使用的一些核心文件，包括一些连接文件以及镜像文件</li>
+<li>/proc              是一个虚拟目录，是系统内存的映射，访问这个目录来获取系统信息</li>
+<li>/srv                 service的缩写，存放一些服务启动之后需要提取的数据</li>
+<li>/sys                linux2.6之后出现，安装了一个文件系统sysfs</li>
+<li>/tmp              用来存放一些临时文件</li>
+<li>/dev               类似于Windows的设备管理器，把所有的硬件用文件形式存储</li>
+<li>/media           会自动识别一些例如u盘光驱等设备，识别后就将识别的设备挂载到这目录下 </li>
+<li>/mnt              该目录是为了让用户挂载别的文件系统，可以将外部存储挂载在/mnt上，进入该目录查看</li>
+<li>/opt               给主机额外安装软件的目录</li>
+<li>/usr/local       另一个给主机额外安装软件所安装的目录，一般是通过编译源码方式安装的程序</li>
+<li>/var              存放一些不断扩张的东西，习惯将经常被修改的目录放在这个目录下，包括各种日志文件</li>
+<li>/selinux[security-enhanced linux]   是一种安全的子系统，它能控制程序只访问特定文件，有三种工作模式，可以自行设置</li>
+</ul>
+<h3 id="vi和vim编辑器"><a href="#vi和vim编辑器" class="headerlink" title="vi和vim编辑器"></a>vi和vim编辑器</h3><h4 id="常用的三种模式"><a href="#常用的三种模式" class="headerlink" title="常用的三种模式"></a>常用的三种模式</h4><h5 id="正常模式"><a href="#正常模式" class="headerlink" title="正常模式"></a>正常模式</h5><p>是vim的默认模式，这个模式中可以使用上下左右来移动光标，可以使用删除或删除整行来处理内容，也可以复制粘贴</p>
+<h5 id="插入模式"><a href="#插入模式" class="headerlink" title="插入模式"></a>插入模式</h5><p>按下i、I、o、O、a、A、r、R中任意一个字母进入编辑模式，一般按i即可</p>
+<h5 id="命令行模式"><a href="#命令行模式" class="headerlink" title="命令行模式"></a>命令行模式</h5><p>输入esc退出当前模式，再输入<code>:</code>进入命令行模式</p>
+<p>可以提供相关指令，完成读取，存盘，替换，离开vim显示行号等动作。</p>
+<h4 id="vim操作"><a href="#vim操作" class="headerlink" title="vim操作"></a>vim操作</h4><p>在一般模式下:</p>
+<ul>
+<li>yy   拷贝当前行；5yy 拷贝当前向下的5行，p  粘贴   u撤销  x删除</li>
+<li>dd   删除当前行；5dd，删除当前向下的5行</li>
+<li>G     文档最末行，gg    最首行</li>
+</ul>
+<p>在命令行模式下:</p>
+<ul>
+<li><p>wq(保存退出)    q(退出)   q!(强制退出不保存)</p>
+</li>
+<li><p>/关键字  回车    查找某个单词，输入n是查找下一个</p>
+</li>
+<li><p>set nu 设置文件的行号，set nonu 取消文件的行号</p>
+</li>
+</ul>
 
                 
             </div>
@@ -553,7 +532,7 @@ class Node {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/040721310.html">http://example.com/2022/040721310.html</a>
+                    <a href="http://example.com/2022/050224884.html">http://example.com/2022/050224884.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -591,8 +570,8 @@ class Node {
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/leetcode/">
-                                    <span class="chip bg-color">leetcode</span>
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
                                 </a>
                             
                         </div>
@@ -764,17 +743,18 @@ class Node {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/040764475.html">
+                <a href="/2022/050224884.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="二叉搜索树的第k大节点">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Linux笔记">
                         
-                        <span class="card-title">二叉搜索树的第k大节点</span>
+                        <span class="card-title">Linux笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -784,9 +764,9 @@ class Node {
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -795,11 +775,12 @@ class Node {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
                 </div>
@@ -813,13 +794,13 @@ class Node {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/040436527.html">
+                <a href="/2022/050237875.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="二叉树中和为某一值的路径">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="队列的最大值">
                         
-                        <span class="card-title">二叉树中和为某一值的路径</span>
+                        <span class="card-title">队列的最大值</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -830,7 +811,7 @@ class Node {
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-02
                             </span>
                         <span class="publish-author">
                             
