@@ -440,7 +440,7 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    913
+                    1.1k
                 </div>
                 
 
@@ -496,6 +496,7 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <li>yy   拷贝当前行；5yy 拷贝当前向下的5行，p  粘贴   u撤销  x删除</li>
 <li>dd   删除当前行；5dd，删除当前向下的5行</li>
 <li>G     文档最末行，gg    最首行</li>
+<li>先输入行号 在输入shift+g   表示移动到多少行</li>
 </ul>
 <p>在命令行模式下:</p>
 <ul>
@@ -505,6 +506,20 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 </li>
 <li><p>set nu 设置文件的行号，set nonu 取消文件的行号</p>
 </li>
+</ul>
+<h3 id="开机重启与用户登录注销"><a href="#开机重启与用户登录注销" class="headerlink" title="开机重启与用户登录注销"></a>开机重启与用户登录注销</h3><h4 id="开关机与重启"><a href="#开关机与重启" class="headerlink" title="开关机与重启"></a>开关机与重启</h4><ul>
+<li>shutdown -h now     立刻关机</li>
+<li>shutdown -h 1         1分钟后关机</li>
+<li>shutdown -r now      立即重启</li>
+<li>halt                        现在关机</li>
+<li>reboot                    现在重启</li>
+<li>sync                       把内存的数据同步到磁盘</li>
+</ul>
+<p>不管重启还是关机，都会先进行sync命令，目前的大部分命令都会在关机前执行sync，但是再执行一次较好</p>
+<p>直接输入shutdown默认为shutdown -h 1</p>
+<h4 id="用户登录与注销"><a href="#用户登录与注销" class="headerlink" title="用户登录与注销"></a>用户登录与注销</h4><ul>
+<li>su - 用户名                切换用户</li>
+<li>logout                       注销用户</li>
 </ul>
 
                 
@@ -1072,7 +1087,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">31.9k</span>
+                        class="white-color">32k</span>
             
             
             
