@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-02
+                    2022-05-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3k
+                    3.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    10 分
+                    13 分
                 </div>
                 
 
@@ -631,20 +631,53 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <h2 id="运行时数据区内部结构"><a href="#运行时数据区内部结构" class="headerlink" title="运行时数据区内部结构"></a>运行时数据区内部结构</h2><h5 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h5><p>内存是硬盘和cpu的中间仓库和桥梁，承载着操作系统和应用程序的实时运行，java内存布局规定了java在运行过程中内存申请，分配，管理的策略，保证了Jvm的高效稳定运行，不同的jvm对于内存的划分方式和管理机制存在着部分差异。</p>
 <h5 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h5><p>线程是一个程序里的运行单元，jvm允许一个应用程序有多个线程来并行执行</p>
 <p>在Hotspot JVM里，每个线程都与操作系统的本地线程直接映射。操作系统负责所有线程的安排调度到任何一个可用cpu上，一旦本地线程初始化成功，他就会调用Java线程中的run()方法。</p>
-<h3 id="程序计数器-PC寄存器（PC-Register）"><a href="#程序计数器-PC寄存器（PC-Register）" class="headerlink" title="程序计数器(PC寄存器（PC Register）)"></a>程序计数器(PC寄存器（PC Register）)</h3><p><em><img src="/2022/041828161/1651419461055.png" class></em></p>
+<h3 id="程序计数器-PC寄存器（PC-Register）"><a href="#程序计数器-PC寄存器（PC-Register）" class="headerlink" title="程序计数器(PC寄存器（PC Register）)"></a>程序计数器(PC寄存器（PC Register）)</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p><em><img src="/2022/041828161/1651419461055.png" class></em></p>
 <ul>
-<li><p>pc寄存器用来存储指向下一条指令的地址，也即将要执行的指令代码，由执行引擎读取下一条指令。</p>
+<li>pc寄存器用来存储指向下一条指令的地址，也即将要执行的指令代码，由执行引擎读取下一条指令。</li>
+<li>是运行速度最快的区域，但是空间很小(因为只需要存储下一条指令的地址)</li>
+<li>每个线程都有自己的程序计数器，是线程私有的，生命周期与线程的生命周期保持一致。</li>
+<li>任何时间，一个线程都只有一个方法在执行，也就是所谓的当前方法，程序计数器会存储当前线程正在执行的Java方法的JVM指令地址，如果是在执行native方法也就是本地方法，则是未指定值(因为计数器是java层面的)。</li>
+<li>他是程序控制流的指示器，分支，循环，跳转，异常处理，线程恢复等基础功能都需要依赖这个计数器来完成</li>
+<li>他是唯一一个不会出现OutOfMemoryError的区域</li>
+</ul>
+<h4 id="使用PC寄存器存储字节码指令地址有什么用呢？（为什么使用PC寄存器记录当前线程的执行地址呢）"><a href="#使用PC寄存器存储字节码指令地址有什么用呢？（为什么使用PC寄存器记录当前线程的执行地址呢）" class="headerlink" title="使用PC寄存器存储字节码指令地址有什么用呢？（为什么使用PC寄存器记录当前线程的执行地址呢）"></a>使用PC寄存器存储字节码指令地址有什么用呢？（为什么使用PC寄存器记录当前线程的执行地址呢）</h4><p>因为CPU需要不停的切换各个线程，这时候切换回来以后，就得知道接着从哪开始继续执行</p>
+<p>JVM字节码解释器需要通过改变PC寄存器的值来明确下一条应该执行什么字节码指令</p>
+<h4 id="PC寄存器为什么会被设定为线程私有？"><a href="#PC寄存器为什么会被设定为线程私有？" class="headerlink" title="PC寄存器为什么会被设定为线程私有？"></a>PC寄存器为什么会被设定为线程私有？</h4><p>防止相互干扰</p>
+<h4 id="并行与并发"><a href="#并行与并发" class="headerlink" title="并行与并发"></a>并行与并发</h4><p>并行是多个线程同时执行。</p>
+<p>并发是快速切换几个线程，依次执行，像是并行，但其实是并发</p>
+<h3 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><h4 id="栈的存储单位"><a href="#栈的存储单位" class="headerlink" title="栈的存储单位"></a>栈的存储单位</h4><h4 id="局部变量表"><a href="#局部变量表" class="headerlink" title="局部变量表"></a>局部变量表</h4><h4 id="操作数栈"><a href="#操作数栈" class="headerlink" title="操作数栈"></a>操作数栈</h4><blockquote>
+<p>栈是运行时单位，堆是存储的单位</p>
+</blockquote>
+<h4 id="java虚拟机栈是什么"><a href="#java虚拟机栈是什么" class="headerlink" title="java虚拟机栈是什么"></a>java虚拟机栈是什么</h4><p>java虚拟机栈(Java Virtual Machine Stack) 早期也叫Java栈，每个线程在创建时都会创建一个虚拟机栈，其内部保存一个个栈帧(stack Frame)(栈中的存储的基本单位) 对应着一次次方法调用</p>
+<p>它是线程私有的</p>
+<p><em><img src="/2022/041828161/1651507902449.png" class title="栈和栈帧"></em></p>
+<h5 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h5><p>生命周期与线程一致</p>
+<h5 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h5><p>主管java程序的运行，保存方法的局部变量，部分结果，并参与方法的调用和返回</p>
+<h4 id="栈的优点"><a href="#栈的优点" class="headerlink" title="栈的优点"></a>栈的优点</h4><ul>
+<li><p>栈是一种快速有效的分配存储方式，访问速度仅次于程序计数器</p>
 </li>
-<li><p>是运行速度最快的区域，但是空间很小(因为只需要存储下一条指令的地址)</p>
+<li><p>JVM直接对Java栈的操作只有两个：</p>
+<ul>
+<li>每个方法执行伴随着进栈(入栈，压栈)</li>
+<li>执行结束后的出栈操作</li>
+</ul>
 </li>
-<li><p>每个线程都有自己的程序计数器，是线程私有的，生命周期与线程的生命周期保持一致。</p>
+<li><p>对于栈来说不存在垃圾回收问题，但会存在oom(内存溢出异常)</p>
 </li>
-<li><p>任何时间，一个线程都只有一个方法在执行，也就是所谓的当前方法，程序计数器会存储当前线程正在执行的Java方法的JVM指令地址，如果是在执行native方法也就是本地方法，则是未指定值(因为计数器是java层面的)。</p>
-</li>
-<li><p>他是程序控制流的指示器，分支，循环，跳转，异常处理，线程恢复等基础功能都需要依赖这个计数器来完成</p>
-</li>
-<li><p>他是唯一一个不会出现OutOfMemoryError的区域</p>
-</li>
+</ul>
+<h4 id="栈遇到的常见异常"><a href="#栈遇到的常见异常" class="headerlink" title="栈遇到的常见异常"></a>栈遇到的常见异常</h4><p>java虚拟机规范允许Java栈的大小是动态的或者固定不变的</p>
+<ul>
+<li>如果是不变的，如果线程请求分配的栈容量超过java虚拟机允许的最大容量，就会抛出StackOverflowError异常</li>
+<li>如果是动态的，但在尝试扩展时无法申请到足够的内存，或是创建新线程时没有足够的内存去创建对应的虚拟机栈，就会抛出OutofMemoryError异常</li>
+</ul>
+<h4 id="设置栈内存大小"><a href="#设置栈内存大小" class="headerlink" title="设置栈内存大小"></a>设置栈内存大小</h4><p>参数-Xss来设置线程的最大栈空间，来决定函数调用的最大深度</p>
+<h4 id="栈的存储单位-1"><a href="#栈的存储单位-1" class="headerlink" title="栈的存储单位"></a>栈的存储单位</h4><p>存储单位是<code>栈帧</code>，栈帧是一个内存区块，是一个数据集，维系着方法执行过程中的各种数据信息</p>
+<ul>
+<li>在一条活动线程中，一个时间点上，只会有一个活动的栈帧，即只有当前正在执行的方法的栈帧(栈顶栈帧)是有效的，与<code>当前栈帧</code>对应的方法就是<code>当前方法</code>，定义这个方法的类就是<code>当前类</code>。</li>
+<li>执行引擎运行的所有字节码指令只针对<code>当前栈帧</code>进行操作</li>
+<li>如果在该方法中调用了其他方法，对应新的栈帧会被创建出来，放在栈的顶端，成为新的栈帧</li>
+<li>不同线程中所包含的栈帧是不允许相互引用的</li>
+<li>java函数的两种返回函数的方式，（正常的函数返回(return)，抛出异常，这两种都会导致栈帧被弹出）</li>
 </ul>
 <p>持续更新….</p>
 
@@ -1211,7 +1244,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">32k</span>
+                        class="white-color">32.8k</span>
             
             
             
