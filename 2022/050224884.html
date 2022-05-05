@@ -433,21 +433,21 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-02
+                    2022-05-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    3.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    11 分
                 </div>
                 
 
@@ -520,6 +520,179 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <h4 id="用户登录与注销"><a href="#用户登录与注销" class="headerlink" title="用户登录与注销"></a>用户登录与注销</h4><ul>
 <li>su - 用户名                切换用户</li>
 <li>logout                       注销用户</li>
+</ul>
+<h3 id="linux用户管理"><a href="#linux用户管理" class="headerlink" title="linux用户管理"></a>linux用户管理</h3><p>linux系统是一个多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后以这个账号的身份进入系统</p>
+<h4 id="用户基本操作"><a href="#用户基本操作" class="headerlink" title="用户基本操作"></a>用户基本操作</h4><h5 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h5><ul>
+<li>useradd 用户名              添加用户</li>
+<li>useradd -g 用户组 用户名                 增加用户时直接加上组</li>
+</ul>
+<p>创建成功后，会自动创建和用户名相同的home目录，也可以通过useradd -d 指定目录，新的用户名，给新创建的目录指定home目录</p>
+<p>如果直接添加用户而不指定组，则虚拟机会默认创建一个以用户名为名的组并将其放入组中</p>
+<h5 id="修改-指定密码"><a href="#修改-指定密码" class="headerlink" title="修改/指定密码"></a>修改/指定密码</h5><p>passwd 用户名                  给某个用户设置密码</p>
+<blockquote>
+<p>pwd命令是显示当前用户所在目录</p>
+</blockquote>
+<h5 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h5><ul>
+<li>userdel 用户名                   删除用户但保留对应home目录</li>
+<li>userdel -r 用户名               删除用户并且删除对应home目录</li>
+</ul>
+<h5 id="查询用户信息"><a href="#查询用户信息" class="headerlink" title="查询用户信息"></a>查询用户信息</h5><ul>
+<li>id 用户名</li>
+</ul>
+<h5 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h5><ul>
+<li><p>su - 切换的用户名                       切换用户，高权限切低权限不需要密码，反之需要</p>
+</li>
+<li><p>exit/logout                              返回到原来用户</p>
+</li>
+</ul>
+<h5 id="查看当前用户"><a href="#查看当前用户" class="headerlink" title="查看当前用户"></a>查看当前用户</h5><ul>
+<li>whoami/who am i                     查看当前用户，<code>不加空格是当前操作的用户，加空格是第一次登录用户</code></li>
+</ul>
+<p><em><img src="/2022/050224884/1651558127441.png" class title="查看当前用户"></em></p>
+<h4 id="用户组"><a href="#用户组" class="headerlink" title="用户组"></a>用户组</h4><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><p>类似于角色，系统可以对有共性(权限)的多个用户进行统一的管理</p>
+<h5 id="新增组"><a href="#新增组" class="headerlink" title="新增组"></a>新增组</h5><ul>
+<li>groupadd 组名                               新增组</li>
+<li>useradd -g 用户组 用户名                 增加用户时直接加上组</li>
+</ul>
+<p>如果直接添加用户而不指定组，则虚拟机会默认创建一个以用户名为名的组并将其放入组中</p>
+<h5 id="修改用户的组"><a href="#修改用户的组" class="headerlink" title="修改用户的组"></a>修改用户的组</h5><ul>
+<li>usermod -g 用户组 用户名</li>
+</ul>
+<h4 id="用户和组相关文件"><a href="#用户和组相关文件" class="headerlink" title="用户和组相关文件"></a>用户和组相关文件</h4><ul>
+<li>/etc/passwd 文件</li>
+</ul>
+<p>用户(user)的配置文件，记录用户的各种信息</p>
+<p>每一行都是一个用户：含义: <code>用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录shell</code></p>
+<ul>
+<li>/etc/shadow文件</li>
+</ul>
+<p>口令配置文件,每行的含义:<code>登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:不活动时间:失效时间:标志</code></p>
+<ul>
+<li> /etc/group文件</li>
+</ul>
+<p>组的配置文件，记录linux中组的信息，每行含义:<code>组名:口令:组标识号:组内用户列表</code></p>
+<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><h4 id="运行级别"><a href="#运行级别" class="headerlink" title="运行级别"></a>运行级别</h4><p>运行级别说明</p>
+<ol start="0">
+<li><p>关机</p>
+</li>
+<li><p>单用户[找回丢失的密码]</p>
+</li>
+<li><p>多用户状态没有网络服务</p>
+</li>
+<li><p>多用户状态有网络服务</p>
+</li>
+<li><p>系统未使用保留给用户</p>
+</li>
+<li><p>图形界面</p>
+</li>
+<li><p>系统重启</p>
+</li>
+</ol>
+<p>常用的运行级别是3和5</p>
+<ul>
+<li>init[0123456]              切换运行级别</li>
+<li>systemctl get-default        查看目前的运行级别</li>
+<li>systemctl set-default mult-user.target/systemctl set-default graphical.target  设置允许级别，前者相当于3，后者相当于5</li>
+</ul>
+<h4 id="找回root密码"><a href="#找回root密码" class="headerlink" title="找回root密码"></a>找回root密码</h4><ol>
+<li><p>启动系统，进入开机页面，在页面中按‘e’进入编辑界面</p>
+</li>
+<li><p>进入之后使用键盘的上下键移动光标，找到以“Linux 16”开头所在的行数，在行的最后输入:init=/bin/sh</p>
+</li>
+<li><p>输入之后按快捷键Ctrl + x 进入单用户模式</p>
+</li>
+<li><p>在光标闪烁的位置输入<code>mount -o remount,rw /</code>  (单词间有空格)，然后按回车</p>
+</li>
+<li><p>在新的一行最后面输入passwd。完成后按回车输入密码，然后再次确认密码即可</p>
+</li>
+<li><p>接着在鼠标闪烁的位置输入: touch /.autorelabel(touch 后面又空格),之后继续按回车</p>
+</li>
+<li><p>接着在光标闪烁的位置输入 exec /sbin/init    之后按回车键，等待系统修改密码，完成后系统会自动重启</p>
+</li>
+</ol>
+<h4 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h4><ul>
+<li>man    语法:man[命令或配置文件] </li>
+<li>help     语法:help 命令          (获得shell内置命令的帮助信息)</li>
+</ul>
+<h4 id="文件目录类"><a href="#文件目录类" class="headerlink" title="文件目录类"></a>文件目录类</h4><ul>
+<li><p>pwd      显示当前工作目录的绝对路径</p>
+</li>
+<li><p>ls          显示目录:常用选项:  -a,显示所有，包括隐藏的，-l  以列表     -lh  (h是human的意思)指的是按照人类比较容易看的方式显示</p>
+</li>
+<li><p>cd         定位相对路径或绝对路径         cd~回到自己的home目录，cd..回到上级目录</p>
+</li>
+<li><p>mkdir     创建目录  mkdir [选项]  要创建的目录     -p为创建多级目录</p>
+</li>
+<li><p>rmdir     删除目录   mkdir[选项]   要删除的空目录 ，如果需要删除非空目录，需要使用rm -rf 要删除的目录   -r表示递归，f表示强制删除</p>
+</li>
+<li><p>touch     创建空文件</p>
+</li>
+<li><p>cp           拷贝文件到指令目录  cp [选项] 文件 指定目录        选项:-r   递归复制整个文件夹  \cp  强制覆盖不提示</p>
+</li>
+<li><p>rm         移除文件或目录   rm[选项] 要删除的文件或目录，-r递归 -f强制删除不提示</p>
+</li>
+<li><p>mv          移动文件或重命名      重命名:mv  old   new  移动: mv /old  /new</p>
+</li>
+<li><p>cat         查看文件内容      -n显示行号</p>
+</li>
+<li><p>more       more 要查看的文件 ，指令中内置了快捷键</p>
+<ul>
+<li>空格键(space)       向下翻一页</li>
+<li>回车键(Enter)        向下翻一行</li>
+<li>q                        立刻离开</li>
+<li>Ctrl+f                  向下滚动一屏</li>
+<li>Ctrl+B                 返回上一屏</li>
+<li>=                        输出当前行的行号</li>
+<li>:f                        输出文件名和当前行的行号</li>
+</ul>
+</li>
+<li><p>less           分屏查看文件内容，与more类似却更加强大，他是懒加载模式</p>
+<ul>
+<li>空格键(space)       向下翻一页</li>
+<li>下键(pagedown)   向下翻一页</li>
+<li>上建(pageup)       向上翻一页</li>
+<li>/                        向下搜索字串功能  n向下查找；N向上查找</li>
+<li>？                      向上搜索字串功能  n向上查找；N向下查找</li>
+<li>q                       立刻离开</li>
+</ul>
+</li>
+<li><p>echo                       输出内容到控制台，例如要输出环境变量   echo $PATH</p>
+</li>
+<li><p>head                       显示文件开头的部分内容，默认十行    head -n 任意数字，查看前任意行</p>
+</li>
+<li><p>tail                          显示文件中尾部内容，默认十行   -f实时追踪文件更新</p>
+</li>
+<li><p>&gt;与&gt;&gt;                     输出重定向(覆盖)和追加</p>
+<ul>
+<li>ls -l &gt; 文件          列表的内容写入到文件中(覆盖)</li>
+<li>ls -al &gt;&gt;文件       列表内容追加到文件的末尾</li>
+<li>cat 文件1&gt;文件2    文件1内容覆盖到文件2</li>
+<li>echo  “内容” &gt;&gt; 文件     将内容追加到文件末尾                             </li>
+</ul>
+</li>
+<li><p>ln                            软连接，也被称为符号链接，类似于快捷方式   ln -s [源文件或目录] [软连接名]</p>
+</li>
+<li><p>history                       查看已经执行过的历史命令 后面加数字是查看最近的n个命令，查看的命令前会带有参数，可以直接!+参数来执行命令</p>
+</li>
+</ul>
+<h4 id="时间日期类"><a href="#时间日期类" class="headerlink" title="时间日期类"></a>时间日期类</h4><ul>
+<li>date                 显示当前日期   %Y/m/d       (分别是显示年月日)  date+”+%Y-%m-%d%H:%M:%S”（年月日时分秒)     设置日期:date -s 字符串时间</li>
+<li>cal +选项          查看日历，不加选项默认本月,加了就是参数当年的日历</li>
+</ul>
+<h4 id="搜索查找类"><a href="#搜索查找类" class="headerlink" title="搜索查找类"></a>搜索查找类</h4><ul>
+<li>find                 从指定目录向下递归遍历其各个子目录，将满足条件的文件或目录显示在终端，              语法:find 搜索范围 选项          选项:  -name&lt;查询方式&gt;  按照指定的文件名查找模式查找文件，             -user&lt;用户名&gt;    查找属于指定用户名的所有文件   -size&lt;文件大小&gt; 按照指定的文件大小查找文件</li>
+</ul>
+<p><em><img src="/2022/050224884/1651736305314.png" class title="案例"></em></p>
+<blockquote>
+<p>由于locate指令基于数据库查询，所以第一次查找前必须使用updatedb指令来创建一个新的locate库</p>
+</blockquote>
+<ul>
+<li><p>locate             快速定位文件路径，locate指令利用事先建立的系统中所有文件名及路径上的locate数据库实现快速定位给定的文件，无需遍历整个系统，速度较快，但为了保证查询结果的准确度，管理员必须定期更新locate时刻。</p>
+</li>
+<li><p>which             可以查看某个指令在哪个目录下，比如 ls 指令在哪个目录，which ls</p>
+</li>
+<li><p>grep和管道符”|”     过滤查找，管道符”|”表示将前一个命令的处理结果输出传递给后面的命令处理，基本语法: grep [选项] 查找内容，源文件   -n显示匹配行及行号，-i忽略字母大小写</p>
+</li>
 </ul>
 
                 
@@ -758,18 +931,17 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/050224884.html">
+                <a href="/2022/05033080.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Linux笔记">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="字符串的排列">
                         
-                        <span class="card-title">Linux笔记</span>
+                        <span class="card-title">字符串的排列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -779,9 +951,9 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-02
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-03
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -790,12 +962,11 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
+                    <a href="/tags/leetcode/">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
                 </div>
@@ -1087,7 +1258,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">32.8k</span>
+                        class="white-color">35.4k</span>
             
             
             

@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-03
+                    2022-05-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.9k
+                    4.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    15 分
                 </div>
                 
 
@@ -679,6 +679,46 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <li>不同线程中所包含的栈帧是不允许相互引用的</li>
 <li>java函数的两种返回函数的方式，（正常的函数返回(return)，抛出异常，这两种都会导致栈帧被弹出）</li>
 </ul>
+<h4 id="栈帧"><a href="#栈帧" class="headerlink" title="栈帧"></a>栈帧</h4><p>栈帧中有什么，每个栈帧都有以下结构</p>
+<ul>
+<li>局部变量表(Local Variables)</li>
+<li>操作数栈(operand Stack)(或表达式栈)</li>
+<li>动态链接(Dynamic Linking)(或指向运行时常量池的方法引用)</li>
+<li>方法返回地址(Return Address) (或方法正常退出或者异常退出的定义)</li>
+<li>一些附加信息</li>
+</ul>
+<h5 id="局部变量表-1"><a href="#局部变量表-1" class="headerlink" title="局部变量表"></a>局部变量表</h5><p>局部变量表也被称为本地变量表或者局部变量数组</p>
+<ul>
+<li><p>定义为一个数字数组，主要用于存储方法参数和定义在方法体内的局部变量，包括基本数据类型，对象引用，以及returnAddress类型</p>
+</li>
+<li><p>建立在线程的栈上，是线程的私有数据，因此不存在数据安全问题，因为不会有共享</p>
+</li>
+<li><p>表所需的容量大小是在编译器确定下来的，并保存在方法的Code属性的maximum local variables 数据项中，在方法运行期间是不会改变局部变量表的大小的。</p>
+</li>
+<li><p>方法嵌套的次数由栈的大小决定，一般来说，栈越大，方法嵌套可调用的次数就越多；局部变量表越大，栈帧越大，就会占用更多的空间。</p>
+</li>
+<li><p>局部变量表中的变量只在当前方法调用中有效，当方法调用结束后，随着方法栈帧的销毁，局部变量表也会随之销毁</p>
+</li>
+<li><p>局部变量表最基本的存储单元是<code>Slot</code>(变量槽)</p>
+</li>
+<li><p>局部变量表里，32位以内的类型只占用一个slot(包括returnAddress类型)64位的类型(long和double)占用两个slot</p>
+</li>
+<li><p>JVM会为局部变量表中的每一个slot都分配一个访问索引，通过这个索引即可成功访问到局部变量表中指定的局部变量值</p>
+</li>
+<li><p>当一个实例方法被调用时，他的方法参数和方法体内部定义的局部变量将会按照顺序被复制到局部变量表中的每一个slot上</p>
+</li>
+<li><p>需要访问局部变量表中一个64bit的局部变量值时，只需要使用<code>前一个索引</code>即可。</p>
+</li>
+<li><p>如果当前帧是由<code>构造方法</code>或者<code>实例方法</code>创建的，那么该对象引用this将会存在index为0的slot处，其余参数按照参数表顺序继续排列</p>
+</li>
+</ul>
+<p><em><img src="/2022/041828161/1651597042314.png" class title="局部变量表slot"></em></p>
+<blockquote>
+<p>为什么this关键字不能在静态方法中调用</p>
+<p>因为this变量不存在于当前方法的局部变量表中</p>
+</blockquote>
+<p>栈帧中的局部变量表中的槽位是可以重复利用的，如果一个局部变量超过了其作用域，那么在其作用域之后申明的局部变量就有可能会复用过期局部变量的槽位，以便达到节省资源的目的</p>
+<p><em><img src="/2022/041828161/1651597828355.png" class title="slot的复用"></em></p>
 <p>持续更新….</p>
 
                 
@@ -1244,7 +1284,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">32.8k</span>
+                        class="white-color">35.4k</span>
             
             
             
