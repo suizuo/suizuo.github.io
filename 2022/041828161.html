@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-04
+                    2022-05-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.6k
+                    4.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    16 分
                 </div>
                 
 
@@ -719,7 +719,17 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 </blockquote>
 <p>栈帧中的局部变量表中的槽位是可以重复利用的，如果一个局部变量超过了其作用域，那么在其作用域之后申明的局部变量就有可能会复用过期局部变量的槽位，以便达到节省资源的目的</p>
 <p><em><img src="/2022/041828161/1651597828355.png" class title="slot的复用"></em></p>
-<p>持续更新….</p>
+<ul>
+<li>在栈桢中，与性能调优最为密切的部分就是局部变量表，方法执行时，虚拟机使用局部变量表完成方法的传递</li>
+<li>局部变量表中的变量也是重要的垃圾回收根节点，只要被局部变量表中直接或简介引用的对象都不会被gc</li>
+</ul>
+<h5 id="操作数栈-Opearnd-Stack"><a href="#操作数栈-Opearnd-Stack" class="headerlink" title="操作数栈(Opearnd Stack)"></a>操作数栈(Opearnd Stack)</h5><p>操作数栈也叫表达式栈，在方法执行的过程中，根据字节码指令，往栈中写入数据或提取数据，即入栈和出栈</p>
+<ul>
+<li>操作数栈主要用于保存计算过程的中间结果，同时作为计算过程中变量临时的存储空间</li>
+<li>操作数栈是一个工作区，随着方法的执行而创建，并且为空，长度保存在方法的Code属性中，为max_stack值</li>
+<li>如果被调用的方法带有返回值，其返回值将会被压入当前栈帧的操作数栈中</li>
+</ul>
+<h6 id><a href="#" class="headerlink" title></a></h6><p>持续更新….</p>
 
                 
             </div>
@@ -1284,7 +1294,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">36.1k</span>
+                        class="white-color">36.3k</span>
             
             
             
