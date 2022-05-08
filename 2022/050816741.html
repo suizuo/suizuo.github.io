@@ -4,14 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="0~n-1中缺失的数字, 过客">
+    <meta name="keywords" content="n个骰子的点数, 过客">
     <meta name="description" content="题目
-
-解法1：
-思路，如果没有缺失数字的数组之和减去确实了数字的数组之和就是缺少的数字
+​    
 class Solution {
-    public int missingNumber(int[] nums) {
-        //原本数组的">
+    public double[] dicesProbability(int n) {
+            double[] dp = new double[6];
+       ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -23,7 +22,7 @@ class Solution {
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>0~n-1中缺失的数字 | 过客</title>
+    <title>n个骰子的点数 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -294,12 +293,12 @@ class Solution {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">0~n-1中缺失的数字</h1>
+                    <h1 class="description center-align post-title">n个骰子的点数</h1>
                 </div>
             </div>
         </div>
@@ -431,21 +430,21 @@ class Solution {
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-16
+                    2022-05-08
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-16
+                    2022-05-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    220
+                    136
                 </div>
                 
 
@@ -468,42 +467,29 @@ class Solution {
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>题目</p>
-<p><em><img src="/2022/021623784/1644995985311.png" class title="0~n-1中缺失的数字"></em></p>
-<p>解法1：</p>
-<p>思路，如果没有缺失数字的数组之和减去确实了数字的数组之和就是缺少的数字</p>
+<p>​    <em><img src="/2022/0508undefined/1651980701427.png" class title="n个骰子的点数"></em></p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">missingNumber</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//原本数组的总和应该为这样</span>
-        <span class="token keyword">int</span> sum <span class="token operator">=</span> nums<span class="token punctuation">.</span>length <span class="token operator">*</span> <span class="token punctuation">(</span>nums<span class="token punctuation">.</span>length <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//原本数组之和减去现在数组之和就是缺失的数字</span>
-        <span class="token keyword">return</span> sum <span class="token operator">-</span> Arrays<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">dicesProbability</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span> dp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">double</span><span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//填充1/6</span>
+            Arrays<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span>dp<span class="token punctuation">,</span> <span class="token number">1.0</span> <span class="token operator">/</span> <span class="token number">6.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span> tmp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">double</span><span class="token punctuation">[</span><span class="token number">5</span> <span class="token operator">*</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">//有n-1个骰子的每一项都会对有n个骰子点数总和产生影响</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> dp<span class="token punctuation">.</span>length<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token comment" spellcheck="true">//第n个骰子的六项</span>
+                    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> k <span class="token operator">&lt;</span> <span class="token number">6</span><span class="token punctuation">;</span> k<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token comment" spellcheck="true">//加上前dp数组j值对应概率/6</span>
+                        tmp<span class="token punctuation">[</span>j <span class="token operator">+</span> k<span class="token punctuation">]</span> <span class="token operator">+=</span> dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">1.0</span><span class="token operator">/</span><span class="token number">6.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+                <span class="token comment" spellcheck="true">//将目前数组赋给dp</span>
+                dp <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> dp<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>===================================</p>
-<p>解法二：(推荐)</p>
-<p>题目给定的条件是递增排序数组，所以我们可以用二分法提高效率</p>
-<pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">missingNumber</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-        <span class="token keyword">int</span> len <span class="token operator">=</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
-        <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> right <span class="token operator">=</span> len<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">//</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;=</span> right<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">int</span> mid <span class="token operator">=</span> left <span class="token operator">+</span> <span class="token punctuation">(</span>right <span class="token operator">-</span> left <span class="token operator">+</span> <span class="token number">1</span> <span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> mid<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token comment" spellcheck="true">//如果中间值等于mid，说明缺失的数字在后半部分</span>
-                left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
-                <span class="token comment" spellcheck="true">//如果中间值不等于mid，说明缺失的数字在前半部分</span>
-                right <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> left<span class="token punctuation">;</span>
-
-    <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>此文仅作为本人学习笔记使用</p>
 
                 
@@ -531,7 +517,7 @@ class Solution {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/021623784.html">http://example.com/2022/021623784.html</a>
+                    <a href="http://example.com/2022/050816741.html">http://example.com/2022/050816741.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -742,17 +728,18 @@ class Solution {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/021639554.html">
+                <a href="/2022/050816741.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="适配器模式">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="n个骰子的点数">
                         
-                        <span class="card-title">适配器模式</span>
+                        <span class="card-title">n个骰子的点数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -762,9 +749,9 @@ class Solution {
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -773,11 +760,12 @@ class Solution {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/design-mode/">
-                        <span class="chip bg-color">design_mode</span>
+                    <a href="/tags/leetcode/">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
                 </div>
@@ -791,13 +779,13 @@ class Solution {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/021565332.html">
+                <a href="/2022/05074116.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="在排序数组中查找数字Ⅰ">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="丑数">
                         
-                        <span class="card-title">在排序数组中查找数字Ⅰ</span>
+                        <span class="card-title">丑数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -808,7 +796,7 @@ class Solution {
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-07
                             </span>
                         <span class="publish-author">
                             

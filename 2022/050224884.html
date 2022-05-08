@@ -440,14 +440,14 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.1k
+                    3.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    13 分
                 </div>
                 
 
@@ -680,7 +680,7 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <li>cal +选项          查看日历，不加选项默认本月,加了就是参数当年的日历</li>
 </ul>
 <h4 id="搜索查找类"><a href="#搜索查找类" class="headerlink" title="搜索查找类"></a>搜索查找类</h4><ul>
-<li>find                 从指定目录向下递归遍历其各个子目录，将满足条件的文件或目录显示在终端，              语法:find 搜索范围 选项          选项:  -name&lt;查询方式&gt;  按照指定的文件名查找模式查找文件，             -user&lt;用户名&gt;    查找属于指定用户名的所有文件   -size&lt;文件大小&gt; 按照指定的文件大小查找文件</li>
+<li>find                 从指定目录<code>向下递归遍历</code>其各个子目录，将满足条件的文件或目录显示在终端，              语法:find 搜索范围 选项          选项:  -name&lt;查询方式&gt;  按照指定的文件名查找模式查找文件，             -user&lt;用户名&gt;    查找属于指定用户名的所有文件   -size&lt;文件大小&gt; 按照指定的文件大小查找文件</li>
 </ul>
 <p><em><img src="/2022/050224884/1651736305314.png" class title="案例"></em></p>
 <blockquote>
@@ -691,9 +691,60 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 </li>
 <li><p>which             可以查看某个指令在哪个目录下，比如 ls 指令在哪个目录，which ls</p>
 </li>
-<li><p>grep和管道符”|”     过滤查找，管道符”|”表示将前一个命令的处理结果输出传递给后面的命令处理，基本语法: grep [选项] 查找内容，源文件   -n显示匹配行及行号，-i忽略字母大小写</p>
+<li><p>grep和管道符”|”     过滤查找，管道符”|”表示<code>将前一个命令的处理结果输出传递给后面的命令</code>处理，基本语法: grep [选项] 查找内容，源文件   -n显示匹配行及行号，-i忽略字母大小写</p>
 </li>
 </ul>
+<h4 id="压缩和解压类"><a href="#压缩和解压类" class="headerlink" title="压缩和解压类"></a>压缩和解压类</h4><ul>
+<li>gzip/gunzip              压缩(压缩成*.gz文件)/解压文件</li>
+<li>zip/unzip                  压缩/解压缩        -r递归压缩，   -d&lt;目录&gt; 指定解压后文件存放目录</li>
+<li>tar                           压缩和解压缩  ，最后打包的是.tar.gz文件   <ul>
+<li>-c 产生.tar打包文件</li>
+<li>-v  显示详细信息</li>
+<li>-f  指定压缩后的文件名</li>
+<li>-z  打包同时压缩/解压    <code>有x时解压，有c是压缩</code></li>
+<li>-x  解包.tar文件</li>
+</ul>
+</li>
+</ul>
+<h3 id="组管理和权限管理"><a href="#组管理和权限管理" class="headerlink" title="组管理和权限管理"></a>组管理和权限管理</h3><p>在linux中每个用户必须属于一个组，不能独立于组外，在linux中每个<code>文件有所有者，所在组，其他组</code>的概念</p>
+<h4 id="文件-目录所有者"><a href="#文件-目录所有者" class="headerlink" title="文件/目录所有者"></a>文件/目录所有者</h4><p>一般为文件的创建者，谁创建了该文件，就成为该文件的所有者</p>
+<ul>
+<li>ls -ahl                               查看文件的所有者</li>
+<li>chown  用户名  文件名         修改文件所有者</li>
+</ul>
+<h4 id="创建组"><a href="#创建组" class="headerlink" title="创建组"></a>创建组</h4><ul>
+<li>groupadd 组名</li>
+</ul>
+<h4 id="修改文件所在组"><a href="#修改文件所在组" class="headerlink" title="修改文件所在组"></a>修改文件所在组</h4><ul>
+<li>chgrp 组名 文件名</li>
+</ul>
+<h4 id="改变用户所在组"><a href="#改变用户所在组" class="headerlink" title="改变用户所在组"></a>改变用户所在组</h4><ul>
+<li>usermod -g 新组名 用户名</li>
+<li>usermod -d 目录名 用户名    改变该用户登陆的初始目录</li>
+</ul>
+<h4 id="rwx权限"><a href="#rwx权限" class="headerlink" title="rwx权限"></a>rwx权限</h4><p>例如    -rwxrw-r– 1 root root 1213 Feb 2 09:39 abc</p>
+<p>​        rwx分别为可读可写可执行</p>
+<p>​    第零位可能为[d,-,l,c,b]   用来确定文件类型</p>
+<p>​                d是目录，相当于文件夹</p>
+<p>​                -是普通文件</p>
+<p>​                l是链接，相当于快捷方式</p>
+<p>​                c是字符设备文件，鼠标，键盘</p>
+<p>​                b是块设备，比如硬盘</p>
+<p>一到三位确定所有者拥有该文件的权限 </p>
+<p>四到六位确定所属组拥有的权限</p>
+<p>七到九位确定其他用户组拥有的权限</p>
+<p>1:文件:硬连接数 目录:子目录数</p>
+<p>root: 用户</p>
+<p>root: 组</p>
+<p>12123 文件大小，如果是文件夹，显示4069字节</p>
+<p>feb…：最后修改日期</p>
+<p>abc:文件名</p>
+<h5 id="作用到文件"><a href="#作用到文件" class="headerlink" title="作用到文件"></a>作用到文件</h5><p>r:可读，查看</p>
+<p>w:可写，但是不代表可以删除该文件，前提条件是对该文件所在目录有写权限，才能删除</p>
+<p>x:可执行</p>
+<h5 id="作用到目录"><a href="#作用到目录" class="headerlink" title="作用到目录"></a>作用到目录</h5><p>r:可读</p>
+<p>w:可以修改，对目录内创建+删除+重命名目录</p>
+<p>x:可以进入该目录</p>
 
                 
             </div>
@@ -1258,7 +1309,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">36.3k</span>
+                        class="white-color">37k</span>
             
             
             
