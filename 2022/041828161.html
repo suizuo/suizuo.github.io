@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-08
+                    2022-05-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.8k
+                    5.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    16 分
+                    18 分
                 </div>
                 
 
@@ -687,6 +687,9 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <li>方法返回地址(Return Address) (或方法正常退出或者异常退出的定义)</li>
 <li>一些附加信息</li>
 </ul>
+<blockquote>
+<p>后面三个也被统称为帧数据区</p>
+</blockquote>
 <h5 id="局部变量表-1"><a href="#局部变量表-1" class="headerlink" title="局部变量表"></a>局部变量表</h5><p>局部变量表也被称为本地变量表或者局部变量数组</p>
 <ul>
 <li><p>定义为一个数字数组，主要用于存储方法参数和定义在方法体内的局部变量，包括基本数据类型，对象引用，以及returnAddress类型</p>
@@ -729,7 +732,20 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <li>操作数栈是一个工作区，随着方法的执行而创建，并且为空，长度保存在方法的Code属性中，为max_stack值</li>
 <li>如果被调用的方法带有返回值，其返回值将会被压入当前栈帧的操作数栈中</li>
 </ul>
-<h6 id><a href="#" class="headerlink" title></a></h6><p>持续更新….</p>
+<h6 id="栈顶缓存技术"><a href="#栈顶缓存技术" class="headerlink" title="栈顶缓存技术"></a>栈顶缓存技术</h6><p>​    因为基于栈架构的虚拟机所使用的零地址更加紧凑，但完成一项指令需要更多的出栈入栈指令，意味着需要更多的指令分派次数和内存读写次数，也就是会影响执行速度，因此，hotspot设计者提出了栈顶缓存技术，<code>将栈顶元素全部缓存在物理cpu寄存器中，以次降低对内存的读写次数，提升效率</code></p>
+<h5 id="动态链接-指向运行时常量池的方法引用"><a href="#动态链接-指向运行时常量池的方法引用" class="headerlink" title="动态链接(指向运行时常量池的方法引用)"></a>动态链接(指向运行时常量池的方法引用)</h5><ul>
+<li><p>每个栈帧内部都包含一个指向运行时常量池中该栈帧所属方法的引用，目的是为了支持当前方法的代码能实现动态链接</p>
+</li>
+<li><p>在java源文件被编译到字节码文件中时，所有的变量和方法引用都作为符号引用，保存在class文件的常量池里，比如，描述一个方法调用了另外的其他方法时，就是通过常量池中指向方法的符号来表示的，那么动态链接的作用就是为了将这些符号引用转换为调用方法的直接引用</p>
+</li>
+</ul>
+<h5 id="方法返回地址"><a href="#方法返回地址" class="headerlink" title="方法返回地址"></a>方法返回地址</h5><h6 id="方法的调用"><a href="#方法的调用" class="headerlink" title="方法的调用"></a>方法的调用</h6><p>JVM中将符号引用转换为调用方法的直接引用与方法的绑定机制有关</p>
+<ul>
+<li>静态链接:当字节码文件被装载进JVM内部时，如果被调用的方法在编译器可知，且运行期保持不变时，这种情况下的调用称为静态链接</li>
+<li>动态链接:如果被调用的方法在编译期无法被确定下来，也就是说，只有在程序运行期将调用方法的符号引用转换为直接引用，由于这种引用转换过程具备动态性，所以叫做动态链接</li>
+</ul>
+<p>对应的方法绑定机制为:早期绑定和晚期绑定，只发生一次</p>
+<h5 id="附加信息"><a href="#附加信息" class="headerlink" title="附加信息"></a>附加信息</h5><p>持续更新….</p>
 
                 
             </div>
@@ -1294,7 +1310,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">37k</span>
+                        class="white-color">37.9k</span>
             
             
             

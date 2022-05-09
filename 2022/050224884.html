@@ -433,7 +433,7 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-08
+                    2022-05-09
                 </div>
                 
 
@@ -711,6 +711,7 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <ul>
 <li>ls -ahl                               查看文件的所有者</li>
 <li>chown  用户名  文件名         修改文件所有者</li>
+<li>chown  用户名: 组名             修改文件/目录的所有者和所在组          -R递归</li>
 </ul>
 <h4 id="创建组"><a href="#创建组" class="headerlink" title="创建组"></a>创建组</h4><ul>
 <li>groupadd 组名</li>
@@ -733,9 +734,9 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <p>一到三位确定所有者拥有该文件的权限 </p>
 <p>四到六位确定所属组拥有的权限</p>
 <p>七到九位确定其他用户组拥有的权限</p>
-<p>1:文件:硬连接数 目录:子目录数</p>
+<p>1:文件:硬连接数 目录:子目录数(包括隐藏的.和..)+子文件数</p>
 <p>root: 用户</p>
-<p>root: 组</p>
+<p>root: 组 </p>
 <p>12123 文件大小，如果是文件夹，显示4069字节</p>
 <p>feb…：最后修改日期</p>
 <p>abc:文件名</p>
@@ -745,6 +746,12 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <h5 id="作用到目录"><a href="#作用到目录" class="headerlink" title="作用到目录"></a>作用到目录</h5><p>r:可读</p>
 <p>w:可以修改，对目录内创建+删除+重命名目录</p>
 <p>x:可以进入该目录</p>
+<p>权限可用数字表示，r为4，w为2，x为1；</p>
+<p>​    u为所有者,g为所在组,o为其他人</p>
+<p>​    有+=-三种方式改变权限</p>
+<ul>
+<li>chmod u=rwx,g=rx,o=x 文件/目录;         ==          chmod 751  文件/目录</li>
+</ul>
 
                 
             </div>
@@ -1309,7 +1316,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">37k</span>
+                        class="white-color">37.9k</span>
             
             
             
