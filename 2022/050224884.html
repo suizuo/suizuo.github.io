@@ -433,21 +433,21 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-13
+                    2022-05-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.1k
+                    4.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    16 分
                 </div>
                 
 
@@ -470,13 +470,13 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <li>/sbin               存放的是系统管理员使用的系统管理程序</li>
 <li>/home             存放普通用户的主目录，在linux中每个用户都有自己的目录</li>
 <li>/root               系统管理员，也成为超级权限者的用户主目录</li>
-<li>/lib                   系统开机所需要的最基本的动态连接共享库</li>
+<li>/lib                  系统开机所需要的最基本的动态连接共享库</li>
 <li>/lost+found      一般情况是空的，当系统非法关机后，这里就存放了一些文件</li>
 <li>/etc                 所有的系统管理所需要的配置文件和子目录，例如mysql的my.conf</li>
 <li>/usr                 用户的很多应用程序和文件都放在这个目录下，类似于windows的program files目录</li>
 <li>/boot              存放的是启动linux时使用的一些核心文件，包括一些连接文件以及镜像文件</li>
 <li>/proc              是一个虚拟目录，是系统内存的映射，访问这个目录来获取系统信息</li>
-<li>/srv                 service的缩写，存放一些服务启动之后需要提取的数据</li>
+<li>/srv                service的缩写，存放一些服务启动之后需要提取的数据</li>
 <li>/sys                linux2.6之后出现，安装了一个文件系统sysfs</li>
 <li>/tmp              用来存放一些临时文件</li>
 <li>/dev               类似于Windows的设备管理器，把所有的硬件用文件形式存储</li>
@@ -752,8 +752,8 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <ul>
 <li>chmod u=rwx,g=rx,o=x 文件/目录;         ==          chmod 751  文件/目录 </li>
 </ul>
-<h3 id="定时任务调度"><a href="#定时任务调度" class="headerlink" title="定时任务调度"></a>定时任务调度</h3><p>任务调度是指系统在某个时间执行的特定的命令或程序</p>
-<p>分类：系统工作:有些重要的工作必须周而复始的执行，如病毒扫描等</p>
+<h3 id="定时任务调度"><a href="#定时任务调度" class="headerlink" title="定时任务调度"></a>定时任务调度</h3><h4 id="cornd定时任务"><a href="#cornd定时任务" class="headerlink" title="cornd定时任务"></a>cornd定时任务</h4><p>任务调度是指系统在某个时间执行的特定的命令或程序</p>
+<p>分类：系统工作:有些重要的工作必须<code>周而复始</code>的执行，如病毒扫描等</p>
 <p>​        个别用户工作:个别用户可能希望执行某些程序，比如mysql程序的备份</p>
 <ul>
 <li>crontab            进行定时任务的设置   -e编辑定时任务，-l查询定时任务   -r删除当前用户所有的定时任务</li>
@@ -819,6 +819,23 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 </tr>
 </tbody></table>
 <p><em><img src="/2022/050224884/1652432035656.png" class title="定时任务调度实践"></em></p>
+<h4 id="at定时任务"><a href="#at定时任务" class="headerlink" title="at定时任务"></a>at定时任务</h4><ul>
+<li>at命令是一次性定时计划任务，at的守护进程atd会以后台模式运行，检查作业队列来运行</li>
+<li>默认情况atd守护进程每60秒检查作业队列，有作业时，会检查作业运行时间，如果时间与当前时间匹配，则运行此作业</li>
+</ul>
+<ul>
+<li>at [选项] [时间]                ctrl+D代表命令输入结束(需要输入两次)  如果输入错误 摁 Ctrl+backspace删除</li>
+<li>atq                              列出所有的任务</li>
+<li>atrm 编号                     删除指定任务</li>
+</ul>
+<p><em><img src="/2022/050224884/1652433271821.png" class title="at命令参数"></em></p>
+<p>时间定义:</p>
+<p><em><img src="/2022/050224884/1652433330385.png" class title="at命令时间"></em></p>
+<h3 id="磁盘分区与挂载"><a href="#磁盘分区与挂载" class="headerlink" title="磁盘分区与挂载"></a>磁盘分区与挂载</h3><p>linux只有一个根目录，一个独立且唯一文件结构，Linux中每个分区都是用来组成整个文件系统的一部分</p>
+<p>linux采用了一种叫”载入”的处理方法，他的整个文件系统中包含了一整套的文件和目录，且将一个分区和一个目录联系起来，这时要载入的一个分区将使得它的存储空间在一个目录下获得</p>
+<ul>
+<li>lsblk                 查看所有设备挂载情况 -f可以看更详细的内容</li>
+</ul>
 
                 
             </div>
@@ -1383,7 +1400,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">39.2k</span>
+                        class="white-color">39.7k</span>
             
             
             
