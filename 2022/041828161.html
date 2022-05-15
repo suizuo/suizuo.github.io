@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-13
+                    2022-05-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.6k
+                    6.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    19 分
+                    22 分
                 </div>
                 
 
@@ -628,9 +628,11 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 </ul>
 <h3 id="对类加载器的引用"><a href="#对类加载器的引用" class="headerlink" title="对类加载器的引用"></a>对类加载器的引用</h3><p>JVM必须知道一个类是由启动类加载器加载的还是由用户类加载器加载的，如果是前者，那么JVM<code>会将这个类加载器的一个引用作为类信息的一部分保存在方法区</code>，当解析一个类型到另一个类型的引用时，jvm需要保证这两个类型的类加载器是相同的</p>
 <h3 id="类的主动使用和被动使用"><a href="#类的主动使用和被动使用" class="headerlink" title="类的主动使用和被动使用"></a>类的主动使用和被动使用</h3><p><em><img src="/2022/041828161/1650733653043.png" class title="类的主动使用和被动使用"></em></p>
-<h2 id="运行时数据区内部结构"><a href="#运行时数据区内部结构" class="headerlink" title="运行时数据区内部结构"></a>运行时数据区内部结构</h2><h5 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h5><p>内存是硬盘和cpu的中间仓库和桥梁，承载着操作系统和应用程序的实时运行，java内存布局规定了java在运行过程中内存申请，分配，管理的策略，保证了Jvm的高效稳定运行，不同的jvm对于内存的划分方式和管理机制存在着部分差异。</p>
+<h2 id="运行时数据区内部结构"><a href="#运行时数据区内部结构" class="headerlink" title="运行时数据区内部结构"></a>运行时数据区内部结构</h2><blockquote>
+<h5 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h5><p>内存是硬盘和cpu的中间仓库和桥梁，承载着操作系统和应用程序的实时运行，java内存布局规定了java在运行过程中内存申请，分配，管理的策略，保证了Jvm的高效稳定运行，不同的jvm对于内存的划分方式和管理机制存在着部分差异。</p>
 <h5 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h5><p>线程是一个程序里的运行单元，jvm允许一个应用程序有多个线程来并行执行</p>
 <p>在Hotspot JVM里，每个线程都与操作系统的本地线程直接映射。操作系统负责所有线程的安排调度到任何一个可用cpu上，一旦本地线程初始化成功，他就会调用Java线程中的run()方法。</p>
+</blockquote>
 <h3 id="程序计数器-PC寄存器（PC-Register）"><a href="#程序计数器-PC寄存器（PC-Register）" class="headerlink" title="程序计数器(PC寄存器（PC Register）)"></a>程序计数器(PC寄存器（PC Register）)</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p><em><img src="/2022/041828161/1651419461055.png" class></em></p>
 <ul>
 <li>pc寄存器用来存储指向下一条指令的地址，也即将要执行的指令代码，由执行引擎读取下一条指令。</li>
@@ -645,7 +647,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <h4 id="PC寄存器为什么会被设定为线程私有？"><a href="#PC寄存器为什么会被设定为线程私有？" class="headerlink" title="PC寄存器为什么会被设定为线程私有？"></a>PC寄存器为什么会被设定为线程私有？</h4><p>防止相互干扰</p>
 <h4 id="并行与并发"><a href="#并行与并发" class="headerlink" title="并行与并发"></a>并行与并发</h4><p>并行是多个线程同时执行。</p>
 <p>并发是快速切换几个线程，依次执行，像是并行，但其实是并发</p>
-<h3 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><h4 id="栈的存储单位"><a href="#栈的存储单位" class="headerlink" title="栈的存储单位"></a>栈的存储单位</h4><h4 id="局部变量表"><a href="#局部变量表" class="headerlink" title="局部变量表"></a>局部变量表</h4><h4 id="操作数栈"><a href="#操作数栈" class="headerlink" title="操作数栈"></a>操作数栈</h4><blockquote>
+<h3 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h3><blockquote>
 <p>栈是运行时单位，堆是存储的单位</p>
 </blockquote>
 <h4 id="java虚拟机栈是什么"><a href="#java虚拟机栈是什么" class="headerlink" title="java虚拟机栈是什么"></a>java虚拟机栈是什么</h4><p>java虚拟机栈(Java Virtual Machine Stack) 早期也叫Java栈，每个线程在创建时都会创建一个虚拟机栈，其内部保存一个个栈帧(stack Frame)(栈中的存储的基本单位) 对应着一次次方法调用</p>
@@ -671,7 +673,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <li>如果是动态的，但在尝试扩展时无法申请到足够的内存，或是创建新线程时没有足够的内存去创建对应的虚拟机栈，就会抛出OutofMemoryError异常</li>
 </ul>
 <h4 id="设置栈内存大小"><a href="#设置栈内存大小" class="headerlink" title="设置栈内存大小"></a>设置栈内存大小</h4><p>参数-Xss来设置线程的最大栈空间，来决定函数调用的最大深度</p>
-<h4 id="栈的存储单位-1"><a href="#栈的存储单位-1" class="headerlink" title="栈的存储单位"></a>栈的存储单位</h4><p>存储单位是<code>栈帧</code>，栈帧是一个内存区块，是一个数据集，维系着方法执行过程中的各种数据信息</p>
+<h4 id="栈的存储单位"><a href="#栈的存储单位" class="headerlink" title="栈的存储单位"></a>栈的存储单位</h4><p>存储单位是<code>栈帧</code>，栈帧是一个内存区块，是一个数据集，维系着方法执行过程中的各种数据信息</p>
 <ul>
 <li>在一条活动线程中，一个时间点上，只会有一个活动的栈帧，即只有当前正在执行的方法的栈帧(栈顶栈帧)是有效的，与<code>当前栈帧</code>对应的方法就是<code>当前方法</code>，定义这个方法的类就是<code>当前类</code>。</li>
 <li>执行引擎运行的所有字节码指令只针对<code>当前栈帧</code>进行操作</li>
@@ -690,7 +692,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <blockquote>
 <p>后面三个也被统称为帧数据区</p>
 </blockquote>
-<h5 id="局部变量表-1"><a href="#局部变量表-1" class="headerlink" title="局部变量表"></a>局部变量表</h5><p>局部变量表也被称为本地变量表或者局部变量数组</p>
+<h5 id="局部变量表"><a href="#局部变量表" class="headerlink" title="局部变量表"></a>局部变量表</h5><p>局部变量表也被称为本地变量表或者局部变量数组</p>
 <ul>
 <li><p>定义为一个数字数组，主要用于存储方法参数和定义在方法体内的局部变量，包括基本数据类型，对象引用，以及returnAddress类型</p>
 </li>
@@ -763,7 +765,46 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 </li>
 </ul>
 <p>前四条指令固化在虚拟机内部，方法的调用执行不可人为干预，而invokedynamic指令则支持由用户确定方法版本，其中invokestatic和invokespecial指令调用的方法称为非虚方法，其余(final修饰的除外)称为虚方法</p>
-<h5 id="附加信息"><a href="#附加信息" class="headerlink" title="附加信息"></a>附加信息</h5><p>持续更新….</p>
+<hr>
+<p>方法返回地址中存放着该方法的pc寄存器的值</p>
+<p>方法退出后都会返回到该方法被调用的位置，方法正常退出时，<code>调用者的pc计数器的值作为返回地址。即调用该方法的指令的下一条指令的地址</code>，而通过异常退出的，返回地址是要通过异常表来确定，栈帧中一般不会保存这部分信息</p>
+<p>返回指令包括ireturn(boolean，byte，char，short，int)，lreturn，freturn，dreturn，areturn(引用数据类型)，return(声明为void)</p>
+<h5 id="java语言中方法重写的本质"><a href="#java语言中方法重写的本质" class="headerlink" title="java语言中方法重写的本质"></a>java语言中方法重写的本质</h5><ol>
+<li>找到操作数栈顶的第一个元素所执行的对象的实际类型，记作c</li>
+<li>如果在类型c中找到与常量中的描述符合简单名称都相符的方法，则进行访问权限校验，如果通过则返回这个方法的直接引用，查找过程结束，如果不通过，则返回java.lang.ⅠllegalAccessError异常(非法访问异常)</li>
+<li>否则，按照继承关系从下往上依次对c的各个父类进行第二步的搜索和验证过程</li>
+<li>如果始终没有找到，则抛出java.lang.AbstractMethodError异常</li>
+</ol>
+<p>因为每次调用虚方法都需要去上边找，会比较麻烦，所以JVM提供了<code>虚方法表</code>，每个类都有一个自己的虚方法表，例如类a继承类b，假设类b继承object类，类b重写了toString，那么类a调用toString的时候会直接调用类b，假如类b没有重写，那么类a虚方法表中的toString方法就会直接指向的object类，而不用去父类中一层层去找</p>
+<p><em><img src="/2022/041828161/1652627130345.png" class title="虚方法表"></em></p>
+<h5 id="附加信息"><a href="#附加信息" class="headerlink" title="附加信息"></a>附加信息</h5><p>栈帧中还允许携带与java虚拟机实现相关的一些附加信息，例如对程序调试提供支持的信息</p>
+<h5 id="一些面试题"><a href="#一些面试题" class="headerlink" title="一些面试题"></a>一些面试题</h5><p>分配的栈内存越大越好么？</p>
+<ul>
+<li>不是，过大的栈内存会影响到其余区域的大小</li>
+</ul>
+<p>垃圾回收是否会涉及到虚拟机栈？</p>
+<ul>
+<li>不会，栈只有进栈，出栈 </li>
+</ul>
+<p>方法中定义的局部变量是否线程安全？</p>
+<ul>
+<li>具体问题具体分析   如果方法内部局部变量没有逃离方法的作用范围它就是安全的，是线程私有的 ，不会产生在多个线程下产生线程干扰。<br>   如果局部变量引用了对象，并逃离方法的作用范围，它就不是线程安全的。<br>  （例如：参数变量不是线程安全，会被返回得局部变量不是线程安全的，他们都逃离了方法的作用范围） </li>
+</ul>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><ul>
+<li>Java虚拟机栈用于管理Java方法的调用，而本地方法用于管理本地方法的调用</li>
+<li>本地方法栈也是线程私有的</li>
+<li>允许被实现成固定或者是可动态扩展的内存大小(在内存溢出方面是相同的)</li>
+<li>本地方法是用C语言实现的</li>
+<li>它的具体做法是Native Method Stack中登记native方法，在Execution Engine 执行时加载本地方法库</li>
+</ul>
+<h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>本地接口的作用是融合不同的编程语言为Java所用，它的初衷是融合C/C++程序</p>
+<p>为什么要使用本地方法接口</p>
+<ul>
+<li>与java环境外交互     –有时Java应用需要与java外面的环境交互–</li>
+<li>与操作系统交互       –通过使用本地方法，我们得以用Java实现了jre与底层系统的交互，甚至JVM的一部分就是使用C写的，以及我们需要使用一些Java语言本身没有提供封装的操作系统的特性时，我们也需要本地方法 –</li>
+<li>Sun’s Java             –Sun的解释器是用c实现的，这使得它能像一些普通的c一样与外部交汇 –</li>
+</ul>
+<p>持续更新….</p>
 
                 
             </div>
@@ -1328,7 +1369,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">39.7k</span>
+                        class="white-color">40.8k</span>
             
             
             
