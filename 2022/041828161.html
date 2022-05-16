@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-16
+                    2022-05-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.5k
+                    6.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    22 分
+                    23 分
                 </div>
                 
 
@@ -609,7 +609,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <p>用户自定义类加载器的实现步骤</p>
 <p><em><img src="/2022/041828161/1650648724070.png" class title="用户自定义类加载器的实现步骤"></em></p>
 <h3 id="ClassLoader类"><a href="#ClassLoader类" class="headerlink" title="ClassLoader类"></a>ClassLoader类</h3><p>ClassLoader类是一个抽象类，其后所有的类加载器都直接或间接继承于ClassLoader(不包含启动类加载器，因为启动类加载器是由C++编写的)</p>
-<h3 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h3><p>java虚拟机对class文件采用的是按需加载的方式，加载某个类的class文件时使用的是双亲委派机制，即把请求交给父类处理，是一种任务委派模式</p>
+<h3 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>java虚拟机对class文件采用的是按需加载的方式，加载某个类的class文件时使用的是双亲委派机制，即把请求交给父类处理，是一种任务委派模式</p>
 <p>原理:</p>
 <ol>
 <li>如果一个类加载器收到了类加载请求，他并不会自己先去加载，而是把这个请求委托给父类的加载器执行</li>
@@ -617,6 +617,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <li>如果父类加载器可以完成类加载任务，就成功返回，反之子加载器才会尝试自己去加载</li>
 </ol>
 <p>例如用户自定义了一个java.lang.String类，在加载的时候，虚拟机就会把这个请求委托给父类执行，可以防止恶意用户篡改核心api；也可以避免类重复加载</p>
+<h4 id="怎么打破双亲委派模型？"><a href="#怎么打破双亲委派模型？" class="headerlink" title="怎么打破双亲委派模型？"></a>怎么打破双亲委派模型？</h4><p>打破双亲委派机制则不仅<strong>要继承ClassLoader</strong>类，还要<strong>重写loadClass和findClass</strong>方法</p>
 <h3 id="沙箱安全机制"><a href="#沙箱安全机制" class="headerlink" title="沙箱安全机制"></a>沙箱安全机制</h3><p>沙箱是一个限制程序运行的环境，他会将java代码限定在虚拟机（JVM）特定的运行范围中，并且严格限制代码对本地系统的资源访问，包括<code>cpu,内存，文件系统，网络</code>，不同级别的沙箱对这些资源的访问的限制也可以不一样。</p>
 <p>在java中将执行程序分为本地代码和远程代码两种，本地代码默认可信任，可访问本地一切自有，远程代码默认不可信，用户可以指定远程代码的权限</p>
 <p>组成沙箱的基本条件:1.字节码校验器:确保Java类文件遵循Java语言规范,但核心类通不过字节码校验</p>
@@ -633,7 +634,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <h5 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h5><p>线程是一个程序里的运行单元，jvm允许一个应用程序有多个线程来并行执行</p>
 <p>在Hotspot JVM里，每个线程都与操作系统的本地线程直接映射。操作系统负责所有线程的安排调度到任何一个可用cpu上，一旦本地线程初始化成功，他就会调用Java线程中的run()方法。</p>
 </blockquote>
-<h3 id="程序计数器-PC寄存器（PC-Register）"><a href="#程序计数器-PC寄存器（PC-Register）" class="headerlink" title="程序计数器(PC寄存器（PC Register）)"></a>程序计数器(PC寄存器（PC Register）)</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p><em><img src="/2022/041828161/1651419461055.png" class></em></p>
+<h3 id="程序计数器-PC寄存器（PC-Register）"><a href="#程序计数器-PC寄存器（PC-Register）" class="headerlink" title="程序计数器(PC寄存器（PC Register）)"></a>程序计数器(PC寄存器（PC Register）)</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><p><em><img src="/2022/041828161/1651419461055.png" class></em></p>
 <ul>
 <li>pc寄存器用来存储指向下一条指令的地址，也即将要执行的指令代码，由执行引擎读取下一条指令。</li>
 <li>是运行速度最快的区域，但是空间很小(因为只需要存储下一条指令的地址)</li>
@@ -797,14 +798,31 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <li>本地方法是用C语言实现的</li>
 <li>它的具体做法是Native Method Stack中登记native方法，在Execution Engine 执行时加载本地方法库</li>
 </ul>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><ul>
+<li><p>一个JVM实例只存在一个堆内存，堆也是Java内存管理的核心区域</p>
+</li>
+<li><p>Java堆区在JVM启动时即被创建了，其空间大小也就确定了，是JVM管理的最大一块内存空间</p>
+<ul>
+<li>堆空间的大小是可以调节的</li>
+</ul>
+</li>
+<li><p>所有的线程共享Java堆，在这里还可以划分线程私有的缓冲区(TLAB)</p>
+</li>
+<li><p>数组和对象可能永远不会存储在栈上，因为栈帧中保存引用，这个引用指向的是对象或者数组在堆中的位置</p>
+</li>
+<li><p>在方法结束后，堆中的对象不会马上被移除，仅仅在垃圾收集的时候才会被移除(意思是不会被马上移除，当堆空间不足之后执行垃圾回收才会移除，如果马上移除的话，gc的频率就会过高)</p>
+</li>
+<li><p>堆，是GC执行垃圾回收的重点区域</p>
+</li>
+</ul>
 <h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>本地接口的作用是融合不同的编程语言为Java所用，它的初衷是融合C/C++程序</p>
 <p>为什么要使用本地方法接口</p>
 <ul>
 <li>与java环境外交互     –有时Java应用需要与java外面的环境交互–</li>
 <li>与操作系统交互       –通过使用本地方法，我们得以用Java实现了jre与底层系统的交互，甚至JVM的一部分就是使用C写的，以及我们需要使用一些Java语言本身没有提供封装的操作系统的特性时，我们也需要本地方法 –</li>
-<li>Sun’s Java             –Sun的解释器是用c实现的，这使得它能像一些普通的c一样与外部交汇 –</li>
+<li>Sun’s Java             –Sun的解释器是用c实现的，这使得它能像一些普通的c一样与外部交汇–</li>
 </ul>
-<p>持续更新….</p>
+<h3 id><a href="#" class="headerlink" title></a></h3><p>持续更新….</p>
 
                 
             </div>
@@ -1369,7 +1387,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">41.2k</span>
+                        class="white-color">41.5k</span>
             
             
             
