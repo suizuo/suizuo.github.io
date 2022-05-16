@@ -4,15 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="斐波那契数列, 过客">
-    <meta name="description" content="题目
-
-解法1(不完全行)：
-​    思路：递归
+    <meta name="keywords" content="寻找两个正序数组中的中位数, 过客">
+    <meta name="description" content="题目:
+​    
+解法1：
 class Solution {
-    public int fib(int n) {
-        // 0 1 1 2 3 5 8 13
-        if (n == 0) {">
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+      int m = nums1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +22,7 @@ class Solution {
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>斐波那契数列 | 过客</title>
+    <title>寻找两个正序数组中的中位数 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -295,12 +293,12 @@ class Solution {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">斐波那契数列</h1>
+                    <h1 class="description center-align post-title">寻找两个正序数组中的中位数</h1>
                 </div>
             </div>
         </div>
@@ -432,28 +430,28 @@ class Solution {
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-23
+                    2022-05-16
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-16
+                    2022-05-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    625
+                    420
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -468,110 +466,57 @@ class Solution {
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目</p>
-<p><em><img src="/2022/022351227/1645629585326.png" class title="斐波那契数列"></em></p>
-<p>解法1(不完全行)：</p>
-<p>​    思路：递归</p>
+                <p>题目:</p>
+<p>​    <em><img src="/2022/0516undefined/1652686903191.png" class title="寻找两个正序数组中的中位数"></em></p>
+<p>解法1：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">fib</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 0 1 1 2 3 5 8 13</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">double</span> <span class="token function">findMedianSortedArrays</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums1<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">int</span> m <span class="token operator">=</span> nums1<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+      <span class="token keyword">int</span> n <span class="token operator">=</span> nums2<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//如果m+n为奇数，那么a和b是相等的，不会影响平均数，偶数的话就是平均数</span>
+      <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token punctuation">(</span>m <span class="token operator">+</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+      <span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token punctuation">(</span>m <span class="token operator">+</span> n <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//找出a位置和b位置的数</span>
+      <span class="token keyword">int</span> resa <span class="token operator">=</span> <span class="token function">rec</span><span class="token punctuation">(</span>nums1<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>nums2<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">int</span> resb <span class="token operator">=</span> <span class="token function">rec</span><span class="token punctuation">(</span>nums1<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>nums2<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span><span class="token punctuation">(</span>resa <span class="token operator">+</span> resb<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//两个数组及其起始位置，k为要找的数字的位置</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">rec</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums1<span class="token punctuation">,</span><span class="token keyword">int</span> i<span class="token punctuation">,</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums2<span class="token punctuation">,</span><span class="token keyword">int</span> j<span class="token punctuation">,</span><span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//如果i位置大于等于长度，说明nums1走完了，就去nums2里直接找</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">>=</span> nums1<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> nums2<span class="token punctuation">[</span>j <span class="token operator">+</span> k <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>j <span class="token operator">>=</span> nums2<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> nums1<span class="token punctuation">[</span>i <span class="token operator">+</span> k <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> <span class="token function">fib</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">fib</span><span class="token punctuation">(</span>n <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//如果要找第一个元素，那么就找这两个数组中最小的数,也就是他们起始位置中最小的</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>k <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>nums1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>nums2<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">//确保还有第k/2个值</span>
+       <span class="token keyword">int</span> m1 <span class="token operator">=</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> k<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">&lt;</span> nums1<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token operator">?</span> nums1<span class="token punctuation">[</span>i <span class="token operator">+</span> k<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">:</span>Integer<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">;</span>
+       <span class="token keyword">int</span> m2 <span class="token operator">=</span> <span class="token punctuation">(</span>j <span class="token operator">+</span> k<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">&lt;</span> nums2<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token operator">?</span> nums2<span class="token punctuation">[</span>j <span class="token operator">+</span> k<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">:</span>Integer<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">;</span>
+       
+        <span class="token comment" spellcheck="true">//如果两个数组中的第k/2相等  如果k是偶数，那么这个位置的数字就是要找的，无论舍弃哪个都会留下有正确答案的,如果是奇数，答案在某个数组的k/2的下一个，总之正确答案不会被舍弃掉</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>m1 <span class="token operator">==</span> m2 <span class="token operator">&amp;&amp;</span> k <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> m1<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//两个数组中谁的第k/2个数小，就舍弃他的前k/2个数，k也小一半</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>m1 <span class="token operator">&lt;</span> m2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            i <span class="token operator">+=</span> k<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+            k <span class="token operator">-=</span> k<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token function">rec</span><span class="token punctuation">(</span>nums1<span class="token punctuation">,</span>i<span class="token punctuation">,</span>nums2<span class="token punctuation">,</span>j<span class="token punctuation">,</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+            j <span class="token operator">+=</span> k<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+            k <span class="token operator">-=</span> k<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token function">rec</span><span class="token punctuation">(</span>nums1<span class="token punctuation">,</span>i<span class="token punctuation">,</span>nums2<span class="token punctuation">,</span>j<span class="token punctuation">,</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>   
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>递归嘛，简单。</p>
-<p>结果，</p>
-<p><em><img src="/2022/022351227/1645629663028.png" class title="超出时间限制"></em></p>
-<p>原因是这个递归的时间复杂度是2^n，有大量的重复计算。在递归次数较大时时间呈指数增长</p>
-<p>====================================================</p>
-<p>解法2：动态规划</p>
-<p>我们可以看到第一种递归的方式是从f(n)依次往下计算的，所以产生了大量的重复，但是当我们自己计算一个斐波那契数列时是从前往后计算的，不会产生重复的计算</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">fib</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//定义a表示前一个斐波那契数，b表示当前斐波那契数</span>
-        <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//循环n-1轮</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//那么下一个斐波那契数就是前一个加上当前</span>
-            b <span class="token operator">=</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//维持前一个</span>
-            a <span class="token operator">=</span> b <span class="token operator">-</span> a<span class="token punctuation">;</span>
-
-            b <span class="token operator">%=</span> <span class="token number">1000000007</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> b<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>时间复杂度:O(n)</p>
-<p>===============================================</p>
-<p>解法3：</p>
-<p>矩阵快速幂</p>
-<p>首先我们需要了解什么是快速幂，快速幂顾名思义就是快速计算出一个数的幂，</p>
-<p>例如我们需要计算2^10   直接算的话需要进行11次乘法，但是我们可以将2^11变为(2^2)^5,就只需要7次乘法。</p>
-<p>我们可以将指数写成2进制，例如 2^11   11的二进制为1011     2^11就可以拆分为 </p>
-<pre><code>          2^2^0  ×    2^2^1    ×  2^2^3
-</code></pre>
-<p> 矩阵快速幂就是将数字换成矩阵。</p>
-<p>现在我们看题，</p>
-<p><em><img src="/2022/022351227/IMG_20220225_152637.jpg" class title="矩阵快速幂"></em></p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> MOD <span class="token operator">=</span> <span class="token number">1000000007</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">fib</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> n<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//工具矩阵</span>
-        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> q <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//快速幂，q^(n-1)</span>
-        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> res <span class="token operator">=</span> <span class="token function">pow</span><span class="token punctuation">(</span>q<span class="token punctuation">,</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//这里最后矩阵的右下角就是我们需要的</span>
-        <span class="token keyword">return</span> res<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//快速幂</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">pow</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//初始化单位矩阵</span>
-        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> ret <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>n <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//例如2^11       1011 &amp; 0001   当n&amp;1 = 1 时，这一位就是我们需要用的，</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>n <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token comment" spellcheck="true">//矩阵乘法</span>
-                ret <span class="token operator">=</span> <span class="token function">multiply</span><span class="token punctuation">(</span>ret<span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token comment" spellcheck="true">//n右移一位</span>
-            n <span class="token operator">>>=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//右移一位之后，指数也要相乘 </span>
-            a <span class="token operator">=</span> <span class="token function">multiply</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">multiply</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-               c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> b<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> b<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">%</span> MOD<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-            <span class="token keyword">return</span> c<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>此文仅作为本人学习笔记使用</p>
 
                 
@@ -599,7 +544,7 @@ class Solution {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/022351227.html">http://example.com/2022/022351227.html</a>
+                    <a href="http://example.com/2022/051642092.html">http://example.com/2022/051642092.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -810,17 +755,18 @@ class Solution {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/022442855.html">
+                <a href="/2022/051642092.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="模板方法模式">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="寻找两个正序数组中的中位数">
                         
-                        <span class="card-title">模板方法模式</span>
+                        <span class="card-title">寻找两个正序数组中的中位数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -830,9 +776,9 @@ class Solution {
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -841,11 +787,12 @@ class Solution {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/design-mode/">
-                        <span class="chip bg-color">design_mode</span>
+                    <a href="/tags/leetcode/">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
                 </div>
@@ -859,13 +806,13 @@ class Solution {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/022360551.html">
+                <a href="/2022/051331986.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="对称的二叉树">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="两数相加">
                         
-                        <span class="card-title">对称的二叉树</span>
+                        <span class="card-title">两数相加</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -876,7 +823,7 @@ class Solution {
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-13
                             </span>
                         <span class="publish-author">
                             
