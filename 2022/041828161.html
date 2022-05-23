@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-23
+                    2022-05-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.3k
+                    7.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    25 分
+                    26 分
                 </div>
                 
 
@@ -831,11 +831,23 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 </ul>
 </li>
 <li>一旦堆区的内存超过了指定的最大内存，将会抛出OutOfMemoryError异常</li>
-<li>通常会将 -Xms与-Xmx两个参数配置相同的值，目的在于<code>能够在java垃圾回收机制清理完堆区之后不需要重新分隔计算堆区的大小，从而提高性能</code></li>
+<li>通常会将 -Xms与-Xmx两个参数配置相同的值，目的在于<code>能够在java垃圾回收机制清理完堆区之后不需要重新分隔计算堆区的大小，从而提高性能</code>(使用时如果内存不够，堆会不断扩容，不需要的时候有需要释放，会给gc带来压力，如果将默认和最大都直接设置成需要的数值，因为在生产环境中一台机器跑一个Java程序，不需要给其他机器腾出空间)</li>
 <li>默认情况下  初始内存大小为:电脑内存大小/64，而最大内存大小为:电脑内存大小/4</li>
 </ul>
-<h5 id="一些关于堆的代码"><a href="#一些关于堆的代码" class="headerlink" title="一些关于堆的代码"></a>一些关于堆的代码</h5><pre class="line-numbers language-java"><code class="language-java">
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="一些关于堆的代码"><a href="#一些关于堆的代码" class="headerlink" title="一些关于堆的代码"></a>一些关于堆的代码</h5><pre class="line-numbers language-java"><code class="language-java">            <span class="token comment" spellcheck="true">//JVM中堆内存总量</span>
+        <span class="token keyword">long</span> initialMemory <span class="token operator">=</span> Runtime<span class="token punctuation">.</span><span class="token function">getRuntime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">totalMemory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">1024</span><span class="token operator">/</span><span class="token number">1024</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//JVM试图使用的最大堆内存量</span>
+        <span class="token keyword">long</span> maxMemory <span class="token operator">=</span> Runtime<span class="token punctuation">.</span><span class="token function">getRuntime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">maxMemory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">1024</span><span class="token operator">/</span><span class="token number">1024</span><span class="token punctuation">;</span>
+
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-Xms:"</span> <span class="token operator">+</span> initialMemory <span class="token operator">+</span> <span class="token string">"M"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-Xmx:"</span> <span class="token operator">+</span> maxMemory<span class="token operator">+</span> <span class="token string">"M"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>这里求得的内存总量为(永久代)元空间加伊甸园区和幸存者一区幸存者二区中的其中一个</p>
+</blockquote>
+<h5 id="查看设置的参数"><a href="#查看设置的参数" class="headerlink" title="查看设置的参数"></a>查看设置的参数</h5><p>方式1: 1. jps  2.jstat -gc 进程id</p>
+<p>方式2:  在参数配置项中加入<code>-xx: + PrintGCDetails</code></p>
 <h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>本地接口的作用是融合不同的编程语言为Java所用，它的初衷是融合C/C++程序</p>
 <p>为什么要使用本地方法接口</p>
 <ul>
@@ -1408,7 +1420,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">42.5k</span>
+                        class="white-color">42.8k</span>
             
             
             

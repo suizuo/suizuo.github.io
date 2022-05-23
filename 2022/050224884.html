@@ -433,7 +433,7 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-22
+                    2022-05-23
                 </div>
                 
 
@@ -863,10 +863,9 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <p><em><img src="/2022/050224884/1652776925652.png" class title="."></em></p>
 <h3 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h3><h4 id="NAT网络配置"><a href="#NAT网络配置" class="headerlink" title="NAT网络配置"></a>NAT网络配置</h4><p>nat网络配置（Network Address Translation，网络地址转换） </p>
 <p><em><img src="/2022/050224884/1653209458563.png" class title="NAT网络配置"></em></p>
-<p><img src="/2022/1653209458563.png" alt="1653209458563"></p>
 <h4 id="查看网络配置"><a href="#查看网络配置" class="headerlink" title="查看网络配置"></a>查看网络配置</h4><ul>
 <li>ifconfig(window下是ipconfig)    查看网络配置</li>
-<li>ping 目的主机                          测试主机之间网络连通性</li>
+<li>ping 目的主机                          测试主机之间网络连通性 -c 次数  -l网卡， -4只用ipv4网   -6只用ipv6网</li>
 </ul>
 <p>有两种方法修改配置虚拟机ip</p>
 <ol>
@@ -878,6 +877,15 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 </ol>
 </li>
 </ol>
+<p><em><img src="/2022/050224884/1653294673035.png" class title="指定ip配置"></em></p>
+<h4 id="设置主机名和hosts映射"><a href="#设置主机名和hosts映射" class="headerlink" title="设置主机名和hosts映射"></a>设置主机名和hosts映射</h4><ul>
+<li>hostname                      查看主机名 或者可以在/etc/hostname 指定  修改后重启生效</li>
+</ul>
+<p>设置hosts映射:</p>
+<ul>
+<li>windows:在C:\Windows\System32\drivers\etc\hosts文件指定即可</li>
+<li>linux:在/etc/hosts文件指定</li>
+</ul>
 
                 
             </div>
@@ -1442,7 +1450,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">42.5k</span>
+                        class="white-color">42.8k</span>
             
             
             
