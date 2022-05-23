@@ -4,13 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="最长回文子串, 过客">
+    <meta name="keywords" content="乘最多水的容器, 过客">
     <meta name="description" content="题目:
 
+解法1:
 class Solution {
-    public String longestPalindrome(String s) {
-            char[] chars = s.toCharArray();
-      ">
+    public int maxArea(int[] height) {
+        int len = height.length;
+        int left = 0;">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +23,7 @@ class Solution {
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>最长回文子串 | 过客</title>
+    <title>乘最多水的容器 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -293,12 +294,12 @@ class Solution {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">最长回文子串</h1>
+                    <h1 class="description center-align post-title">乘最多水的容器</h1>
                 </div>
             </div>
         </div>
@@ -430,7 +431,7 @@ class Solution {
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-22
+                    2022-05-23
                 </div>
                 
 
@@ -444,7 +445,7 @@ class Solution {
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    219
+                    86
                 </div>
                 
 
@@ -467,66 +468,34 @@ class Solution {
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>题目:</p>
-<p><em><img src="/2022/052252608/1653206777612.png" class title="最长回文子串"></em></p>
+<p><em><img src="/2022/0523undefined/1653275335130.png" class title="乘最多水的容器"></em></p>
+<p>解法1:</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> String <span class="token function">longestPalindrome</span><span class="token punctuation">(</span>String s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> chars <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">toCharArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">int</span> len <span class="token operator">=</span> chars<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
-            <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-            <span class="token keyword">int</span> right <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-            <span class="token keyword">int</span> maxlen <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token keyword">int</span> start <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//            int end = 0;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">maxArea</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> height<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> len <span class="token operator">=</span> height<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> right <span class="token operator">=</span> len <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// int res = (len - 1) * Math.min(height[0],height[len - 1]);</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>len <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">||</span> height <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>left <span class="token operator">&lt;</span> right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> nowRes <span class="token operator">=</span> <span class="token punctuation">(</span>right <span class="token operator">-</span>left<span class="token punctuation">)</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>height<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">,</span>height<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            res <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span>nowRes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>height<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">></span> height<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                right<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+                left<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> 
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
 
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>len <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">return</span> s<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>len <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">return</span> <span class="token string">""</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
 
-            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                left <span class="token operator">=</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-                right <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-                <span class="token comment" spellcheck="true">//最短的回文串是1，也必定会出现</span>
-                <span class="token keyword">int</span> nowlen <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-                <span class="token comment" spellcheck="true">//当前值与左值相等 左减</span>
-                <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> right <span class="token operator">&lt;</span> len <span class="token operator">&amp;&amp;</span> chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> chars<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    left<span class="token operator">--</span><span class="token punctuation">;</span>
-                    nowlen<span class="token operator">++</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-                <span class="token comment" spellcheck="true">//当前值与右值相等 左加</span>
-                <span class="token keyword">while</span> <span class="token punctuation">(</span>right <span class="token operator">&lt;</span> len <span class="token operator">&amp;&amp;</span> chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> chars<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    right<span class="token operator">++</span><span class="token punctuation">;</span>
-                    nowlen<span class="token operator">++</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-                <span class="token comment" spellcheck="true">//当左右相等时，左减右加</span>
-                <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> right <span class="token operator">&lt;</span> len <span class="token operator">&amp;&amp;</span> chars<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">==</span> chars<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    left<span class="token operator">--</span><span class="token punctuation">;</span>
-                    right<span class="token operator">++</span><span class="token punctuation">;</span>
-                    nowlen <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//                System.out.println(nowlen);</span>
-                <span class="token comment" spellcheck="true">//当跳出while的时候，就是不符合回文串的时候</span>
-
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>nowlen <span class="token operator">></span> maxlen<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    maxlen <span class="token operator">=</span> nowlen<span class="token punctuation">;</span>
-                     start <span class="token operator">=</span> left<span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//                     end = right;</span>
-                <span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//                maxlen = Math.max(nowlen,maxlen);</span>
-<span class="token comment" spellcheck="true">//                System.out.println(nowstr);</span>
-            <span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//            System.out.println(start);</span>
-<span class="token comment" spellcheck="true">//            System.out.println(end);</span>
-            String maxstr <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span>start <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>start <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">+</span> maxlen<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//            System.out.println(maxstr);</span>
-<span class="token comment" spellcheck="true">//            System.out.println(maxlen);</span>
-            <span class="token comment" spellcheck="true">// System.out.println(maxstr);</span>
-            <span class="token keyword">return</span> maxstr<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此文仅作为本人学习笔记使用</p>
 
                 
             </div>
@@ -553,7 +522,7 @@ class Solution {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/052252608.html">http://example.com/2022/052252608.html</a>
+                    <a href="http://example.com/2022/05234324.html">http://example.com/2022/05234324.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -764,9 +733,10 @@ class Solution {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/05234324.html">
                     <div class="card-image">
@@ -784,9 +754,9 @@ class Solution {
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -795,6 +765,7 @@ class Solution {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -813,13 +784,13 @@ class Solution {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/051642092.html">
+                <a href="/2022/052252608.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="寻找两个正序数组中的中位数">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="最长回文子串">
                         
-                        <span class="card-title">寻找两个正序数组中的中位数</span>
+                        <span class="card-title">最长回文子串</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -830,7 +801,7 @@ class Solution {
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-22
                             </span>
                         <span class="publish-author">
                             
