@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-17
+                    2022-05-23
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.8k
+                    7.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    23 分
+                    25 分
                 </div>
                 
 
@@ -798,23 +798,44 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <li>本地方法是用C语言实现的</li>
 <li>它的具体做法是Native Method Stack中登记native方法，在Execution Engine 执行时加载本地方法库</li>
 </ul>
-<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><ul>
-<li><p>一个JVM实例只存在一个堆内存，堆也是Java内存管理的核心区域</p>
-</li>
-<li><p>Java堆区在JVM启动时即被创建了，其空间大小也就确定了，是JVM管理的最大一块内存空间</p>
-<ul>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><h4 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h4><ul>
+<li>一个JVM实例<code>只存在一个</code>堆内存，堆也是Java内存管理的核心区域</li>
+<li>Java堆区在JVM启动时即被创建了，其空间大小也就确定了，是JVM管理的最大一块内存空间<ul>
 <li>堆空间的大小是可以调节的</li>
 </ul>
 </li>
-<li><p>所有的线程共享Java堆，在这里还可以划分线程私有的缓冲区(TLAB)</p>
+<li>所有的线程共享Java堆，在这里还可以划分线程私有的缓冲区(TLAB)</li>
+<li>数组和对象可能永远不会存储在栈上，因为栈帧中保存引用，这个引用指向的是对象或者数组在堆中的位置</li>
+<li>在方法结束后，堆中的对象<code>不会马上被移除</code>，仅仅在垃圾收集的时候才会被移除(意思是不会被马上移除，当堆空间不足之后执行垃圾回收才会移除，如果马上移除的话，gc的频率就会过高)</li>
+<li>堆是GC执行垃圾回收的重点区域</li>
+</ul>
+<h4 id="堆空间的细分"><a href="#堆空间的细分" class="headerlink" title="堆空间的细分"></a>堆空间的细分</h4><p>现代垃圾收集器大部分都基于分代收集理论设计，堆空间细分为:</p>
+<ul>
+<li>Java7及之前堆内存<code>逻辑上</code>分为三部分:新生区+养老区+永久区<ul>
+<li>新生区又被分为eden(伊甸)区和Survivor(幸存者)区    幸存者区又分为幸存者1区(from区)和幸存者2区(to区)</li>
+</ul>
 </li>
-<li><p>数组和对象可能永远不会存储在栈上，因为栈帧中保存引用，这个引用指向的是对象或者数组在堆中的位置</p>
-</li>
-<li><p>在方法结束后，堆中的对象不会马上被移除，仅仅在垃圾收集的时候才会被移除(意思是不会被马上移除，当堆空间不足之后执行垃圾回收才会移除，如果马上移除的话，gc的频率就会过高)</p>
-</li>
-<li><p>堆，是GC执行垃圾回收的重点区域</p>
+<li>Java8及之后堆内存<code>逻辑上</code>分为三部分:新生区+养老区+元空间</li>
+<li>新生区=新生代=年轻代            养老区=老年区=老年代           永久区=永久代</li>
+<li>堆大小=新生区+养老区，元空间或者永久区有他自己的大小</li>
+<li> <code>在JDK1.8版本废弃了永久代，替代的是元空间（MetaSpace），元空间与永久代上类似，都是方法区的实现，他们最大区别是：元空间并不在JVM中，而是使用本地内存。</code> </li>
+</ul>
+<h4 id="为什么移除永久代"><a href="#为什么移除永久代" class="headerlink" title="为什么移除永久代"></a>为什么移除永久代</h4><p>移除永久代原因：为融合HotSpot JVM与JRockit VM（新JVM技术）而做出的改变，因为JRockit没有永久代。<br>有了元空间就不再会出现永久代OOM问题了。</p>
+<h4 id="堆空间大小的设置"><a href="#堆空间大小的设置" class="headerlink" title="堆空间大小的设置"></a>堆空间大小的设置</h4><ul>
+<li>堆空间的大小在启动时就创建了，大小也设置好了，可以通过<code>&quot;-Xmx&quot;</code>和<code>&quot;-Xms&quot;</code>来进行设置，不写单位默认字节<ul>
+<li>“-Xms”用于表示堆区的起始内存 等价于-XX:InitialHeapSise</li>
+<li>“-Xmx”用于表示堆区的最大内存 等价于-XX:MaxHeapSize<ul>
+<li>-X是Jvm运行参数</li>
+</ul>
 </li>
 </ul>
+</li>
+<li>一旦堆区的内存超过了指定的最大内存，将会抛出OutOfMemoryError异常</li>
+<li>通常会将 -Xms与-Xmx两个参数配置相同的值，目的在于<code>能够在java垃圾回收机制清理完堆区之后不需要重新分隔计算堆区的大小，从而提高性能</code></li>
+<li>默认情况下  初始内存大小为:电脑内存大小/64，而最大内存大小为:电脑内存大小/4</li>
+</ul>
+<h5 id="一些关于堆的代码"><a href="#一些关于堆的代码" class="headerlink" title="一些关于堆的代码"></a>一些关于堆的代码</h5><pre class="line-numbers language-java"><code class="language-java">
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>本地接口的作用是融合不同的编程语言为Java所用，它的初衷是融合C/C++程序</p>
 <p>为什么要使用本地方法接口</p>
 <ul>
@@ -1387,7 +1408,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">41.5k</span>
+                        class="white-color">42.5k</span>
             
             
             

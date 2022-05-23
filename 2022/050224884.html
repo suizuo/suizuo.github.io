@@ -433,21 +433,21 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-16
+                    2022-05-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.6k
+                    4.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    16 分
+                    17 分
                 </div>
                 
 
@@ -841,7 +841,43 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <li>umount           卸载分区</li>
 </ul>
 <p>使用命令行挂载之后，重启之后会失效</p>
+<h4 id="挂载硬盘的步骤"><a href="#挂载硬盘的步骤" class="headerlink" title="挂载硬盘的步骤"></a>挂载硬盘的步骤</h4><ol>
+<li>虚拟机添加硬盘</li>
+<li>分区</li>
+<li>格式化</li>
+<li>挂载</li>
+<li>设置自动挂载</li>
+</ol>
 <p>永久挂载:修改/etc/fstab实现挂载，添加完成之后，执行mount -a 即刻生效</p>
+<ul>
+<li>df  -h                  查询系统整体磁盘使用情况</li>
+<li>du -h/目录            查询指定目录的磁盘占用情况，默认为当前目录<ul>
+<li>-s指定目录占用大小汇总</li>
+<li>-h带计量单位</li>
+<li>-a带文件</li>
+<li>–max-depth=1 子目录深度</li>
+<li>-c列出明细的同时，增加汇总值</li>
+</ul>
+</li>
+</ul>
+<p><em><img src="/2022/050224884/1652776925652.png" class title="."></em></p>
+<h3 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h3><h4 id="NAT网络配置"><a href="#NAT网络配置" class="headerlink" title="NAT网络配置"></a>NAT网络配置</h4><p>nat网络配置（Network Address Translation，网络地址转换） </p>
+<p><em><img src="/2022/050224884/1653209458563.png" class title="NAT网络配置"></em></p>
+<p><img src="/2022/1653209458563.png" alt="1653209458563"></p>
+<h4 id="查看网络配置"><a href="#查看网络配置" class="headerlink" title="查看网络配置"></a>查看网络配置</h4><ul>
+<li>ifconfig(window下是ipconfig)    查看网络配置</li>
+<li>ping 目的主机                          测试主机之间网络连通性</li>
+</ul>
+<p>有两种方法修改配置虚拟机ip</p>
+<ol>
+<li>自动获取，但每次分配的ip可能不一样，就不适合做服务器，但不会有ip冲突的问题</li>
+<li>指定ip   <ol>
+<li>直接修改配置文件来指定ip    编辑vi/etc/sysconfig/network-scripts/ifcfg-ens33,将ip地址配置成静态的。</li>
+<li>12</li>
+<li>重启网络服务或者重启系统生效           service network restart(系统)         reboot(网络服务)</li>
+</ol>
+</li>
+</ol>
 
                 
             </div>
@@ -1406,7 +1442,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">41.5k</span>
+                        class="white-color">42.5k</span>
             
             
             
