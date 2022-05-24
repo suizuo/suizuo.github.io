@@ -433,21 +433,21 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-23
+                    2022-05-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.9k
+                    5.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    17 分
+                    20 分
                 </div>
                 
 
@@ -885,6 +885,105 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <ul>
 <li>windows:在C:\Windows\System32\drivers\etc\hosts文件指定即可</li>
 <li>linux:在/etc/hosts文件指定</li>
+</ul>
+<blockquote>
+<p>Hosts是一个文本文件，用来记录IP和Hostname(主机名)的映射关系</p>
+<p>DNS 是Domain Name System的缩写，翻译过来是域名系统 是互联网上作为域名和ip地址相互映射的一个分布式数据库</p>
+</blockquote>
+<h5 id="用户在浏览器输入了www-baidu-com"><a href="#用户在浏览器输入了www-baidu-com" class="headerlink" title="用户在浏览器输入了www.baidu.com"></a>用户在浏览器输入了<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a></h5><ol>
+<li>浏览器先检查浏览器缓存中有没有该域名解析ip地址，有就调用这个IP完成解析，如果没有就检查DNS解析器缓存，如果有则直接返回IP完成解析。这两个缓存可以理解为本地解析器缓存</li>
+<li>一般来说当电脑第一次成功访问某网站，在一定时间内，浏览器或操作系统会缓存它的ip地址(DNS解析记录)如在cmd窗口中输入 ipconfig/displaydns   表示DNX域名解析缓存，ipconfig/flushdns表示手动清理DNS缓存</li>
+<li>如果本地解析器没有找到对应映射，检查系统中hosts文件中有没有配置对应的ip映射，如果有，则完成解析并缓存</li>
+<li>如果均没有，则到域名服务DNS进行解析域</li>
+</ol>
+<p>​            <em><img src="/2022/050224884/1653380335324.png" class title="流程"></em></p>
+<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><ul>
+<li>在Linux中，每个执行的程序都称为一个进程，每个进程都分配一个ID号(pid，进程号)</li>
+<li>每个进程都可能以两种方式存在的。前台和后台，所谓前台进程就是用户目前的屏幕上可以进行操作的。后台进程则是实际在操作，屏幕上无法看到，</li>
+<li>一般的系统的服务都是以后台进程的方式存在，而且都会常驻在系统中，直到关机才结束</li>
+</ul>
+<h4 id="显示系统执行的进程"><a href="#显示系统执行的进程" class="headerlink" title="显示系统执行的进程"></a>显示系统执行的进程</h4><ul>
+<li><p>ps                    用来显示系统中有哪些正在执行，以及他们的执行情况，</p>
+<ul>
+<li><p> -a显示当前终端的所有进程信息</p>
+</li>
+<li><p>-u以用户的格式显示进程信息</p>
+</li>
+<li><p>-x显示后台进程运行的参数</p>
+<p>  一般可以全部组合使用   即: ps -aux 可以配合管道符使用</p>
+</li>
+<li><p>-e显示所有进程</p>
+</li>
+<li><p>-f全格式</p>
+<p>ps -ef是以全格式    显示所有的进程</p>
+<p>​    </p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>USER</td>
+<td>用户名称</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>进程识别号</td>
+</tr>
+<tr>
+<td>TTY</td>
+<td>终端机号</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>此进程所消耗的CPU时间</td>
+</tr>
+<tr>
+<td>CMD</td>
+<td>正在执行的命令或进程名</td>
+</tr>
+<tr>
+<td>%CPU</td>
+<td>进程占用CPU百分比</td>
+</tr>
+<tr>
+<td>%MEM</td>
+<td>进程占用物理内存百分比</td>
+</tr>
+<tr>
+<td>VSZ</td>
+<td>进程占用的虚拟内存大小(KB)</td>
+</tr>
+<tr>
+<td>RSS</td>
+<td>进程占用物理内存大小(KB)</td>
+</tr>
+<tr>
+<td>TT</td>
+<td>终端名称</td>
+</tr>
+<tr>
+<td>STAT</td>
+<td>进程状态，S-表示睡眠 s-表示该进程是会话的先导进程，N-表示进程拥有比普通优先级更低的优先级，R-正在等待，D-短期等待，Z-僵死进程，T-被跟踪或被停止</td>
+</tr>
+<tr>
+<td>STARED</td>
+<td>进程的启动时间</td>
+</tr>
+<tr>
+<td>COMMAND</td>
+<td>启动进程所用的命令和参数，过长会被截断显示</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="终止进程"><a href="#终止进程" class="headerlink" title="终止进程"></a>终止进程</h4><ul>
+<li>kill [选项] 进程号              通过进程号杀死进程  -9表示强制立刻停止</li>
+<li>killall 进程名                    通过进程名杀死进程，包括进程下的子进程。支持通配符，</li>
 </ul>
 
                 
@@ -1450,7 +1549,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">42.8k</span>
+                        class="white-color">43.6k</span>
             
             
             
