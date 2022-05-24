@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-24
+                    2022-05-25
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.5k
+                    8.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    26 分
+                    29 分
                 </div>
                 
 
@@ -848,6 +848,48 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 </blockquote>
 <h5 id="查看设置的参数"><a href="#查看设置的参数" class="headerlink" title="查看设置的参数"></a>查看设置的参数</h5><p>方式1: 1. jps  2.jstat -gc 进程id</p>
 <p>方式2:  在参数配置项中加入<code>-xx: + PrintGCDetails</code></p>
+<h4 id="年轻代和老年代"><a href="#年轻代和老年代" class="headerlink" title="年轻代和老年代"></a>年轻代和老年代</h4><h5 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h5><p>存储在JVM中的JAVA对象可以被划分为两类</p>
+<ul>
+<li>一类是生命周期较短的顺瞬时对象，这类对象的创建和消亡都非常迅速</li>
+<li>另外一类对象的生命周期却非常长，在某些极端的情况还能够与JVM的生命周期保持一致</li>
+</ul>
+<p>JAVA堆进一步划分的话，可以划分为年轻代(YoungGen)和老年代(OldGen)</p>
+<p>其中年轻代又可以划分为Eden空间，Survivor0空间和Survivor1空间(有时也叫做form区和to区)</p>
+<h5 id="配置新生代和老年代"><a href="#配置新生代和老年代" class="headerlink" title="配置新生代和老年代"></a>配置新生代和老年代</h5><ul>
+<li>默认<code>-XX:NewRatio=2</code>,表示新生代占1，老年代占2，即新生代占整个堆的1/3</li>
+<li>可以修改-XX:NewRatio=4,表示新生代占1，老年代占4</li>
+<li>在cmd命令行中，可以通过<code>jinfo -flag NewRatio</code> 查看占比</li>
+<li>Eden空间和另外两个Survivor空间缺省所占比例是<code>8:1:1</code>，也可以通过<code>-XX:SurvivorRatio=?</code>调整空间比例</li>
+<li><code>几乎所有</code>的Java对象都是在Eden区被new出来的</li>
+<li>绝大部分的Java对象的销毁都是在新生代进行了<ul>
+<li>IBM公司的专门研究表明，新生代80%的对象都是”朝生夕死”</li>
+</ul>
+</li>
+<li>可以使用选项<code>&quot;-Xmn&quot;</code>设置新生代最大内存大小<ul>
+<li>一般默认即可</li>
+</ul>
+</li>
+</ul>
+<h5 id="对象分配过程"><a href="#对象分配过程" class="headerlink" title="对象分配过程"></a>对象分配过程</h5><p>为新对象分配内存是一件非常严谨和复杂的任务，不仅要考虑如何分配，在那里分配，还需要考虑GC执行完内存回收后是否会在内存空间中产生内存碎片</p>
+<p>​    步骤如下:</p>
+<ol>
+<li>new的对象先放在伊甸园区，此区<code>有大小限制</code></li>
+<li>当伊甸园的空间填满时，程序又需要创建对象，JVM的垃圾回收器将对伊甸园区进行垃圾回收(minor GC 或者称为YGC),将伊甸园区中的不再被其他对象所引用的对象进行销毁，再加载新的对象到伊甸园区</li>
+<li>然后将伊甸园中剩余对象移动到幸存者0区</li>
+<li>如果再次触发垃圾回收，此时上次幸存下来的放到幸存者0区，如果没有回收，则放到幸存者1区</li>
+<li>如果再次经历垃圾回收，此时会重新放回幸存者0区，接着再去幸存者1区，<code>from区和to区会互相转换，每次空的那一方变成to区，之后gc判断from区的垃圾，如果没有被回收，就放到to区，然后from变为to，to变成from  年龄计数器加1</code></li>
+<li>什么时候去养老区呢？可以设置次数，默认<code>15</code>次<ul>
+<li>可以设置参数: <code>-XX:MaxTenuringThreshold=&lt;N&gt;</code>进行设置</li>
+</ul>
+</li>
+<li>在养老区，相对悠闲，当养老区内存不足之后，再次触发GC:major GC,进行养老区的内存清理</li>
+<li>若养老区执行了Major GC之后发现仍然无法进行对象的保存，就会产生OOM异常(java.lang.OutOfMemoryError:java heap space)</li>
+</ol>
+<blockquote>
+<p>幸存者区不存在YGC，但是存在GC，在触发YGC的时候，会将Eden区和幸存者区一起进行回收</p>
+<p>针对幸存者s0，s1区的总结:复制之后有交换，谁空谁是to</p>
+<p>垃圾回收频繁出现在新生区收集，很少在养老区，几乎不在永久区/元空间</p>
+</blockquote>
 <h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>本地接口的作用是融合不同的编程语言为Java所用，它的初衷是融合C/C++程序</p>
 <p>为什么要使用本地方法接口</p>
 <ul>
@@ -1420,7 +1462,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">43.6k</span>
+                        class="white-color">44.4k</span>
             
             
             
