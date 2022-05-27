@@ -4,9 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="hexo图片插入问题, 过客">
-    <meta name="description" content="hexo图片插入​        最近在搭建博客时遇到了图片插入的问题，以下是遇到的一些坑和解决办法，
-​        开始时根据 HEXO插入图片（详细版） - 简书 (jianshu.com) 做了设置，图片显示正常，如果你根据这个可">
+    <meta name="keywords" content="三数之和, 过客">
+    <meta name="description" content="题目
+
+class Solution {
+   public List&amp;lt;List&amp;lt;Integer&gt;&gt; threeSum(int[] nums) {
+   List&amp;lt;List&amp;lt;Integer&gt;&gt; res = new A">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +21,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>hexo图片插入问题 | 过客</title>
+    <title>三数之和 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -289,12 +292,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">hexo图片插入问题</h1>
+                    <h1 class="description center-align post-title">三数之和</h1>
                 </div>
             </div>
         </div>
@@ -410,8 +413,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/question/">
-                                <span class="chip bg-color">question</span>
+                            <a href="/tags/leetcode/">
+                                <span class="chip bg-color">leetcode</span>
                             </a>
                         
                     </div>
@@ -426,21 +429,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-12-30
+                    2022-05-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-14
+                    2022-05-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    652
+                    360
                 </div>
                 
 
@@ -462,32 +465,89 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="hexo图片插入"><a href="#hexo图片插入" class="headerlink" title="hexo图片插入"></a>hexo图片插入</h1><p>​        最近在搭建博客时遇到了图片插入的问题，以下是遇到的一些坑和解决办法，</p>
-<p>​        开始时根据 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f72aaad7b852">HEXO插入图片（详细版） - 简书 (jianshu.com)</a> 做了设置，图片显示正常，如果你根据这个可以显示出图片就不用看下边的了。</p>
-<p>​        图片未显示，</p>
-<p>​            <em><img src="/2021/123029046/1640878638739.png" class title="图片未显示"></em></p>
-<p>​        f12查看路径：</p>
-<p>​        <em><img src="/2021/123029046/1640878827594.png" class title="查看路径"></em></p>
-<p>​        hexo经过hexo g -d 之后，会把生成的html页面放在public之下,如果配置了插件<code>hexo-asset-image</code>，则图片文件也会到public之中</p>
-<p>​            我们来到public下的2021之中:</p>
-<p>​        发现在浏览器中找到的是直接2021下的图片，而我们的图片在2021下的同名文件夹中，所以浏览器访问不到，这点没有解决，初步判断是由于<code>hexo-asset-image</code>生成图片文件夹的路径出错。（有解决的可以告诉我，感谢）</p>
-<p>​            ps：如果你在过程中删除过插件，又重新下回来的话，记得根据 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f72aaad7b852">HEXO插入图片（详细版） - 简书 (jianshu.com)</a> 做好index.js中的配置，</p>
-<p>​            所以，我们换一种方式，因为hexo是将md文件转换成html文件，但是在转换图片的时候出错，那么我们可以使用hexo推荐的图片插入方式：</p>
-<p>​        </p>
-<pre><code>*&#123;%asset_img 1.png examplename%&#125;*
-</code></pre>
-<p>使用时请注意以下几点：</p>
-<p>​    1.如果实在md文件中编辑，最前方和最后方都要加入<code>*</code>来进行转义，否则在进行hexo g -d的时候gitbash会报编译错误。</p>
-<p>​    2.<code>%和asset_img中间没有空格</code>，之后加一个空格加上你的<code>图片名称</code>，不需要写路径，因为会创建一个同名文件夹会自动识别，然后加上空行加上图片的解释与%。</p>
-<p>​    3,如果语法不对就会报编译错误</p>
-<p>最终测试成功。虽然以后写着会比较麻烦，但是也算解决了。还有可能遇到的图片不显示的问题</p>
-<p>的解决方法</p>
-<p>1.可能由于插件原因，导致 图片不显示</p>
-<p>​        我们去插件当中看看</p>
-<p>位置在：你的博客\node_modules\hexo-asset-image\README.md</p>
-<p><em><img src="/2021/123029046/1640880032686.png" class title="插件的请看我文档"></em></p>
-<p>根据文档我们可以看出,如果你是使用的md的语法插入的图片，在（）小括号里只需要文件的名称而不需要文件的路径和名称，我们在md中将图片名称前面的路径删掉即可</p>
-<p>​        ps：这点根据插件版本的不同而不同，请自行去自己插件中的<code>readme.md</code>查看。</p>
+                <p>题目</p>
+<p><em><img src="/2022/0527undefined/1653641327881.png" class title="三数之和"></em></p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+   <span class="token keyword">public</span> List<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Integer<span class="token operator">>></span> <span class="token function">threeSum</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   List<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Integer<span class="token operator">>></span> res <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//对nums进行排序</span>
+        Arrays<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> len <span class="token operator">=</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//        int left = 0;</span>
+<span class="token comment" spellcheck="true">//        int mid = 1;</span>
+<span class="token comment" spellcheck="true">//        int right = len - 1;</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> mid <span class="token operator">=</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> right <span class="token operator">=</span> nums<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//最左边的值大于零，则整体不可能出现三数之和为0</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">//去重</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> nums<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>mid <span class="token operator">&lt;</span> right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">//大于和小于</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>mid <span class="token operator">&lt;</span> right <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">+</span> nums<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">while</span> <span class="token punctuation">(</span>right <span class="token operator">></span> mid <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">==</span> nums<span class="token punctuation">[</span><span class="token operator">--</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>mid <span class="token operator">&lt;</span> right <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">+</span> nums<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">while</span> <span class="token punctuation">(</span>right <span class="token operator">></span> mid <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> nums<span class="token punctuation">[</span><span class="token operator">++</span>mid<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token comment" spellcheck="true">//等于</span>
+                <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    res<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token comment" spellcheck="true">//去重</span>
+                    <span class="token keyword">while</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> nums<span class="token punctuation">[</span><span class="token operator">++</span>mid<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> mid <span class="token operator">&lt;</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">while</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">==</span> nums<span class="token punctuation">[</span><span class="token operator">--</span>right<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> mid <span class="token operator">&lt;</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token comment" spellcheck="true">// System.out.println(mid);</span>
+                    <span class="token comment" spellcheck="true">// System.out.println(right);</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//        //固定left，在后边找</span>
+<span class="token comment" spellcheck="true">//        while(left &lt; right) {</span>
+<span class="token comment" spellcheck="true">//            while (mid &lt; right) {</span>
+<span class="token comment" spellcheck="true">//                //大于</span>
+<span class="token comment" spellcheck="true">//                if (mid &lt; right &amp;&amp; nums[left] + nums[mid] + nums[right] > 0) {</span>
+<span class="token comment" spellcheck="true">//                    right--;</span>
+<span class="token comment" spellcheck="true">//                }else</span>
+<span class="token comment" spellcheck="true">//                    //小于</span>
+<span class="token comment" spellcheck="true">//                    if (mid &lt; right &amp;&amp; nums[left] + nums[mid] + nums[right] &lt; 0) {</span>
+<span class="token comment" spellcheck="true">//                        mid++;</span>
+<span class="token comment" spellcheck="true">//                    }else</span>
+<span class="token comment" spellcheck="true">//                        //等于0</span>
+<span class="token comment" spellcheck="true">//                        if (mid &lt; right &amp;&amp; nums[left] + nums[mid] + nums[right] == 0) {</span>
+<span class="token comment" spellcheck="true">//                            List&lt;Integer> list = new ArrayList&lt;>();</span>
+<span class="token comment" spellcheck="true">//                            list.add(nums[left]);</span>
+<span class="token comment" spellcheck="true">//                            list.add(nums[mid]);</span>
+<span class="token comment" spellcheck="true">//                            list.add(nums[right]);</span>
+<span class="token comment" spellcheck="true">//                            res.add(list);</span>
+<span class="token comment" spellcheck="true">//                            //去重</span>
+<span class="token comment" spellcheck="true">//                            while(nums[mid] == nums[++mid] &amp;&amp; mid &lt; right);</span>
+<span class="token comment" spellcheck="true">//                            while(nums[right] == nums[--right] &amp;&amp; mid &lt; right);</span>
+<span class="token comment" spellcheck="true">//                            System.out.println(mid);</span>
+<span class="token comment" spellcheck="true">//                            System.out.println(right);</span>
+<span class="token comment" spellcheck="true">//                        }</span>
+<span class="token comment" spellcheck="true">//                if (mid > right) {</span>
+<span class="token comment" spellcheck="true">//                    break;</span>
+<span class="token comment" spellcheck="true">//                }</span>
+<span class="token comment" spellcheck="true">//            }</span>
+<span class="token comment" spellcheck="true">//            left++;</span>
+<span class="token comment" spellcheck="true">//            mid = left+1;</span>
+<span class="token comment" spellcheck="true">//            right = nums.length - 1;</span>
+<span class="token comment" spellcheck="true">//        }</span>
+<span class="token comment" spellcheck="true">//        return res;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>此文仅作为本人学习笔记使用</p>
 
                 
@@ -515,7 +575,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/123029046.html">http://example.com/2021/123029046.html</a>
+                    <a href="http://example.com/2022/052716798.html">http://example.com/2022/052716798.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -553,8 +613,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/question/">
-                                    <span class="chip bg-color">question</span>
+                                <a href="/tags/leetcode/">
+                                    <span class="chip bg-color">leetcode</span>
                                 </a>
                             
                         </div>
@@ -726,17 +786,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/010655535.html">
+                <a href="/2022/052716798.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="nacos远程调用">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="三数之和">
                         
-                        <span class="card-title">nacos远程调用</span>
+                        <span class="card-title">三数之和</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -746,9 +807,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -757,11 +818,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/study/">
-                        <span class="chip bg-color">study</span>
+                    <a href="/tags/leetcode/">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
                 </div>
@@ -775,13 +837,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/122348274.html">
+                <a href="/2022/05234324.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="跨域问题">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="乘最多水的容器">
                         
-                        <span class="card-title">跨域问题</span>
+                        <span class="card-title">乘最多水的容器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -792,7 +854,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-23
                             </span>
                         <span class="publish-author">
                             
@@ -805,8 +867,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/error/">
-                        <span class="chip bg-color">error</span>
+                    <a href="/tags/leetcode/">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
                 </div>

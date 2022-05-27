@@ -433,21 +433,21 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-24
+                    2022-05-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.7k
+                    5.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    20 分
+                    21 分
                 </div>
                 
 
@@ -984,6 +984,17 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <h4 id="终止进程"><a href="#终止进程" class="headerlink" title="终止进程"></a>终止进程</h4><ul>
 <li>kill [选项] 进程号              通过进程号杀死进程  -9表示强制立刻停止</li>
 <li>killall 进程名                    通过进程名杀死进程，包括进程下的子进程。支持通配符，</li>
+</ul>
+<h4 id="查看进程树"><a href="#查看进程树" class="headerlink" title="查看进程树"></a>查看进程树</h4><ul>
+<li>pstree[选项]                    更加直观的查看进程信息  -p:显示进程PID   -u:显示进程的所属用户</li>
+</ul>
+<h3 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><p>服务的本质就是进程，但是是运行在后台的，通常都会监听某个端口，等待其他程序的请求，比如(mysql sshd 防火墙等),因此我们又称为守护进程。</p>
+<h4 id="service管理指令"><a href="#service管理指令" class="headerlink" title="service管理指令"></a>service管理指令</h4><blockquote>
+<p>在CentOS7.0之后，很多服务器都不使用service，而是systemctl</p>
+<p>service指令管理的服务在/etc/init.d查看</p>
+</blockquote>
+<ul>
+<li>service 服务名 [start|stop|restart|reload|status]</li>
 </ul>
 
                 
@@ -1549,7 +1560,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">45.6k</span>
+                        class="white-color">47.1k</span>
             
             
             

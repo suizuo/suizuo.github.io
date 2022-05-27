@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-27
+                    2022-05-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9.5k
+                    10.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    33 分
+                    37 分
                 </div>
                 
 
@@ -956,7 +956,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 </li>
 <li>长期存活的对象分配到老年代</li>
 <li>动态对象年龄判断<ul>
-<li>如果幸存者区中相同年龄的对象的总和大于幸存者区空间的一般，则年龄大于或等于该年龄的对象可以直接进入老年代，无需等到阈值年龄</li>
+<li>如果幸存者区中相同年龄的对象的总和大于幸存者区空间的一半，则年龄大于或等于该年龄的对象可以直接进入老年代，无需等到阈值年龄</li>
 </ul>
 </li>
 <li>空间分配担保<ul>
@@ -964,6 +964,88 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 </ul>
 </li>
 </ul>
+<h4 id="TLAB"><a href="#TLAB" class="headerlink" title="TLAB"></a>TLAB</h4><p>TLAB(Thread Local Allocation Buffer)即线程本地分配缓存</p>
+<h5 id="为什么会有TLAB"><a href="#为什么会有TLAB" class="headerlink" title="为什么会有TLAB"></a>为什么会有TLAB</h5><ul>
+<li>堆区是线程共享区域，任何线程都可以访问到堆区中的共享区域</li>
+<li>由于对象实例的创建在JVM中非常频繁，因此在并发环境下从堆区中划分内存空间是线程不安全的</li>
+<li>为避免多个线程操作统一地址，需要使用加锁等机制，进而影响分配速度</li>
+</ul>
+<h5 id="什么是TLAB"><a href="#什么是TLAB" class="headerlink" title="什么是TLAB"></a>什么是TLAB</h5><ul>
+<li>从内存模型而不是垃圾收集的角度，对Eden区域继续进行划分，JVM为每个线程分配了一个私有缓冲区域，它包含在Eden中,即 <code>每个线程在 Java 堆中预先分配一小块内存，然后在给对象分配内存的时候，直接在自己的这块”私有“内存中进行分配，当这部分用完之后，再分配新的”私有“内存</code>。  这部分 buffer 是从堆中划分出来的，但是本地线程独享的 </li>
+<li>多线程同时分配内存时，使用TLAB可以避免一系列的线程安全问题，同时还能提升内存分配的吞吐量，因此我们可以将这种内存分配的方式称为快速分配策略</li>
+<li>所以说，因为有TLAB，堆内存并不完全共享</li>
+</ul>
+<blockquote>
+<p>TLAB线程独享是针对分配动作，至于读取，垃圾回收则是线程共享的</p>
+</blockquote>
+<h5 id="TLAB的问题"><a href="#TLAB的问题" class="headerlink" title="TLAB的问题"></a>TLAB的问题</h5><p>是由于TLAB太小导致的，因为Eden本身就很小，TLAB占有1%的Eden区</p>
+<p>比如一个线程的 TLAB 空间有 100KB，其中已经使用了 80KB，当需要再分配一个 30KB 的对象时，就无法直接在 TLAB 中分配，遇到这种情况时有两种处理方案：</p>
+<ol>
+<li>直接在堆内存中对该对象进行内存分配。</li>
+<li>废弃当前的 TLAB，重新申请 TLAB 空间再次进行内存分配。</li>
+</ol>
+<p>如果是方案一，假设TLAB仅剩1KB空间，那么后续大多数对象都需要在堆内分配，</p>
+<p>如果是方案二,有可能会有频繁的废弃TLAB和申请TLAB的情况，而分配TLAB也是需要并发控制的，这就失去了TLAB存在的意义。</p>
+<p>所以，虚拟机定义了一个<code>refill_waste</code>值，可以翻译为<code>最大浪费空间</code></p>
+<p>当 TLAB 剩余空间不足时，</p>
+<ol>
+<li>若请求分配的内存大于 refill_waste，会选择在堆内存中分配。</li>
+<li>若请求分配的内存小于 refill_waste，会选择废弃当前的 TLAB，重新创建 TLAB 进行对象内存分配。</li>
+</ol>
+<p>例如，TLAB总空间100KB，使用了80KB，剩余20KB，如果设置的refill_waste的值为25KB，那么如果新对象的内存大于25KB，则直接堆内存分配，如果小于25KB，则会废弃掉之前的那个TLAB，重新分配一个TLAB空间，给新对象分配内存。 </p>
+<blockquote>
+<p>如果对象在TLAB空间分配内存失败时，JVM就会尝试着通过使用<code>加锁机制</code>确保数据操作的原子性，从而直接在Eden空间分配内存</p>
+</blockquote>
+<h5 id="一些调整TLAB的参数"><a href="#一些调整TLAB的参数" class="headerlink" title="一些调整TLAB的参数"></a>一些调整TLAB的参数</h5><p><code>-XX:UseTLAB</code>设置是否开启TLAB空间，默认开启</p>
+<p><code>-XX:TLABWasteTargetPercent</code>设置TLAB空间所占用Eden空间的百分比大小</p>
+<h4 id="堆中常用参数"><a href="#堆中常用参数" class="headerlink" title="堆中常用参数"></a>堆中常用参数</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-XX: +PrintFlagsInitial</td>
+<td>查看所有的参数的默认初始值</td>
+</tr>
+<tr>
+<td>-XX: +PrintFlagFinal</td>
+<td>查看所有的参数的最终值，(可能存在修改，不是初始值)</td>
+</tr>
+<tr>
+<td>-Xms</td>
+<td>初始堆空间内存(默认为物理内存的1/64)</td>
+</tr>
+<tr>
+<td>-Xmx</td>
+<td>最大堆空间内存(默认为物理内存的1/4)</td>
+</tr>
+<tr>
+<td>-Xmn</td>
+<td>设置新生代大小(初始值和最大值)</td>
+</tr>
+<tr>
+<td>-XX:NewRatio</td>
+<td>配置新生代与老年代在堆结构中的占比</td>
+</tr>
+<tr>
+<td>-XX:SurvivorRatio</td>
+<td>设置新生代中Eden和S0/S1空间的比例</td>
+</tr>
+<tr>
+<td>-XX:MaxTenuringThreshold</td>
+<td>设置新生代垃圾的最大年龄</td>
+</tr>
+<tr>
+<td>-XX:+PrintGCDetails</td>
+<td>输出详细的GC日志    打印GC简要信息1.-XX:+PrintGC 2.-verbose:gc</td>
+</tr>
+<tr>
+<td>-XX:HandlePromotionFailure</td>
+<td>是否设置空间分配担保</td>
+</tr>
+</tbody></table>
 <h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>本地接口的作用是融合不同的编程语言为Java所用，它的初衷是融合C/C++程序</p>
 <p>为什么要使用本地方法接口</p>
 <ul>
@@ -1536,7 +1618,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">45.6k</span>
+                        class="white-color">47.1k</span>
             
             
             
