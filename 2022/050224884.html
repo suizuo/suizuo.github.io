@@ -433,21 +433,21 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-27
+                    2022-05-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.9k
+                    6.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    21 分
+                    22 分
                 </div>
                 
 
@@ -994,8 +994,63 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <p>service指令管理的服务在/etc/init.d查看</p>
 </blockquote>
 <ul>
-<li>service 服务名 [start|stop|restart|reload|status]</li>
+<li>service 服务名 [start|stop|restart|reload|status]      管理服务</li>
+<li>setup            查看全部服务</li>
+<li>ls -l  /etc/init.d   看到service指令管理的服务</li>
+<li>chkconfig         可以给服务的各个运行级别设置自启动/自关闭<ul>
+<li>chkconfig –list   [|grep xxx]      查看服务</li>
+<li>chkconfig 服务名 –list</li>
+<li>chkingconfig –level 5 服务名 on/off</li>
 </ul>
+</li>
+<li>systemctl [start|stop|restart|reload|status] 服务名<ul>
+<li>systemctl指令管理的服务在/usr/lib/systemd/system    查看</li>
+<li>systemctl list-unit-files [|grep 服务名]   查看开机启动状态</li>
+<li>systemctl enable 服务名    设置服务开机启动</li>
+<li>systemctl disable 服务名     关闭服务开机启动</li>
+<li>systemctl is-enabled 服务名   查询某个服务是否是自启动的</li>
+<li>这种方式只是临时生效，重启系统后失效，如果想要永久的话，得用enable或disable</li>
+</ul>
+</li>
+</ul>
+<h4 id="服务的运行级别"><a href="#服务的运行级别" class="headerlink" title="服务的运行级别"></a>服务的运行级别</h4><p>linux系统有7种运行级别(runlevel)，常用的级别是3和5</p>
+<table>
+<thead>
+<tr>
+<th>运行级别</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0级</td>
+<td>系统停机状态，系统默认的运行级别不能设为0，否则不能正常启动</td>
+</tr>
+<tr>
+<td>1级</td>
+<td>单用户工作状态，root权限，用于系统维护，禁止远程登录</td>
+</tr>
+<tr>
+<td>2级</td>
+<td>多用户状态(没有NFS),不支持网络</td>
+</tr>
+<tr>
+<td>3级</td>
+<td>完全的多用户状态(有NFS)，登陆后进入控制台命令行模式</td>
+</tr>
+<tr>
+<td>4级</td>
+<td>系统未使用，保留</td>
+</tr>
+<tr>
+<td>5级</td>
+<td>x11控制台，登陆后进入图像GUI模式</td>
+</tr>
+<tr>
+<td>6级</td>
+<td>系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动</td>
+</tr>
+</tbody></table>
+<h4 id="linux开机流程"><a href="#linux开机流程" class="headerlink" title="linux开机流程"></a>linux开机流程</h4><p>开机=》BIOS=》/boot=》system进程1=》运行级别=》运行级对应的服务</p>
 
                 
             </div>
@@ -1560,7 +1615,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">47.1k</span>
+                        class="white-color">48.5k</span>
             
             
             

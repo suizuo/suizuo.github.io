@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-28
+                    2022-05-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10.5k
+                    11.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    37 分
+                    40 分
                 </div>
                 
 
@@ -1046,6 +1046,51 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <td>是否设置空间分配担保</td>
 </tr>
 </tbody></table>
+<h4 id="XX-HandlePromotionFailure"><a href="#XX-HandlePromotionFailure" class="headerlink" title="-XX:HandlePromotionFailure"></a>-XX:HandlePromotionFailure</h4><p>在发生minor GC之前，虚拟机会检查老年代最大可用连续空间，是否大于新生代所有对象的总空间</p>
+<ul>
+<li>如果大于，则此次minor GC是安全的</li>
+<li>如果小于，则虚拟机会查看-XX:HandlePromotionFailure设置值是否允许担保失败<ul>
+<li>如果HandlePromotionFailure=true，那么会继续检查老年代最大可用连续空间是否大于历次晋升到老年代的对象的平均大小<ul>
+<li>如果大于，则会尝试一次Minor GC，但这次Minor GC依然是有风险的</li>
+<li>如果小于，则改为进行一次full GC</li>
+</ul>
+</li>
+<li>如果HandlePromotionFailure = false，则改为进行一次full GC</li>
+</ul>
+</li>
+</ul>
+<p>在JDK6 Update24之后，HandlePromotionFailure参数不会再影响到虚拟机的空间分配担保策略，观察OpenJDK中的源码变化，虽然源码中还定义了HandlePromotionFailure参数，但是在源码中以及不会使用它，</p>
+<p>改动为:<code>只要老年代的连续空间大于新生代对象总大小或者历次晋升的平均大小就会进行Minor GC，否则将进行Full GC</code></p>
+<h4 id="堆是分配对象存储唯一的选择么"><a href="#堆是分配对象存储唯一的选择么" class="headerlink" title="堆是分配对象存储唯一的选择么"></a>堆是分配对象存储唯一的选择么</h4><p>不一定，有一种特殊情况，经过<code>逃逸分析</code>之后发现，一个对象没有逃逸出方法的话，那么就可能被优化成栈上分配，这样就无需在堆上分配内存，也无需进行垃圾回收了，这也是最常见的堆外存储技术 </p>
+<p>在基于OpenJDK深度定制的TaoBaoVM，其中创新的GCIH(GC invisible heap)技术实现off-heap，将生命周期较长的Java对象从heap中移至heap外，并且GC不能管理GCIH内部的java对象，以次达到降低GC的回收频率和提示GC的回收效率的目的</p>
+<h4 id="逃逸分析"><a href="#逃逸分析" class="headerlink" title="逃逸分析"></a>逃逸分析</h4><p>如何将堆上的对象分配到栈，需要使用逃逸分析手段</p>
+<ul>
+<li>这是一种可以有效减少Java程序中同步负载和内存堆分配压力的跨函数全局数据流分析算法</li>
+<li>通过逃逸分析，JavaHotspot编译器能够分析出一个新的对象的引用的适用范围从而决定是否要将这个对象分配到栈上</li>
+<li>逃逸分析的基本行为就是分析对象动态作用域<ul>
+<li>当一个对象在方法中被定义后，对象只在方法内部使用，则认为没有发生逃逸</li>
+<li>当一个对象在方法中被定义后，他被外部方法所引用，则认为发生逃逸，例如作为参数传递到其他地方中</li>
+</ul>
+</li>
+</ul>
+<p><em><img src="/2022/041828161/1653755434584.png" class title="没有发生逃逸"></em></p>
+<p><em><img src="/2022/041828161/1653755484823.png" class title="发生逃逸"></em></p>
+<blockquote>
+<p>如何快速判断是否发生了逃逸，就看new的对象的<code>实体</code>是否有可能在方法外被调用</p>
+</blockquote>
+<p>在JDK7及之后，HotSpot中默认就已经开启了逃逸分析。</p>
+<p>如果使用的是较早的版本，开发人员可以通过:</p>
+<ul>
+<li>“-XX: +DoEscapeSnalysis”显式开启逃逸分析</li>
+<li>通过选项”-XX: +PrintEscapeAnalysis”查看逃逸分析的筛选结果</li>
+</ul>
+<p>结论：开发中能使用局部变量的，就不要在方法外定义</p>
+<p>通过逃逸分析，编译器可以对代码做如下优化:</p>
+<ol>
+<li>栈上分配。将堆分配转化为栈分配，如果一个对象在子程序中被分配，要使指向该对象的指针永远不会逃逸，对象可能使栈分配的候选，而不是堆分配。</li>
+<li>同步省略。如果一个对象被发现只能从一个线程被访问到，那么对于这个对象的操作可以不考虑同步</li>
+<li>分离对象或标量替换。有的对象可能不需要作为一个连续的内存结构存在也可以被访问到，那么对象的部分(或全部)可以不存储在内存，而是存储在CPU寄存器中</li>
+</ol>
 <h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>本地接口的作用是融合不同的编程语言为Java所用，它的初衷是融合C/C++程序</p>
 <p>为什么要使用本地方法接口</p>
 <ul>
@@ -1618,7 +1663,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">47.1k</span>
+                        class="white-color">48.5k</span>
             
             
             
