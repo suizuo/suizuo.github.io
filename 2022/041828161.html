@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-29
+                    2022-05-31
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    11.5k
+                    12.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    40 分
+                    42 分
                 </div>
                 
 
@@ -1063,6 +1063,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <p>改动为:<code>只要老年代的连续空间大于新生代对象总大小或者历次晋升的平均大小就会进行Minor GC，否则将进行Full GC</code></p>
 <h4 id="堆是分配对象存储唯一的选择么"><a href="#堆是分配对象存储唯一的选择么" class="headerlink" title="堆是分配对象存储唯一的选择么"></a>堆是分配对象存储唯一的选择么</h4><p>不一定，有一种特殊情况，经过<code>逃逸分析</code>之后发现，一个对象没有逃逸出方法的话，那么就可能被优化成栈上分配，这样就无需在堆上分配内存，也无需进行垃圾回收了，这也是最常见的堆外存储技术 </p>
 <p>在基于OpenJDK深度定制的TaoBaoVM，其中创新的GCIH(GC invisible heap)技术实现off-heap，将生命周期较长的Java对象从heap中移至heap外，并且GC不能管理GCIH内部的java对象，以次达到降低GC的回收频率和提示GC的回收效率的目的</p>
+<p><code>看本章末尾</code></p>
 <h4 id="逃逸分析"><a href="#逃逸分析" class="headerlink" title="逃逸分析"></a>逃逸分析</h4><p>如何将堆上的对象分配到栈，需要使用逃逸分析手段</p>
 <ul>
 <li>这是一种可以有效减少Java程序中同步负载和内存堆分配压力的跨函数全局数据流分析算法</li>
@@ -1085,12 +1086,46 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <li>通过选项”-XX: +PrintEscapeAnalysis”查看逃逸分析的筛选结果</li>
 </ul>
 <p>结论：开发中能使用局部变量的，就不要在方法外定义</p>
-<p>通过逃逸分析，编译器可以对代码做如下优化:</p>
+<h4 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h4><p>通过逃逸分析，编译器可以对代码做如下优化:</p>
 <ol>
-<li>栈上分配。将堆分配转化为栈分配，如果一个对象在子程序中被分配，要使指向该对象的指针永远不会逃逸，对象可能使栈分配的候选，而不是堆分配。</li>
-<li>同步省略。如果一个对象被发现只能从一个线程被访问到，那么对于这个对象的操作可以不考虑同步</li>
-<li>分离对象或标量替换。有的对象可能不需要作为一个连续的内存结构存在也可以被访问到，那么对象的部分(或全部)可以不存储在内存，而是存储在CPU寄存器中</li>
+<li><p>栈上分配。将堆分配转化为栈分配，如果一个对象在子程序中被分配，要使指向该对象的指针永远不会逃逸，对象可能使栈分配的候选，而不是堆分配。</p>
+</li>
+<li><p>同步省略。如果一个对象被发现只能从一个线程被访问到，那么对于这个对象的操作可以不考虑同步</p>
+<ol>
+<li><p>线程同步的代价是相当高的，同步的后果是降低并发性和性能，在动态编译同步块的时候，JIT编译器可以通过借助逃逸分析来判断<code>同步块使用的锁对象是否只能被一个线程访问而没有被发布到其他线程</code>，如果没有，那么JIT就会取消掉对这部分代码的同步，可以提高并发性和性能，这个取消同步的过程就叫同步省略，也叫锁清除</p>
+<p> <em><img src="/2022/041828161/1653921191877.png" class title="同步省略"></em></p>
+</li>
 </ol>
+</li>
+<li><p>分离对象或标量替换。有的对象可能不需要作为一个连续的内存结构存在也可以被访问到，那么对象的部分(或全部)可以不存储在内存，而是存储在CPU寄存器中</p>
+<ol>
+<li><p><code>标量</code>是指一个无法再分解成更小数据的数据，Java中的原始数据类型就是标量</p>
+</li>
+<li><p>相对的，那些还可以分解的数据叫做聚合量，Java中的对象就是聚合量，因此可以分解成其他的标量和聚合量</p>
+</li>
+<li><p>在JIT阶段，如果经过逃逸分析，发现一个对象不会被外界访问的话，那么，经过JIT优化，就会把这个对象拆解成若干个其中包含若干个成员变量来替换，这个过程就叫做标量替换</p>
+<p> <em><img src="/2022/041828161/1653922903724.png" class></em></p>
+<p> <em><img src="/2022/041828161/1653923350499.png" class></em></p>
+</li>
+<li><p>标量替换参数设置 ：<code>-XX:+EliminateAllocations</code>开启了标量替换(默认打开)，允许将对象打散分配在栈上</p>
+</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>标量替换可以视为栈上分配的一种特例</p>
+</blockquote>
+<p>但是，逃逸分析技术并不成熟，在HotSpot虚拟机中并未采用逃逸分析，所以说，<code>对象实例都是分配到堆上</code>，但是会发生标量替换，被打散后的标量作为的局部变量储存在栈中。</p>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><h4 id="堆，栈，方法区的交互关系"><a href="#堆，栈，方法区的交互关系" class="headerlink" title="堆，栈，方法区的交互关系"></a>堆，栈，方法区的交互关系</h4><p><em><img src="/2022/041828161/1653925516615.png" class title="交互关系"></em></p>
+<p><em><img src="/2022/041828161/1653925593009.png" class title="交互关系2"></em></p>
+<h4 id="什么是方法区"><a href="#什么是方法区" class="headerlink" title="什么是方法区"></a>什么是方法区</h4><p>《Java虚拟机规范》中提到，尽管所有的方法区在逻辑上是属于堆的一部分，但一些简单的实现可能不会去选择垃圾收集或者进行压缩，但对于hotspot虚拟机来说，方法区有一个别名叫做Non-Heap(非堆)，目的就是和堆分开</p>
+<ul>
+<li>方法区与堆一样，是各个线程共享的内存区域</li>
+<li>方法区在JVM启动的时候被创建，并且它的实际物理内存空间中和Java堆区一样都可以是不连续的</li>
+<li>方法区的大小，就跟堆空间一样，可以固定大小或者可扩展</li>
+<li>方法区的大小决定了系统可以保存多少个类，如果系统定义了太多的类，导致方法区溢出，虚拟机同样会报内存溢出错误Java.lang.OutOfMemoryError:Permen space(jdk7及之前)或者Java.lang.OutOfMemoryError:Metaspace(jdk8及之后)</li>
+<li>关闭Jvm就会释放这个区域的内存  </li>
+</ul>
 <h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>本地接口的作用是融合不同的编程语言为Java所用，它的初衷是融合C/C++程序</p>
 <p>为什么要使用本地方法接口</p>
 <ul>
@@ -1663,7 +1698,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">49.3k</span>
+                        class="white-color">50.1k</span>
             
             
             
