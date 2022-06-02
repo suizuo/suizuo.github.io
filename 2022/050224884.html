@@ -433,21 +433,21 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-30
+                    2022-05-31
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.9k
+                    7.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    25 分
+                    27 分
                 </div>
                 
 
@@ -1097,6 +1097,96 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <li>输入脚本的绝对路径或相对路径(需要+x权限)</li>
 <li>sh+脚本(无需+x权限)</li>
 </ol>
+<h4 id="shell变量"><a href="#shell变量" class="headerlink" title="shell变量"></a>shell变量</h4><h5 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h5><ul>
+<li>linux shell中的变量分为，系统变量和用户自定义变量</li>
+<li>系统变量:$HOME,$PWD,$SHELL,$USER等等</li>
+<li>显示当前shell中所有变量 set</li>
+</ul>
+<h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><ul>
+<li>定义变量:变量名=值</li>
+<li>撤销变量:unset 变量</li>
+<li>声明静态变量:readonly变量，注意：不能unset</li>
+</ul>
+<h5 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h5><ul>
+<li>变量名称可以由字母,数字，下划线组成，但不能以数字开头，</li>
+<li>等号两侧不能有空格</li>
+<li>变量名称一般习惯大写</li>
+<li>A=`date`,运行里面的命令，并把结果返回给变量A</li>
+<li>A=$(date)等价于A=`date`</li>
+</ul>
+<blockquote>
+<p>shell脚本的多行注释   </p>
+<p>:&lt;&lt;!</p>
+<p> 内容 </p>
+<p>！</p>
+</blockquote>
+<h5 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h5><ul>
+<li>export 变量名=变量值             将shell变量输出为环境变量/全局变量</li>
+<li>source  配置文件                    让修改后的配置信息立即生效   sourse /etc/profile</li>
+<li>echo $变量名                         查询环境变量的值</li>
+</ul>
+<h5 id="位置参数变量"><a href="#位置参数变量" class="headerlink" title="位置参数变量"></a>位置参数变量</h5><p>当我们执行一个shell脚本时，如果希望获取到命令行的参数信息，就可以使用到位置参数变量，如</p>
+<p>./myshell.sh 100 200 这个就是一个执行shell的命令行，可以在myshell脚本中获得参数信息</p>
+<ul>
+<li>$n          n为数字，$0代表命令本身，$1-$9表示第1到第9个参数，第十个及其之上用大括号包含例如${10}</li>
+<li>$*           表示命令行中的所有参数，将所有参数看成一个整体</li>
+<li>$@          也表示命令行中的所有参数，将每个参数分开对待</li>
+<li>$#            代表命令行中的所有参数</li>
+</ul>
+<h5 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h5><p>就是shell设计者预先定义好的变量，可以直接在shell脚本中使用</p>
+<ul>
+<li><p>$$              当前进程的进程号</p>
+</li>
+<li><p>$!               后台运行的最后一个进程的进程号</p>
+</li>
+<li><p>￥?            最后一次执行命令的返回状态，如果这个变量的值为0，证明上一个命令正确执行了，如果这个值非零，证明上一个命令执行错误</p>
+</li>
+</ul>
+<h5 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h5><ul>
+<li>$((运算式))或$[运算式]或者expr m + n</li>
+<li>注意expr运算符间要有空格，如果希望将expr的运算结果赋给某个变量，需要将expr表达式用反引号``引起来,他的乘法是\*,即星号之前需要转义</li>
+</ul>
+<h5 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h5><ul>
+<li><p>if [ condition ]   then 如果为true要执行什么  else 不存在要执行什么   fi 结束   注意condition前后需要有空格，非空返回true，</p>
+</li>
+<li><p>if [ 条件判断式 ]</p>
+<p>  then</p>
+<p>  代码</p>
+<p>  elif  [ 条件判断式 ]</p>
+<p>  代码</p>
+<p>  then</p>
+<p>  代码</p>
+<p>  fi</p>
+</li>
+</ul>
+<p>常用判断条件</p>
+<ul>
+<li>字符串比较<ul>
+<li>=</li>
+</ul>
+</li>
+<li>两个整数的比较<ul>
+<li>-lt小于</li>
+<li>-le小于等于</li>
+<li>-eq等于</li>
+<li>-gt大于</li>
+<li>-ge大于等于</li>
+<li>ne不等于</li>
+</ul>
+</li>
+<li>按照文件权限进行判断<ul>
+<li>-r有读的权限</li>
+<li>-w有写的权限</li>
+<li>-x有执行的权限</li>
+</ul>
+</li>
+<li>按照文件类型进行判断<ul>
+<li>-f文件存在并且是一个常规的文件</li>
+<li>-e文件存在</li>
+<li>-d文件存在并是一个目录</li>
+</ul>
+</li>
+</ul>
 
                 
             </div>
@@ -1661,7 +1751,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">50.1k</span>
+                        class="white-color">52k</span>
             
             
             

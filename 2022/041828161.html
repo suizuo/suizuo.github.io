@@ -443,14 +443,14 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    12.2k
+                    12.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    42 分
+                    45 分
                 </div>
                 
 
@@ -1126,7 +1126,34 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <li>方法区的大小决定了系统可以保存多少个类，如果系统定义了太多的类，导致方法区溢出，虚拟机同样会报内存溢出错误Java.lang.OutOfMemoryError:Permen space(jdk7及之前)或者Java.lang.OutOfMemoryError:Metaspace(jdk8及之后)</li>
 <li>关闭Jvm就会释放这个区域的内存  </li>
 </ul>
-<h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>本地接口的作用是融合不同的编程语言为Java所用，它的初衷是融合C/C++程序</p>
+<h4 id="方法区的演进"><a href="#方法区的演进" class="headerlink" title="方法区的演进"></a>方法区的演进</h4><p>在JDK7以前，习惯把方法区称为永久代。JDK8开始，使用元空间取代了永久代</p>
+<p>在本质上，方法区和永久代并不等价，仅是针对hotspot而言，对如何实现方法区，不做统一要求</p>
+<p>现在看来，当年使用永久代，并不是个好方法，导致Java程序更容易OOM</p>
+<p>到了JDK8，放弃了永久代，改用JRockit，j9一样在本地内存中实现元空间</p>
+<ul>
+<li>元空间本质与永久代类似，都是对JVM规范中方法区的实现，不过元空间与永久代最大的区别在于，<code>元空间不在虚拟机设置的内存中，而是使用了本地内存</code></li>
+</ul>
+<h4 id="设置方法区的大小"><a href="#设置方法区的大小" class="headerlink" title="设置方法区的大小"></a>设置方法区的大小</h4><ul>
+<li><p>JDK7以前:</p>
+<ul>
+<li>-XX:PermSize来设置永久代初始分配空间，默认值为20.75M</li>
+<li>-XX:MaxPerSize来设置最大可分配空间。32位机器默认64M，64位机器默认82M。</li>
+</ul>
+</li>
+<li><p>JDK8以后:</p>
+<ul>
+<li>元数据区大小可以使用-XX:MetadpaceSize=xx和-XX:MaxMetaspaceSize=xx替换原有的两个参数，window下初始为21M，最大为-1，没有上限。</li>
+<li>对于JVM来说，将初始值看作一个水平线，一旦触及了此水平线，JVM将会发生FullGC，然后水平线将会被重置，释放的空间不足的话，就会提高该水平线，释放空间过多的话，就会降低该水平线</li>
+<li>所以如果水平线设置过低的话，他的调整情况就会发生很多次，为了避免频繁GC，建议将初始线设置为一个相对较高的值</li>
+</ul>
+<h4 id="一些解决OOM的方法"><a href="#一些解决OOM的方法" class="headerlink" title="一些解决OOM的方法"></a>一些解决OOM的方法</h4><ol>
+<li>要解决OOM异常或heap space异常，一般的手段是首先通过内存映像分析工具(如Eclipse Memory Analyzer)对dump出来的堆转储快照进行分析，重点是确认内存中的对象是否是必要的，也就是要先分清楚到底是出现了内存泄漏还是内存溢出</li>
+<li>如果是内存泄漏，可进一步通过工具查看泄漏对象到GC Roots的引用链。于是就能找到泄漏对象是通过怎样的路径与GC roots相关联并导致垃圾收集器无法自动回收它们的。掌握了泄漏对象的类型信息，以及GC引用链的信息，就可以比较精准的定位出泄漏代码的位置</li>
+<li>如果不存在内存泄漏，换句话说就是内存中的对象确实还必须存活着，那就应当检查虚拟机的堆参数(-xmx,-xms),与机器物理内存对比看是否还可以调大，从代码上检查是否存在某些对象生命周期过长，持有状态时间过长的情况，尝试减少程序运行期的内存消耗。</li>
+</ol>
+</li>
+</ul>
+<h4 id="方法区内部结构"><a href="#方法区内部结构" class="headerlink" title="方法区内部结构"></a>方法区内部结构</h4><h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>本地接口的作用是融合不同的编程语言为Java所用，它的初衷是融合C/C++程序</p>
 <p>为什么要使用本地方法接口</p>
 <ul>
 <li>与java环境外交互     –有时Java应用需要与java外面的环境交互–</li>
@@ -1698,7 +1725,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">50.1k</span>
+                        class="white-color">52k</span>
             
             
             
