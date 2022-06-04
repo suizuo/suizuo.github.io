@@ -433,21 +433,21 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-06-03
+                    2022-06-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.9k
+                    8.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    29 分
+                    30 分
                 </div>
                 
 
@@ -637,8 +637,8 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 </li>
 <li>less           分屏查看文件内容，与more类似却更加强大，他是懒加载模式<ul>
 <li>空格键(space)       向下翻一页</li>
-<li>下键(pagedown)   向下翻一页</li>
-<li>上建(pageup)       向上翻一页</li>
+<li>下键(pagedown)   向下翻一行</li>
+<li>上建(pageup)       向上翻一行</li>
 <li>/                        向下搜索字串功能  n向下查找；N向上查找</li>
 <li>？                      向上搜索字串功能  n向上查找；N向下查找</li>
 <li>q                       立刻离开</li>
@@ -665,7 +665,18 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <li>cal +选项          查看日历，不加选项默认本月,加了就是参数当年的日历</li>
 </ul>
 <h4 id="搜索查找类"><a href="#搜索查找类" class="headerlink" title="搜索查找类"></a>搜索查找类</h4><ul>
-<li>find                 从指定目录<code>向下递归遍历</code>其各个子目录，将满足条件的文件或目录显示在终端，              语法:find 搜索范围 选项          选项:  -name&lt;查询方式&gt;  按照指定的文件名查找模式查找文件，             -user&lt;用户名&gt;    查找属于指定用户名的所有文件   -size&lt;文件大小&gt; 按照指定的文件大小查找文件</li>
+<li><p>find                 从指定目录<code>向下递归遍历</code>其各个子目录，将满足条件的文件或目录显示在终端，              语法:find 搜索范围 选项          选项:  -name&lt;查询方式&gt;  按照指定的文件名查找模式查找文件，             -user&lt;用户名&gt;    查找属于指定用户名的所有文件   -size&lt;文件大小&gt; 按照指定的文件大小查找文件</p>
+<ul>
+<li><p>-amin n : 在过去 n 分钟内被读取过</p>
+<p>  -anewer file : 比文件 file 更晚被读取过的文件</p>
+<p>  -atime n : 在过去 n 天内被读取过的文件</p>
+<p>  -cmin n : 在过去 n 分钟内被修改过</p>
+<p>  -cnewer file :比文件 file 更新的文件</p>
+<p>  -ctime n : 在过去 n 天内创建的文件</p>
+<p>  -mtime n : 在过去 n 天内修改过的文件</p>
+</li>
+</ul>
+</li>
 </ul>
 <p><em><img src="/2022/050224884/1651736305314.png" class title="案例"></em></p>
 <blockquote>
@@ -677,6 +688,11 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <li><p>which             可以查看某个指令在哪个目录下，比如 ls 指令在哪个目录，which ls</p>
 </li>
 <li><p>grep和管道符”|”     过滤查找，管道符”|”表示<code>将前一个命令的处理结果输出传递给后面的命令</code>处理，基本语法: grep [选项] 查找内容，源文件   -n显示匹配行及行号，-i忽略字母大小写</p>
+</li>
+<li><p>xargs             能够捕获一个命令的输出，然后传递给另外一个命令</p>
+<pre class="line-numbers language-shell"><code class="language-shell">find /sbin -perm +700 |ls -l       #这个命令是错误的
+find /sbin -perm +700 |xargs ls -l   #这样才是正确的
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <h4 id="压缩和解压类"><a href="#压缩和解压类" class="headerlink" title="压缩和解压类"></a>压缩和解压类</h4><ul>
@@ -690,6 +706,35 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 <li>-x  解包.tar文件</li>
 </ul>
 </li>
+</ul>
+<h4 id="mysql相关"><a href="#mysql相关" class="headerlink" title="mysql相关"></a>mysql相关</h4><ul>
+<li><p>在连接情况下</p>
+<ul>
+<li><p>mysql&gt; show variables like ‘%dir%’; </p>
+<pre class="line-numbers language-bash"><code class="language-bash">mysql<span class="token operator">></span> show variables like <span class="token string">'%dir%'</span><span class="token punctuation">;</span>
++-----------------------------------------+-----------------------------------+
+<span class="token operator">|</span> Variable_name                           <span class="token operator">|</span> Value                             <span class="token operator">|</span>
++-----------------------------------------+-----------------------------------+
+<span class="token operator">|</span> basedir                                 <span class="token operator">|</span> /www/server/mysql                 <span class="token operator">|</span>
+<span class="token operator">|</span> binlog_direct_non_transactional_updates <span class="token operator">|</span> OFF                               <span class="token operator">|</span>
+<span class="token operator">|</span> character_sets_dir                      <span class="token operator">|</span> /www/server/mysql/share/charsets/ <span class="token operator">|</span>
+<span class="token operator">|</span> datadir                                 <span class="token operator">|</span> /www/server/data/                 <span class="token operator">|</span>
+<span class="token operator">|</span> innodb_data_home_dir                    <span class="token operator">|</span> /www/server/data                  <span class="token operator">|</span>
+<span class="token operator">|</span> innodb_log_group_home_dir               <span class="token operator">|</span> /www/server/data                  <span class="token operator">|</span>
+<span class="token operator">|</span> innodb_max_dirty_pages_pct              <span class="token operator">|</span> 90                                <span class="token operator">|</span>
+<span class="token operator">|</span> lc_messages_dir                         <span class="token operator">|</span> /www/server/mysql/share/          <span class="token operator">|</span>
+<span class="token operator">|</span> plugin_dir                              <span class="token operator">|</span> /www/server/mysql/lib/plugin/     <span class="token operator">|</span>
+<span class="token operator">|</span> slave_load_tmpdir                       <span class="token operator">|</span> /tmp                              <span class="token operator">|</span>
+<span class="token operator">|</span> tmpdir                                  <span class="token operator">|</span> /tmp                              <span class="token operator">|</span>
++-----------------------------------------+-----------------------------------+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  其中数据库目录在/www/server/data/</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="shell相关"><a href="#shell相关" class="headerlink" title="shell相关"></a>shell相关</h4><ul>
+<li>exec     后跟指令表示调用其他的指令，常用于shell中</li>
 </ul>
 <h3 id="组管理和权限管理"><a href="#组管理和权限管理" class="headerlink" title="组管理和权限管理"></a>组管理和权限管理</h3><p>在linux中每个用户必须属于一个组，不能独立于组外，在linux中每个<code>文件有所有者，所在组，其他组</code>的概念</p>
 <h4 id="文件-目录所有者"><a href="#文件-目录所有者" class="headerlink" title="文件/目录所有者"></a>文件/目录所有者</h4><p>一般为文件的创建者，谁创建了该文件，就成为该文件的所有者</p>
@@ -1254,7 +1299,17 @@ done
 
 #从1加到100
 SUM=0
-for((i=1;i<=100;i++)) do sum="$[$SUM+$i]" done echo "sum="$SUM"" #[root@xueshuai shelltest]# . testfor2.sh #sum="5050" <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></=100;i++))></code></pre>
+for((i=1;i<=100;i++))
+do
+
+        SUM=$[$SUM+$i]
+done
+echo "SUM=$SUM"
+
+
+#[root@xueshuai shellTest]# ./testFor2.sh 
+#SUM=5050
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">while</span> <span class="token punctuation">[</span> 条件判断式 <span class="token punctuation">]</span>
 <span class="token keyword">do</span>
 程序
@@ -1350,6 +1405,82 @@ getSum $n1 $n2
 #请输入第二个数n2=2
 #和为=3
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><p>字符串可以用单引号，也可以用双引号，也可以不用引号</p>
+<p>单引号里面不存在变量，任何字符都会原样输出。转义字符也不可以</p>
+<p>双引号里可以有变量，可以出现转义字符</p>
+<p>例如:</p>
+<pre class="line-numbers language-shell"><code class="language-shell">your_name="xueshuai"
+str="you are \"$your_name\"! \n"
+#-e开启转义
+echo -e $str
+
+#you are "xueshuai"! 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h5><pre class="line-numbers language-shell"><code class="language-shell">$str1 $str2          （中间加空格）即可
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="获取字符串长度"><a href="#获取字符串长度" class="headerlink" title="获取字符串长度"></a>获取字符串长度</h5><blockquote>
+</blockquote>
+<h5 id="提取字符串"><a href="#提取字符串" class="headerlink" title="提取字符串"></a>提取字符串</h5><ul>
+<li>${str:1:4}              从第二个字符开始截取4个字符</li>
+</ul>
+<h5 id="查找子字符串"><a href="#查找子字符串" class="headerlink" title="查找子字符串"></a>查找子字符串</h5><p>查找字符 i 或 o 的位置(哪个字母先出现就计算哪个)：</p>
+<pre class="line-numbers language-shell"><code class="language-shell">string="runoob is a great site"
+#这里是反引号
+echo `expr index "$string" io`
+# 输出 4
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>bash支持一维数组，不支持多维数组，并没有限制数组的大小</p>
+<h5 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h5><ul>
+<li><p>数组名=(值1 值2 … 值n)</p>
+</li>
+<li><p>数组名=(</p>
+<p>  值1</p>
+<p>  值2</p>
+<p>  …</p>
+<p>  )</p>
+</li>
+<li><p>数组名[0]=值1</p>
+</li>
+</ul>
+<h5 id="读取数组"><a href="#读取数组" class="headerlink" title="读取数组"></a>读取数组</h5><ul>
+<li>${数组名[下标]}          下标为@可以获取所有元素</li>
+</ul>
+<h5 id="获取数组的长度"><a href="#获取数组的长度" class="headerlink" title="获取数组的长度"></a>获取数组的长度</h5><pre class="line-numbers language-shell"><code class="language-shell"># 取得数组元素的个数
+length=${#array_name[@]}
+# 或者
+length=${#array_name[*]}
+# 取得数组单个元素的长度
+lengthn=${#array_name[n]}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="综合实例"><a href="#综合实例" class="headerlink" title="综合实例"></a>综合实例</h4><p>要求，在每天凌晨两点半备份数据库文件</p>
+<pre class="line-numbers language-shell"><code class="language-shell">#!/bin/bash
+#备份目录
+BACKUP=/www/xueshuai/db
+#获取当前时间
+DATETIME=$(date +%Y-%m-%d_%H%M%S)
+echo $DATETIME
+#文件地址
+HOST=localhost
+#数据库用户名
+DB_USER=root
+#数据库密码
+DB_PW=123456
+#要备份的数据库名
+DATABASE=guli
+#创建备份目录，如果不存在就创建，存在就使用,${BACKUP}加大括号只是为了和/分开
+[ ! -d "${BACKUP}/${DATETIME}" ] && mkdir -p "${BACKUP}/${DATETIME}"
+#备份数据库
+#                                                                       压缩  覆盖
+mysqldump -u${DB_USER} -p${DB_PW} --host=${HOST} -q -R --databases ${DATABASE} | gzip > ${BACKUP}/${DATETIME}/$DATETIME.sql.gz
+#将文件处理成tar.gz形式
+cd ${BACKUP}
+tar -zcvf $DATETIME.tar.gz ${DATETIME}
+#删除打包前文件
+rm -rf ${BACKUP}/${DATETIME}
+#删除十天前的备份文件                   调用其他的命令  \是格式要求
+find ${BACKUP} -atime +10 -name "*.tar.gz" -exec rm -rf {} \;
+echo "备份数据库${DATABASE} 成功"
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -1914,7 +2045,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">52.5k</span>
+                        class="white-color">52.8k</span>
             
             
             
