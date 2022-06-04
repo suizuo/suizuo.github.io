@@ -440,14 +440,14 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    8.2k
+                    9.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    30 分
+                    33 分
                 </div>
                 
 
@@ -687,7 +687,7 @@ NAT模式NAT是网络地址转换，相当于给你虚拟机虚拟一个ip，然
 </li>
 <li><p>which             可以查看某个指令在哪个目录下，比如 ls 指令在哪个目录，which ls</p>
 </li>
-<li><p>grep和管道符”|”     过滤查找，管道符”|”表示<code>将前一个命令的处理结果输出传递给后面的命令</code>处理，基本语法: grep [选项] 查找内容，源文件   -n显示匹配行及行号，-i忽略字母大小写</p>
+<li><p>grep和管道符”|”     过滤查找，管道符”|”表示<code>将前一个命令的处理结果输出传递给后面的命令</code>处理，基本语法: grep [选项] 查找内容，源文件   -n显示匹配行及行号，-i忽略字母大小写 -v反向匹配(也就是不匹配有的)</p>
 </li>
 <li><p>xargs             能够捕获一个命令的输出，然后传递给另外一个命令</p>
 <pre class="line-numbers language-shell"><code class="language-shell">find /sbin -perm +700 |ls -l       #这个命令是错误的
@@ -1418,7 +1418,7 @@ echo -e $str
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h5><pre class="line-numbers language-shell"><code class="language-shell">$str1 $str2          （中间加空格）即可
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h5 id="获取字符串长度"><a href="#获取字符串长度" class="headerlink" title="获取字符串长度"></a>获取字符串长度</h5><pre class="line-numbers language-shell"><code class="language-shell">#${\#str}                 变量为数组时，等价于${\#str[0]}
+<h5 id="获取字符串长度"><a href="#获取字符串长度" class="headerlink" title="获取字符串长度"></a>获取字符串长度</h5><pre class="line-numbers language-shell"><code class="language-shell">#           ${#str}                 变量为数组时，等价于${#str[0]}
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h5 id="提取字符串"><a href="#提取字符串" class="headerlink" title="提取字符串"></a>提取字符串</h5><ul>
 <li>${str:1:4}              从第二个字符开始截取4个字符</li>
@@ -1481,6 +1481,168 @@ rm -rf ${BACKUP}/${DATETIME}
 find ${BACKUP} -atime +10 -name "*.tar.gz" -exec rm -rf {} \;
 echo "备份数据库${DATABASE} 成功"
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="日志管理"><a href="#日志管理" class="headerlink" title="日志管理"></a>日志管理</h3><h4 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h4><ol>
+<li>日志文件是重要的系统信息文件，其中记录了许多重要的系统事件，包括用户的登录信息，系统登录信息，系统安全信息，邮件相关信息，各种服务器相关信息</li>
+<li>日志对安全来说很重要，，可以通过日志来检查错误发生的原因，或者受到攻击时攻击者留下的痕迹。</li>
+<li>绝大部分日志保存在/var/log目录、</li>
+</ol>
+<h4 id="常用日志"><a href="#常用日志" class="headerlink" title="常用日志"></a>常用日志</h4><p>在/var/log下:</p>
+<table>
+<thead>
+<tr>
+<th>日志文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boot.log</td>
+<td>系统启动日志</td>
+</tr>
+<tr>
+<td>cron</td>
+<td>记录与系统定时任务相关的日志</td>
+</tr>
+<tr>
+<td>cpus/</td>
+<td>记录打印信息的日志</td>
+</tr>
+<tr>
+<td>dmesg</td>
+<td>记录了系统在开机时内核自检的信息，可以直接使用dmesg命令直接查看</td>
+</tr>
+<tr>
+<td>btmp</td>
+<td>记录登陆错误的日志，是二进制文件，不能直接vi查看，要使用lastb命令查看，</td>
+</tr>
+<tr>
+<td>lastlog</td>
+<td>记录所有用户最后一次登录时间的日志，也是二进制文件</td>
+</tr>
+<tr>
+<td>mailog</td>
+<td>记录邮件信息的日志</td>
+</tr>
+<tr>
+<td>message</td>
+<td>记录系统重要消息的日志，这个日志文件中会记录Linux系统的绝大多数信息，如果系统出现问题，首先就该检查此处</td>
+</tr>
+<tr>
+<td>secure</td>
+<td>记录验证和授权方面的信息，只要涉及账户和密码的程序都会记录，如系统的登录，ssh的登录，su切换用户，sudo授权，甚至添加用户和修改用户密码都会记录</td>
+</tr>
+<tr>
+<td>wtmp</td>
+<td>永久记录所有用户的登录、注销信息，同时记录系统的启动、重启、关机事件、是二进制文件</td>
+</tr>
+<tr>
+<td>ulmp</td>
+<td>记录当前已经登陆的用户的信息，会随着用户的登录和注销不断变化，只记录当前登录用户的信息，不能使用vi查看 ，而要使用w，who，users等命令查看。</td>
+</tr>
+</tbody></table>
+<h4 id="日志管理服务rsyslogd"><a href="#日志管理服务rsyslogd" class="headerlink" title="日志管理服务rsyslogd"></a>日志管理服务rsyslogd</h4><ul>
+<li>查询linux中的rsyslogd服务是否启动          ps aux | grep “rsyslog” | grep -v “grep”</li>
+<li>查询rsyslogd服务的自启动状态                 systemctl list-unit-files | grep rsyslog</li>
+</ul>
+<p><strong>配置文件相关的信息说明</strong></p>
+<p>编辑文件时的格式为: * . * 存放日志文件<br>其中第一个 * 代表日志类型，第二个 * 代表日志级别</p>
+<p>1.日志类型分为:</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>auth</td>
+<td>pam产生的日志</td>
+</tr>
+<tr>
+<td>authpriv</td>
+<td>ssh、ftp等登录信息的验证信息</td>
+</tr>
+<tr>
+<td>corn</td>
+<td>时间任务相关</td>
+</tr>
+<tr>
+<td>kern</td>
+<td>内核</td>
+</tr>
+<tr>
+<td>lpr</td>
+<td>打印</td>
+</tr>
+<tr>
+<td>mail</td>
+<td>邮件</td>
+</tr>
+<tr>
+<td>mark(syslog)-rsyslog</td>
+<td>服务内部的信息，时间标识</td>
+</tr>
+<tr>
+<td>news</td>
+<td>新闻组</td>
+</tr>
+<tr>
+<td>user</td>
+<td>用户程序产生的相关信息</td>
+</tr>
+<tr>
+<td>uucp</td>
+<td>unix to nuix copy主机之间相关的通信</td>
+</tr>
+<tr>
+<td>local 1-7</td>
+<td>自定义的日志设备</td>
+</tr>
+</tbody></table>
+<p>2.日志级别分为：</p>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>debug</td>
+<td>有调试信息的，日志通信最多</td>
+</tr>
+<tr>
+<td>info</td>
+<td>—般信息日志，最常用</td>
+</tr>
+<tr>
+<td>notice</td>
+<td>最具有重要性的普通条件的信息</td>
+</tr>
+<tr>
+<td>warning</td>
+<td>警告级别</td>
+</tr>
+<tr>
+<td>err</td>
+<td>错误级别，阻止某个功能或者模块不能正常工作的信息</td>
+</tr>
+<tr>
+<td>crit</td>
+<td>严重级别，阻止整个系统或者整个软件不能正常工作的信息</td>
+</tr>
+<tr>
+<td>alert</td>
+<td>需要立刻修改的信息</td>
+</tr>
+<tr>
+<td>emerg</td>
+<td>内核崩溃等重要信息</td>
+</tr>
+<tr>
+<td>none</td>
+<td>什么都不记录</td>
+</tr>
+</tbody></table>
 
                 
             </div>
@@ -2045,7 +2207,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">52.8k</span>
+                        class="white-color">53.7k</span>
             
             
             
