@@ -436,21 +436,21 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-31
+                    2022-06-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    12.9k
+                    13.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    45 分
+                    47 分
                 </div>
                 
 
@@ -627,7 +627,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <li>类的全限定类名一致。</li>
 <li>加载这个类的类加载器相同</li>
 </ul>
-<h3 id="对类加载器的引用"><a href="#对类加载器的引用" class="headerlink" title="对类加载器的引用"></a>对类加载器的引用</h3><p>JVM必须知道一个类是由启动类加载器加载的还是由用户类加载器加载的，如果是前者，那么JVM<code>会将这个类加载器的一个引用作为类信息的一部分保存在方法区</code>，当解析一个类型到另一个类型的引用时，jvm需要保证这两个类型的类加载器是相同的</p>
+<h3 id="对类加载器的引用"><a href="#对类加载器的引用" class="headerlink" title="对类加载器的引用"></a>对类加载器的引用</h3><p>JVM必须知道一个类是由启动类加载器加载的还是由用户类加载器加载的，如果是后者，那么JVM<code>会将这个类加载器的一个引用作为类信息的一部分保存在方法区</code>，当解析一个类型到另一个类型的引用时，jvm需要保证这两个类型的类加载器是相同的</p>
 <h3 id="类的主动使用和被动使用"><a href="#类的主动使用和被动使用" class="headerlink" title="类的主动使用和被动使用"></a>类的主动使用和被动使用</h3><p><em><img src="/2022/041828161/1650733653043.png" class title="类的主动使用和被动使用"></em></p>
 <h2 id="运行时数据区内部结构"><a href="#运行时数据区内部结构" class="headerlink" title="运行时数据区内部结构"></a>运行时数据区内部结构</h2><blockquote>
 <h5 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h5><p>内存是硬盘和cpu的中间仓库和桥梁，承载着操作系统和应用程序的实时运行，java内存布局规定了java在运行过程中内存申请，分配，管理的策略，保证了Jvm的高效稳定运行，不同的jvm对于内存的划分方式和管理机制存在着部分差异。</p>
@@ -1153,7 +1153,37 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 </ol>
 </li>
 </ul>
-<h4 id="方法区内部结构"><a href="#方法区内部结构" class="headerlink" title="方法区内部结构"></a>方法区内部结构</h4><h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>本地接口的作用是融合不同的编程语言为Java所用，它的初衷是融合C/C++程序</p>
+<h4 id="方法区内部结构"><a href="#方法区内部结构" class="headerlink" title="方法区内部结构"></a>方法区内部结构</h4><blockquote>
+<p>方法区用于存储已被虚拟机加载的类型信息，常量，静态变量，即时编译器后的代码缓存等</p>
+</blockquote>
+<h5 id="类型信息"><a href="#类型信息" class="headerlink" title="类型信息"></a>类型信息</h5><p>对每个加载的类型(类class，接口interface，枚举enum，注解annotation)，JVM必须在方法区中存储以下类型信息</p>
+<ol>
+<li>这个类的完整有效名称(全名=包名.类名)</li>
+<li>这个类型直接父类的完整有效名(对于interface或是java.lang.Object,都没有父类)</li>
+<li>这个类型的修饰符(public，abstract，final的某个子类)</li>
+<li>这个类型直接接口的一个有序列表</li>
+</ol>
+<h5 id="方法信息"><a href="#方法信息" class="headerlink" title="方法信息"></a>方法信息</h5><ol>
+<li>方法名称</li>
+<li>方法返回类型</li>
+<li>方法参数的数量和类型</li>
+<li>方法的修饰符(public,private,protected.static,final,synchronized,native,abstract的一个子集)</li>
+<li>（方法的字节码，操作数栈，局部变量表）的大小(abstract和native除外)</li>
+<li>异常表(abstract和native除外)<ol>
+<li>每个异常处理的开始位置，结束位置，代码处理在程序计数器中的偏移地址，被捕获的异常类的常量池索引</li>
+</ol>
+</li>
+</ol>
+<h5 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h5><h6 id="为什么需要常量池"><a href="#为什么需要常量池" class="headerlink" title="为什么需要常量池"></a>为什么需要常量池</h6><p>一个java源文件中的类，接口，编译后产生一个字节码文件，而java中的字节码需要数据支持，通常这种数据会很大以至于不能直接存放到字节码里，换另一种方式，存到常量池，这个字节码包括了指向常量池的引用，在动态链接的时候经常用到运行时常量池。</p>
+<p>常量池可以看作一张表，虚拟机指令根据这张常量表找到要执行的类名，方法名，参数类型，字面量等类型</p>
+<h5 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h5><ul>
+<li>运行时常量池是方法区的一部分</li>
+<li>常量池表是class文件的一部分，用于存放编译期生成的各种字面量和引用，这部分内容将在类加载后存放到方法区的运行时常量池中。</li>
+<li>运行时常量池在加载类和接口到虚拟机后，就会创建对应的运行时常量池，</li>
+<li>JVM为每个已加载的类型都维护一个常量池，池中的数据项像数组一样，通过索引访问</li>
+</ul>
+<h4 id="方法区使用举例"><a href="#方法区使用举例" class="headerlink" title="方法区使用举例"></a>方法区使用举例</h4><p>详情请看宋红康JVMp96</p>
+<h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>本地接口的作用是融合不同的编程语言为Java所用，它的初衷是融合C/C++程序</p>
 <p>为什么要使用本地方法接口</p>
 <ul>
 <li>与java环境外交互     –有时Java应用需要与java外面的环境交互–</li>
@@ -1725,7 +1755,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">53.7k</span>
+                        class="white-color">54.2k</span>
             
             
             
