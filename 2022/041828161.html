@@ -436,7 +436,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-06-05
+                    2022-06-09
                 </div>
                 
 
@@ -821,6 +821,7 @@ JVM的生命周期虚拟机的启动通过引导类加载器(bootstrap class loa
 <li> <code>在JDK1.8版本废弃了永久代，替代的是元空间（MetaSpace），元空间与永久代上类似，都是方法区的实现，他们最大区别是：元空间并不在JVM中，而是使用本地内存。</code> </li>
 </ul>
 <h4 id="为什么移除永久代"><a href="#为什么移除永久代" class="headerlink" title="为什么移除永久代"></a>为什么移除永久代</h4><p>移除永久代原因：为融合HotSpot JVM与JRockit VM（新JVM技术）而做出的改变，因为JRockit没有永久代。<br>有了元空间就不再会出现永久代OOM问题了。</p>
+<p>永久代设置空间大小是很难确定的，如果动态加载类过多，容易产生oom，，另外如果元空间太小，那么会频繁的进行fullGC，而fullGC的成本是非常高的，导致效率降低</p>
 <h4 id="堆空间大小的设置"><a href="#堆空间大小的设置" class="headerlink" title="堆空间大小的设置"></a>堆空间大小的设置</h4><ul>
 <li>堆空间的大小在启动时就创建了，大小也设置好了，可以通过<code>&quot;-Xmx&quot;</code>和<code>&quot;-Xms&quot;</code>来进行设置，不写单位默认字节<ul>
 <li>“-Xms”用于表示堆区的起始内存 等价于-XX:InitialHeapSise</li>
@@ -1755,7 +1756,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">54.6k</span>
+                        class="white-color">55.2k</span>
             
             
             
