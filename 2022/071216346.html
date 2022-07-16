@@ -4,9 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="No fallback instance of type, 过客">
-    <meta name="description" content="使用spring cloud 的fegin进行远程调用时，编译出错，报错信息如下：
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creati">
+    <meta name="keywords" content="跳跃游戏, 过客">
+    <meta name="description" content="题目：
+
+解法1:递归
+class Solution {
+    public boolean canJump(int[] nums) {
+        int len = nums.length;
+        int p = len">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +23,7 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creati">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>No fallback instance of type | 过客</title>
+    <title>跳跃游戏 | 过客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -289,12 +294,12 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creati">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">No fallback instance of type</h1>
+                    <h1 class="description center-align post-title">跳跃游戏</h1>
                 </div>
             </div>
         </div>
@@ -410,8 +415,8 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creati">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/error/">
-                                <span class="chip bg-color">error</span>
+                            <a href="/tags/leetcode/">
+                                <span class="chip bg-color">leetcode</span>
                             </a>
                         
                     </div>
@@ -426,28 +431,28 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creati">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-07
+                    2022-07-12
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-14
+                    2022-07-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    635
+                    151
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 
@@ -462,57 +467,48 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creati">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>使用spring cloud 的fegin进行远程调用时，编译出错，报错信息如下：</p>
-<pre><code>org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name &#39;eduCommentController&#39;: Unsatisfied dependency expressed through field &#39;commentClient&#39;; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;com.xueshuai.eduservice.client.CommentClient&#39;: FactoryBean threw exception on object creation; nested exception is java.lang.IllegalStateException: No fallback instance of type class com.xueshuai.eduservice.client.CommentFileDegradeFeignClient found for feign client service-ucenter
-    at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
-    at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:116)
-    at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:397)
-    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1429)
-    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
-    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
-    at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
-    at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
-    at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
-    at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-    at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879)
-    at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
-    at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
-    at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
-    at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
-    at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
-    at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
-    at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
-    at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
-    at com.xueshuai.eduservice.EduApplication.main(EduApplication.java:24)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;com.xueshuai.eduservice.client.CommentClient&#39;: FactoryBean threw exception on object creation; nested exception is java.lang.IllegalStateException: No fallback instance of type class com.xueshuai.eduservice.client.CommentFileDegradeFeignClient found for feign client service-ucenter
-    at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:178)
-    at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getObjectFromFactoryBean(FactoryBeanRegistrySupport.java:101)
-    at org.springframework.beans.factory.support.AbstractBeanFactory.getObjectForBeanInstance(AbstractBeanFactory.java:1818)
-    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getObjectForBeanInstance(AbstractAutowireCapableBeanFactory.java:1266)
-    at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:260)
-    at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-    at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
-    at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1510)
-    at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1467)
-    at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1250)
-    at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
-    at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:636)
-    ... 19 common frames omitted
-Caused by: java.lang.IllegalStateException: No fallback instance of type class com.xueshuai.eduservice.client.CommentFileDegradeFeignClient found for feign client service-ucenter
-    at org.springframework.cloud.openfeign.HystrixTargeter.getFromContext(HystrixTargeter.java:81)
-    at org.springframework.cloud.openfeign.HystrixTargeter.targetWithFallback(HystrixTargeter.java:72)
-    at org.springframework.cloud.openfeign.HystrixTargeter.target(HystrixTargeter.java:49)
-    at org.springframework.cloud.openfeign.FeignClientFactoryBean.loadBalance(FeignClientFactoryBean.java:242)
-    at org.springframework.cloud.openfeign.FeignClientFactoryBean.getTarget(FeignClientFactoryBean.java:271)
-    at org.springframework.cloud.openfeign.FeignClientFactoryBean.getObject(FeignClientFactoryBean.java:251)
-    at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:171)
-    ... 30 common frames omitted
-</code></pre>
-<p>解决方法：</p>
-<p>查看消费者实现类或者接口中是否加上了@Component或者类似注解</p>
-<p>加上之后编译通过：</p>
-<p><em><img src="/2022/010750003/1641523960615.png" class title="编译通过"></em></p>
-<p>此文仅作为本人学习笔记使用</p>
+                <p>题目：</p>
+<p><em><img src="/2022/0712undefined/1657556362480.png" class title="跳跃游戏"></em></p>
+<p>解法1:递归</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">canJump</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> len <span class="token operator">=</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> p <span class="token operator">=</span> len <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>len <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>p <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//倒数第二个可以到达最后一个，那么就变成了判断能否到达倒数第二个</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>len <span class="token operator">-</span> p <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">&lt;=</span> nums<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+               <span class="token keyword">return</span> <span class="token function">canJump</span><span class="token punctuation">(</span>Arrays<span class="token punctuation">.</span><span class="token function">copyOfRange</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>p <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+                p<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>解法2:</p>
+<p>思路:维护一个最远距离k，每一次循环更新最远距离。</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">canJump</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nums <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> k<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> j <span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> i<span class="token punctuation">;</span>
+            k <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>j<span class="token punctuation">,</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>k <span class="token operator">>=</span> nums<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>推荐方法2.</p>
 
                 
             </div>
@@ -539,7 +535,7 @@ Caused by: java.lang.IllegalStateException: No fallback instance of type class c
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/010750003.html">http://example.com/2022/010750003.html</a>
+                    <a href="http://example.com/2022/071216346.html">http://example.com/2022/071216346.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -577,8 +573,8 @@ Caused by: java.lang.IllegalStateException: No fallback instance of type class c
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/error/">
-                                    <span class="chip bg-color">error</span>
+                                <a href="/tags/leetcode/">
+                                    <span class="chip bg-color">leetcode</span>
                                 </a>
                             
                         </div>
@@ -750,17 +746,18 @@ Caused by: java.lang.IllegalStateException: No fallback instance of type class c
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/010943943.html">
+                <a href="/2022/071216346.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="vue点击一个元素，使指定输入框获得焦点">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="跳跃游戏">
                         
-                        <span class="card-title">vue点击一个元素，使指定输入框获得焦点</span>
+                        <span class="card-title">跳跃游戏</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -770,9 +767,9 @@ Caused by: java.lang.IllegalStateException: No fallback instance of type class c
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -781,11 +778,12 @@ Caused by: java.lang.IllegalStateException: No fallback instance of type class c
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/study/">
-                        <span class="chip bg-color">study</span>
+                    <a href="/tags/leetcode/">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
                 </div>
@@ -799,13 +797,13 @@ Caused by: java.lang.IllegalStateException: No fallback instance of type class c
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/010655535.html">
+                <a href="/2022/070956957.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="nacos远程调用">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="经典排序算法巩固">
                         
-                        <span class="card-title">nacos远程调用</span>
+                        <span class="card-title">经典排序算法巩固</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -816,7 +814,7 @@ Caused by: java.lang.IllegalStateException: No fallback instance of type class c
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-09
                             </span>
                         <span class="publish-author">
                             
