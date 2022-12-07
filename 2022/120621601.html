@@ -439,21 +439,21 @@ where
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-12-06
+                    2022-12-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    230
+                    491
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -468,7 +468,7 @@ where
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="1、大的国家"><a href="#1、大的国家" class="headerlink" title="1、大的国家"></a>1、大的国家</h4><p><em><img src="/2022/1206undefined/1670322542626.png" class title="大的国家"></em></p>
+                <h4 id="1、大的国家"><a href="#1、大的国家" class="headerlink" title="1、大的国家"></a>1、大的国家</h4><p><em><img src="/2022/120621601/1670322542626.png" class title="大的国家"></em></p>
 <p>解法一:直接使用where</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> 
     name<span class="token punctuation">,</span>population<span class="token punctuation">,</span>area
@@ -495,7 +495,7 @@ where
 population <span class="token operator">>=</span> <span class="token string">"25000000"</span>
 <span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="2、可回收且低脂的产品"><a href="#2、可回收且低脂的产品" class="headerlink" title="2、可回收且低脂的产品"></a>2、可回收且低脂的产品</h4><p><em><img src="/2022/1206undefined/1670322843245.png" class title="可回收且低脂的产品"></em></p>
+<h4 id="2、可回收且低脂的产品"><a href="#2、可回收且低脂的产品" class="headerlink" title="2、可回收且低脂的产品"></a>2、可回收且低脂的产品</h4><p><em><img src="/2022/120621601/1670322843245.png" class title="可回收且低脂的产品"></em></p>
 <p>解法1:where</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> 
     product_id
@@ -505,7 +505,10 @@ population <span class="token operator">>=</span> <span class="token string">"25
     low_fats <span class="token operator">=</span> <span class="token string">'Y'</span> <span class="token operator">and</span> recyclable <span class="token operator">=</span> <span class="token string">'Y'</span>
     <span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>解法2：concat函数(将两个字符串拼接起来)</p>
+<blockquote>
+<p>concat函数可以将两个字符串拼接起来</p>
+</blockquote>
+<p>解法2：concat</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> 
     product_id
 <span class="token keyword">from</span>
@@ -521,8 +524,9 @@ population <span class="token operator">>=</span> <span class="token string">"25
     products
 <span class="token keyword">where</span>
     <span class="token punctuation">(</span>low_fats<span class="token punctuation">,</span>recyclable<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'Y'</span><span class="token punctuation">,</span><span class="token string">'Y'</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="3、寻找用户推荐人"><a href="#3、寻找用户推荐人" class="headerlink" title="3、寻找用户推荐人"></a>3、寻找用户推荐人</h4><p><em><img src="/2022/1206undefined/1670323521186.png" class title="寻找用户推荐人"></em></p>
+    <span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="3、寻找用户推荐人"><a href="#3、寻找用户推荐人" class="headerlink" title="3、寻找用户推荐人"></a>3、寻找用户推荐人</h4><p><em><img src="/2022/120621601/1670323521186.png" class title="寻找用户推荐人"></em></p>
 <p>解法1:安全等于取反</p>
 <pre class="line-numbers language-java"><code class="language-java">select 
     name
@@ -541,7 +545,7 @@ where
     referee_id <span class="token operator">is</span> <span class="token boolean">null</span> <span class="token operator">or</span> referee_id <span class="token operator">!=</span> <span class="token number">2</span>
     <span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="4-从不订购的客户"><a href="#4-从不订购的客户" class="headerlink" title="4.从不订购的客户"></a>4.从不订购的客户</h4><p><em><img src="/2022/1206undefined/1670324097042.png" class title="从不订购的客户"></em></p>
+<h4 id="4、从不订购的客户"><a href="#4、从不订购的客户" class="headerlink" title="4、从不订购的客户"></a>4、从不订购的客户</h4><p><em><img src="/2022/120621601/1670324097042.png" class title="从不订购的客户"></em></p>
 <p>解法1:</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> 
     Name <span class="token keyword">As</span> Customers
@@ -559,8 +563,94 @@ where
 <span class="token keyword">on</span>
     <span class="token number">c</span><span class="token punctuation">.</span>Id <span class="token operator">=</span> o<span class="token punctuation">.</span>CustomerId
 <span class="token keyword">where</span> 
-    o<span class="token punctuation">.</span>id <span class="token operator">is</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    o<span class="token punctuation">.</span>id <span class="token operator">is</span> <span class="token boolean">null</span>
+    <span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="5、计算特殊奖金"><a href="#5、计算特殊奖金" class="headerlink" title="5、计算特殊奖金"></a>5、计算特殊奖金</h4><blockquote>
+<p>case语句用法:</p>
+<p>case 查询对象</p>
+<p>​    when 值1 then 结果1</p>
+<p>​    when 值2 then 结果2</p>
+<p>​    。。。</p>
+<p>​    else 结果n</p>
+<p>​    end；</p>
+</blockquote>
+<p><em><img src="/2022/120621601/1670409538151.png" class title="计算特殊奖金"></em></p>
+<p>解法1:</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span>
+    employee_id<span class="token punctuation">,</span>salary bonus
+<span class="token keyword">from</span>
+    Employees
+<span class="token keyword">where</span>
+    employee_id <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">and</span> name <span class="token operator">not</span> <span class="token operator">like</span> <span class="token string">"M%"</span>
+<span class="token keyword">union</span>
+<span class="token keyword">select</span>
+    employee_id<span class="token punctuation">,</span><span class="token number">0</span> bonus
+<span class="token keyword">from</span>
+    Employees
+<span class="token keyword">where</span>
+    employee_id <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">=</span> <span class="token number">0</span> <span class="token operator">or</span> name  <span class="token operator">like</span> <span class="token string">"M%"</span>
+<span class="token keyword">order</span> <span class="token keyword">by</span> employee_id
+<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>解法2:case语句</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span>
+    employee_id<span class="token punctuation">,</span>
+    <span class="token keyword">case</span> <span class="token keyword">when</span> <span class="token punctuation">(</span>employee_id <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">and</span> name <span class="token operator">not</span> <span class="token operator">like</span> <span class="token string">"M%"</span><span class="token punctuation">)</span> <span class="token keyword">then</span> salary
+    <span class="token keyword">else</span> <span class="token number">0</span>
+    <span class="token keyword">end</span>
+    bonus
+<span class="token keyword">from</span> 
+    Employees
+<span class="token keyword">order</span> <span class="token keyword">by</span>
+    employee_id
+<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="6、变更性别"><a href="#6、变更性别" class="headerlink" title="6、变更性别"></a>6、变更性别</h4><p><em><img src="/2022/120621601/1670413762966.png" class title="变更性别"></em></p>
+<p>解法1:if语句</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">update</span>
+    Salary
+<span class="token keyword">set</span>
+    sex <span class="token operator">=</span> <span class="token keyword">if</span><span class="token punctuation">(</span>sex <span class="token operator">=</span> <span class="token string">'m'</span><span class="token punctuation">,</span><span class="token string">'f'</span><span class="token punctuation">,</span><span class="token string">'m'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>解法2:case语句</p>
+<pre class="line-numbers language-sql"><code class="language-sql">
+<span class="token keyword">update</span>
+    Salary
+<span class="token keyword">set</span>
+    sex <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">case</span> sex <span class="token keyword">when</span> <span class="token string">'m'</span> <span class="token keyword">then</span> <span class="token string">'f'</span>
+                    <span class="token keyword">else</span> <span class="token string">'m'</span> <span class="token keyword">end</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="7、删除重复的电子邮箱"><a href="#7、删除重复的电子邮箱" class="headerlink" title="7、删除重复的电子邮箱"></a>7、删除重复的电子邮箱</h4><blockquote>
+<p>delete语句中加from和不加from的区别：</p>
+<p>1、假如只针对一个表进行删除加不加from都一样</p>
+<p>2、如果需要联合其他表，则需要使用from，具体如本题</p>
+</blockquote>
+<p><em><img src="/2022/120621601/1670414510544.png" class title="删除重复的电子邮箱"></em></p>
+<p>解法1:自连接</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">delete</span> 
+    p1
+<span class="token keyword">from</span>
+    Person p1<span class="token punctuation">,</span>
+    Person p2
+<span class="token keyword">where</span>
+    p1<span class="token punctuation">.</span>email <span class="token operator">=</span> p2<span class="token punctuation">.</span>email <span class="token operator">and</span>
+    p1<span class="token punctuation">.</span>id <span class="token operator">></span> p2<span class="token punctuation">.</span>id
+    <span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>解法2:使用group by 进行去重操作</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">delete</span> <span class="token keyword">from</span>
+    Person
+<span class="token keyword">where</span> 
+    id <span class="token operator">not</span> <span class="token operator">in</span> <span class="token punctuation">(</span>
+        <span class="token keyword">select</span> id <span class="token keyword">from</span> <span class="token punctuation">(</span>
+            <span class="token keyword">select</span> <span class="token function">min</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span> id  <span class="token keyword">from</span> Person <span class="token keyword">group</span> <span class="token keyword">by</span> Email 
+        <span class="token punctuation">)</span> t
+    <span class="token punctuation">)</span>
+<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>持续更新。。。</p>
 
                 
@@ -1128,7 +1218,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">59.8k</span>
+                        class="white-color">60.1k</span>
             
             
             
