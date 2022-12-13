@@ -439,21 +439,21 @@ where
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-12-12
+                    2022-12-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    8 分
                 </div>
                 
 
@@ -1016,6 +1016,105 @@ where
     user_id
     <span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="22、订单最多的客户"><a href="#22、订单最多的客户" class="headerlink" title="22、订单最多的客户"></a>22、订单最多的客户</h4><p><em><img src="/2022/120621601/1670932062355.png" class title="订单最多的客户"></em></p>
+<p>解法1: 只适用于 <strong>恰好有一个客户</strong> 比任何其他客户下了更多的订单 </p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span>
+    customer_number
+<span class="token keyword">from</span>
+    Orders
+<span class="token keyword">group</span> <span class="token keyword">by</span>
+    customer_number
+<span class="token keyword">order</span> <span class="token keyword">by</span>
+    <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">desc</span>
+<span class="token keyword">limit</span>
+    <span class="token number">1</span>
+    <span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>解法2:</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># Write your MySQL query statement below、</span>
+<span class="token comment" spellcheck="true">/*
+select
+    customer_number
+from
+    Orders
+group by
+    customer_number
+having
+    count(customer_number) = (
+        select
+            count(customer_number)
+        from
+            Orders
+        group by
+            customer_number
+        order by
+            count(customer_number) desc
+        limit
+            1
+    )
+    ;
+    */</span>
+    
+    
+<span class="token keyword">select</span>
+    customer_number
+<span class="token keyword">from</span>
+    Orders
+<span class="token keyword">group</span> <span class="token keyword">by</span>
+    customer_number
+<span class="token keyword">having</span>
+    <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span>
+        <span class="token keyword">select</span>
+            <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span>
+        <span class="token keyword">from</span>
+            Orders
+        <span class="token keyword">group</span> <span class="token keyword">by</span>
+            customer_number
+        <span class="token keyword">order</span> <span class="token keyword">by</span>
+            <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">desc</span>
+        <span class="token keyword">limit</span>
+            <span class="token number">1</span>
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">;</span>
+    
+    
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="23、游戏玩法分析-I"><a href="#23、游戏玩法分析-I" class="headerlink" title="23、游戏玩法分析 I"></a>23、游戏玩法分析 I</h4><p><em><img src="/2022/120621601/1670932921041.png" class title="游戏玩法分析 I"></em></p>
+<p>解法1</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span>
+    player_id<span class="token punctuation">,</span><span class="token function">min</span><span class="token punctuation">(</span>event_date<span class="token punctuation">)</span> first_login
+<span class="token keyword">from</span>
+    Activity
+<span class="token keyword">group</span> <span class="token keyword">by</span>
+    player_id
+    <span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="24、2020年最后一次登录"><a href="#24、2020年最后一次登录" class="headerlink" title="24、2020年最后一次登录"></a>24、2020年最后一次登录</h4><p><em><img src="/2022/120621601/1670933475908.png" class title="2020年最后一次登录"></em></p>
+<p>解法1:</p>
+<blockquote>
+<p>如果只需要判断年份的话，可以使用year函数，但是可能造成索引失效，不过年份的区分度如果不是很大一般也不作为索引</p>
+</blockquote>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> 
+    user_id<span class="token punctuation">,</span><span class="token function">max</span><span class="token punctuation">(</span>time_stamp<span class="token punctuation">)</span> last_stamp
+<span class="token keyword">from</span>
+    Logins
+<span class="token keyword">where</span>
+    time_stamp <span class="token operator">between</span> <span class="token string">'2020-01-01 00:00:00'</span> <span class="token operator">and</span> <span class="token string">'2020-12-31 23:59:59'</span>
+    year<span class="token punctuation">(</span>time_stamp<span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">2020</span>
+<span class="token keyword">group</span> <span class="token keyword">by</span>
+    user_id
+    <span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="25、查找每个员工花费的总时间"><a href="#25、查找每个员工花费的总时间" class="headerlink" title="25、查找每个员工花费的总时间"></a>25、查找每个员工花费的总时间</h4><p><em><img src="/2022/120621601/1670935512021.png" class title="查找每个员工花费的总时间"></em></p>
+<p>解法1：</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span>
+    event_day day<span class="token punctuation">,</span>emp_id<span class="token punctuation">,</span><span class="token function">sum</span><span class="token punctuation">(</span>out_time <span class="token operator">-</span> in_time<span class="token punctuation">)</span> total_time
+<span class="token keyword">from</span>
+    Employees
+<span class="token keyword">group</span> <span class="token keyword">by</span>
+    event_day<span class="token punctuation">,</span>emp_id
+    <span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>持续更新。。。</p>
 
                 
@@ -1583,7 +1682,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">61.1k</span>
+                        class="white-color">61.4k</span>
             
             
             
